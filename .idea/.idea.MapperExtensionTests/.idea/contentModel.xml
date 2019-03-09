@@ -61,6 +61,9 @@
         <e p="Tests" t="Include">
           <e p="AdvancedFromStudioProfileTests.cs" t="Include" />
           <e p="BaseProfileTests.cs" t="Include" />
+          <e p="FunctionTests" t="Include">
+            <e p="AutoMapperTests.cs" t="Include" />
+          </e>
           <e p="IntermediateFromStudioProfileTests.cs" t="Include" />
           <e p="SimpleFromPupilProfileTests.cs" t="Include" />
         </e>

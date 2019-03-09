@@ -1,13 +1,99 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Text.RegularExpressions;
+using System.Xml.Linq;
 using AutoMapper;
+using static MapperExtensions.Models.AuthMapperExtensionHelpers;
 
 namespace MapperExtensions.Models
 {
     public static class AutoMapperExtensions
     {
-        private static string GetPropertyNameInLambda(LambdaExpression lambda)
+        private static IMappingExpression<TSource, TDest> To<TSource, TDest, TProjection>(
+            this MapperExpressionWrapper<TSource, TDest, TProjection> mapperExpressionWrapper,
+            params Expression<Func<TDest, object>>[] expressions)
+        {
+            var from = expressions.Select(expression => Concat(mapperExpressionWrapper.Expression, expression));
+            var @for = expressions.Select(GetPropertyNameInLambda);
+            var zip = @for.Zip(from, (x, y) => new {For = x, From = y}).ToList();
+            foreach (var info in zip)
+            {
+                mapperExpressionWrapper.MappingExpression
+                    .ForMember(info.For, ss => ss.MapFrom((dynamic) info.From));
+            }
+
+            return mapperExpressionWrapper.MappingExpression;
+        }
+
+        public static IMappingExpression<TSource, TDest> To<TSource, TDest, TProjection>(
+            this MapperExpressionWrapper<TSource, TDest, TProjection> mapperExpressionWrapper)
+            => mapperExpressionWrapper.To(GetLambdasByConvention<TDest, TProjection>().ToArray());
+
+        public static IMappingExpression<TSource, TDest> To<TSource, TDest, TProjection>(
+            this MapperExpressionWrapper<TSource, TDest, TProjection> mapperExpressionWrapper,
+            params (Expression<Func<TDest, object>>, Expression<Func<TProjection, object>>)[] props)
+        {
+            //переменные для которых определены правилы маппинга
+
+            ConcatAndRegister(mapperExpressionWrapper.Expression, mapperExpressionWrapper.MappingExpression, props);
+            //переменные которые называются одинаково
+            var lambdas = GetLambdasByConvention<TDest, TProjection>();
+            /*var s = lambdas.Select(expression => Concat(mapperExpressionWrapper.Expression, expression));
+            var zip = lambdas.Zip(s,(x,y)=>{})
+            ConcatAndRegister(mapperExpressionWrapper.Expression, mapperExpressionWrapper.MappingExpression,s);*/
+            // переменные которые состоят из нескольких слов CamelCase
+
+            return null;
+        }
+
+        public static MapperExpressionWrapper<TSource, TDest, TProjection> From<TSource, TDest, TProjection>(
+            this IMappingExpression<TSource, TDest> mapping, Expression<Func<TSource, TProjection>> expression)
+            => new MapperExpressionWrapper<TSource, TDest, TProjection>(mapping, expression);
+    }
+
+    //todo make internal, only tests 
+    public static class AuthMapperExtensionHelpers
+    {
+        public static IEnumerable<Expression<Func<TDest, object>>> GetLambdasByConvention<TDest, TProjection>()
+        {
+            var destProperties = typeof(TDest).GetProperties();
+            var projectionProperties = typeof(TProjection).GetProperties();
+            var join = destProperties.Join(projectionProperties, x => new {x.Name, x.PropertyType},
+                x => new {x.Name, x.PropertyType}, (x, y) => x).ToList();
+            if (!join.Any())
+            {
+                throw new ArgumentException("совпадений не найдено");
+            }
+
+            var parameter = Expression.Parameter(typeof(TDest));
+            var properties = join.Select(x => Expression.Property(parameter, x));
+            var lambdas = properties.Select(x =>
+                Expression.Lambda<Func<TDest, object>>(Expression.Convert(x, typeof(object)), parameter));
+            return lambdas;
+        }
+
+        public static LambdaExpression Concat<TSource, TDest, TProjection>(
+            Expression<Func<TSource, TProjection>> fromExpression,
+            Expression<Func<TDest, object>> concatExpression)
+        {
+            var propName = GetPropertyNameInLambda(concatExpression);
+            var result = Expression.Property(fromExpression.Body, propName);
+            return Expression.Lambda(result, fromExpression.Parameters.First());
+        }
+
+        //simple version todo: maybe fix
+        public static LambdaExpression Concat<TSource, TProjection>(
+            Expression<Func<TSource, TProjection>> fromExpression,
+            LambdaExpression concatExpression)
+        {
+            var propName = GetPropertyNameInLambda(concatExpression);
+            var result = Expression.Property(fromExpression.Body, propName);
+            return Expression.Lambda(result, fromExpression.Parameters.First());
+        }
+
+        public static string GetPropertyNameInLambda(LambdaExpression lambda)
         {
             string propName = null;
             switch (lambda.Body)
@@ -23,81 +109,69 @@ namespace MapperExtensions.Models
             return propName;
         }
 
-        private static Expression Concat<TSource, TDest, TProjection>(
-            this Expression<Func<TSource, TProjection>> fromExpression,
-            Expression<Func<TDest, object>> concatExpression)
+        public static Expression<Func<TMap, object>> PropertyMapper<TMap>(string destPropertyName)
         {
-            var propName = GetPropertyNameInLambda(concatExpression);
-            var result = Expression.Property(fromExpression.Body, propName);
-            return Expression.Lambda(result, fromExpression.Parameters.First());
+            var propertyNames = Regex.Matches(destPropertyName, @"[A-Z][a-z]+").Select(x => x.Value);
+            var parameter = Expression.Parameter(typeof(TMap));
+
+            var concatProperty = propertyNames.Aggregate((Expression) parameter, (a, c) =>
+                a?.Type.GetProperty(c) is var property && property != null
+                    ? Expression.Property(a, property)
+                    : null);
+
+            if (concatProperty == null)
+                return null;
+            var expressionLambda = Expression.Lambda<Func<TMap, object>>(concatProperty, parameter);
+            return expressionLambda;
         }
 
-        private static IMappingExpression<TSource, TDest> To<TSource, TDest, TProjection>(
-            this MapperExpressionWrapper<TSource, TDest, TProjection> mapperExpressionWrapper,
-            params Expression<Func<TDest, object>>[] expressions)
+        private static void RegisterByStringLambda<TSource, TDest>(
+            IMappingExpression<TSource, TDest> mappingExpression,
+            IEnumerable<(string, Expression<Func<TSource, object>>)> forFroms)
         {
-            if (!expressions.Any())
+            foreach (var (@for, from) in forFroms)
             {
-                var destProperties = typeof(TDest).GetProperties();
-                var projectionProperties = typeof(TProjection).GetProperties();
-                var join = destProperties.Join(projectionProperties, x => new {x.Name, x.PropertyType},
-                    x => new {x.Name, x.PropertyType}, (x, y) => x).ToList();
-                var parameter = Expression.Parameter(typeof(TDest));
-                var properties = join.Select(x => Expression.Property(parameter, x));
-                var lambdas = properties.Select(x =>
-                    Expression.Lambda<Func<TDest, object>>(Expression.Convert(x, typeof(object)), parameter)).ToArray();
-                expressions = lambdas;
+                mappingExpression.ForMember(@for, ss => ss.MapFrom((dynamic) from));
             }
-
-            var from = expressions.Select(expression => mapperExpressionWrapper.Expression.Concat(expression));
-            var @for = expressions.Select(GetPropertyNameInLambda);
-            var zip = @for.Zip(from, (x, y) => new {For = x, From = y}).ToList();
-            foreach (var info in zip)
-            {
-                mapperExpressionWrapper.MappingExpression
-                    .ForMember(info.For, ss => ss.MapFrom((dynamic) info.From));
-            }
-
-            return mapperExpressionWrapper.MappingExpression;
         }
 
-        public static IMappingExpression<TSource, TDest> To<TSource, TDest, TProjection>(
-            this MapperExpressionWrapper<TSource, TDest, TProjection> mapperExpressionWrapper)
+        public static void RegisterByLambdas<TSource, TDest>(
+            IMappingExpression<TSource, TDest> mappingExpression,
+            IEnumerable<(Expression<Func<TDest, object>>, Expression<Func<TSource, object>>)> forFroms)
         {
-            var destProperties = typeof(TDest).GetProperties();
-            var projectionProperties = typeof(TProjection).GetProperties();
-            var join = destProperties.Join(projectionProperties, x => new {x.Name, x.PropertyType},
-                x => new {x.Name, x.PropertyType}, (x, y) => x).ToList();
-            if (!join.Any())
+            var lambdas = forFroms.Select(item =>
             {
-                throw new ArgumentException("совпадений не найдено");
-            }
-
-            var parameter = Expression.Parameter(typeof(TDest));
-            var properties = join.Select(x => Expression.Property(parameter, x));
-            var lambdas = properties.Select(x =>
-                Expression.Lambda<Func<TDest, object>>(Expression.Convert(x, typeof(object)), parameter)).ToArray();
-            return mapperExpressionWrapper.To(lambdas);
+                var (@for, from) = item;
+                return (GetPropertyNameInLambda(@for), from);
+            });
+            RegisterByStringLambda(mappingExpression, lambdas);
         }
 
-        public static IMappingExpression<TSource, TDest> To<TSource, TDest, TProjection>(
-            this MapperExpressionWrapper<TSource, TDest, TProjection> mapperExpressionWrapper,
+        public static void ConcatAndRegister<TSource, TDest, TProjection>(
+            Expression<Func<TSource, TProjection>> fromExpression,
+            IMappingExpression<TSource, TDest> mappingExpression,
             params (Expression<Func<TDest, object>>, Expression<Func<TProjection, object>>)[] props)
         {
-            var s = props.Select(x =>
+            var lambdas = props.Select(item =>
             {
-                var (@for, from) = x;
-                var invoke = Expression.Invoke(from,mapperExpressionWrapper.Expression.Body);
-                var lambda = Expression.Lambda(invoke, from.Parameters.First());
-                return lambda;
-            }).ToList();
-            return null;
+                var (@for, from) = item;
+                return (@for, Concat(fromExpression, from));
+            });
+            RegisterByLambdas(mappingExpression, (dynamic) lambdas);
         }
 
-        public static MapperExpressionWrapper<TSource, TDest, TProjection> From<TSource, TDest, TProjection>(
-            this IMappingExpression<TSource, TDest> mapping, Expression<Func<TSource, TProjection>> expression)
+        //simple version todo: maybe fix
+        public static void ConcatAndRegister<TSource, TDest, TProjection>(
+            Expression<Func<TSource, TProjection>> fromExpression,
+            IMappingExpression<TSource, TDest> mappingExpression,
+            params (Expression<Func<TDest, object>>, LambdaExpression)[] props)
         {
-            return new MapperExpressionWrapper<TSource, TDest, TProjection>(mapping, expression);
+            var lambdas = props.Select(item =>
+            {
+                var (@for, from) = item;
+                return (@for, Concat(fromExpression, from));
+            });
+            RegisterByLambdas(mappingExpression, (dynamic) lambdas);
         }
     }
 }
