@@ -20,9 +20,11 @@ namespace Tests
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder
-                .UseLoggerFactory(MyLoggerFactory)
-                .UseSqlServer(
-                    "Server=.;Initial Catalog=Pupil;Persist Security Info=False;Integrated Security=True;MultipleActiveResultSets=False;Connection Timeout=30");
+//                .UseLoggerFactory(MyLoggerFactory)
+                .UseInMemoryDatabase("test")
+                /*.UseNpgsql(
+                    "Username=postgres;Password=18211921;Host=localhost;Port=5432;Database=EducationBot");*/
+                ;
             base.OnConfiguring(optionsBuilder);
         }    
 

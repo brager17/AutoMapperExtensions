@@ -12,11 +12,11 @@ namespace MapperExtensions.Models
 //                .From(x => x.Identity.Passport).To(x => x.Name, x => x.Surname, s => s.Number)
 //                ;
 
-            CreateMap<Pupil, PupilDto>()
-                .From(x => x.Address).To()
-                .From(x => x.Identity).To()
-                .From(x => x.Identity.Passport).To()
-                ;
+//            CreateMap<Pupil, PupilDto>()
+//                .From(x => x.Address).To()
+//                .From(x => x.Identity).To()
+//                .From(x => x.Identity.Passport).To()
+//                ;
 
 //            CreateMap<Pupil, PupilDto>()
 //                .ForMember(x => x.Name, s => s.MapFrom(x => x.Identity.Passport.Name))

@@ -19,7 +19,7 @@ namespace MapperExtensions.Models
             params (Expression<Func<TDest, object>>, Expression<Func<TProjection, object>>)[] rules)
         {
             var rulesByConvention =
-                Helpers.GetConventionMap<TSource, TDest, TProjection>(mapperExpressionWrapper.Expression);
+                Helpers.GetConventionMap<TSource, TDest, TProjection, Object>(mapperExpressionWrapper.Expression);
             var concatProjection = rules.Select(x =>
             {
                 var (from, @for) = x;
@@ -27,21 +27,38 @@ namespace MapperExtensions.Models
                 return (from, result);
             });
             var concatMapRules =
-                concatProjection.LeftJoin(rulesByConvention, new ExpressionTupleComparer<TDest, TSource>());
+                concatProjection.LeftJoin(rulesByConvention, new ExpressionTupleComparer<TDest, TSource, object>());
             Register(mapperExpressionWrapper.MappingExpression, concatMapRules);
             return mapperExpressionWrapper.MappingExpression;
         }
 
-        private static void Register<TSource, TDest>(
+
+        public static IMappingExpression<TSource, TDest> To<TSource, TDest, TProjection>(
+            this MapperExpressionWrapper<TSource, TDest, TProjection> mapperExpressionWrapper,
+            params (Expression<Func<TDest, int>>, Expression<Func<TProjection, int>>)[] rules)
+        {
+            var rulesByConvention =
+                Helpers.GetConventionMap<TSource, TDest, TProjection, int>(mapperExpressionWrapper.Expression);
+            var concatProjection = rules.Select(x =>
+            {
+                var (from, @for) = x;
+                var result = mapperExpressionWrapper.Expression.ConcatPropertyExpressionToLambda<TSource, int>(@for);
+                return (from, result);
+            });
+            var concatMapRules =
+                concatProjection.LeftJoin(rulesByConvention, new ExpressionTupleComparer<TDest, TSource, int>());
+            Register(mapperExpressionWrapper.MappingExpression, concatMapRules);
+            return mapperExpressionWrapper.MappingExpression;
+        }
+
+        public static void Register<TSource, TDest, TProjection1>(
             IMappingExpression<TSource, TDest> MappingExpression,
-            IEnumerable<(Expression<Func<TDest, object>>, Expression<Func<TSource, object>>)> expressions)
+            IEnumerable<(Expression<Func<TDest, TProjection1>>, Expression<Func<TSource, TProjection1>>)> expressions)
         {
             foreach (var expression in expressions)
             {
-                //remove converttoobject
                 var from = Expression.Lambda(expression.Item2.Body.ReplaceObjectConvert(),
                     expression.Item2.Parameters.First());
-                //
                 var @for = expression.Item1.PropertiesStr().First();
                 MappingExpression.ForMember(@for, s => s.MapFrom((dynamic) from));
 
@@ -52,8 +69,9 @@ namespace MapperExtensions.Models
 
     public static class Helpers
     {
-        public static IEnumerable<(Expression<Func<TDest, object>>, Expression<Func<TSource, object>>)>
-            GetConventionMap<TSource, TDest, TProjection>(Expression<Func<TSource, TProjection>> projectExpression)
+        public static IEnumerable<(Expression<Func<TDest, TProjection1>>, Expression<Func<TSource, TProjection1>>)>
+            GetConventionMap<TSource, TDest, TProjection, TProjection1>(
+                Expression<Func<TSource, TProjection>> projectExpression)
         {
             var destProperties = typeof(TDest).GetProperties();
             var projectProperties = typeof(TProjection).GetProperties();
@@ -62,9 +80,9 @@ namespace MapperExtensions.Models
             var result = simpleMapRules.Concat(advancedMapRules)
                 .Select(x =>
                 {
-                    var @for = GetLambdaByPropertyNames<TDest, object>(new[] {x.DestinationPropertyName},
+                    var @for = GetLambdaByPropertyNames<TDest, TProjection1>(new[] {x.DestinationPropertyName},
                         typeof(TDest));
-                    var from = GetLambdaByPropertyNames<TSource, object>(x.PathToSourceProperty,
+                    var from = GetLambdaByPropertyNames<TSource, TProjection1>(x.PathToSourceProperty,
                         typeof(TSource));
                     return (@for, from);
                 }).ToList();
@@ -100,7 +118,7 @@ namespace MapperExtensions.Models
 
         public static IEnumerable<string> PropertiesStr(this LambdaExpression lambda)
         {
-            Expression expression = ReplaceObjectConvert(lambda.Body);
+            var expression = ReplaceObjectConvert(lambda.Body);
             var result = expression.ToString().Split('.').Skip(1);
             return result;
         }
@@ -142,8 +160,7 @@ namespace MapperExtensions.Models
         {
             var parameter = Expression.Parameter(parameterType);
             var result = Expression.Lambda<Func<T, R>>(
-                Expression.Convert(
-                    properties.Aggregate((Expression) parameter, Expression.Property),
+                Expression.Convert(properties.Aggregate((Expression) parameter, Expression.Property),
                     typeof(object)), parameter);
             return result;
         }
@@ -161,7 +178,7 @@ namespace MapperExtensions.Models
         }
     }
 
-    public static class IEnumerableExtentions
+    public static class IEnumerableExtensions
     {
         public static IEnumerable<T> LeftJoin<T>(this IEnumerable<T> enumerable1, IEnumerable<T> enumerable2,
             IEqualityComparer<T> equalityComparer)
@@ -171,17 +188,17 @@ namespace MapperExtensions.Models
         }
     }
 
-    public class ExpressionTupleComparer<TDest, TProjection>
-        : IEqualityComparer<(Expression<Func<TDest, object>>, Expression<Func<TProjection, object>>)>
+    public class ExpressionTupleComparer<TDest, TProjection, TProjection1>
+        : IEqualityComparer<(Expression<Func<TDest, TProjection1>>, Expression<Func<TProjection, TProjection1>>)>
     {
-        public bool Equals((Expression<Func<TDest, object>>, Expression<Func<TProjection, object>>) x,
-            (Expression<Func<TDest, object>>, Expression<Func<TProjection, object>>) y)
+        public bool Equals((Expression<Func<TDest, TProjection1>>, Expression<Func<TProjection, TProjection1>>) x,
+            (Expression<Func<TDest, TProjection1>>, Expression<Func<TProjection, TProjection1>>) y)
         {
-            var @equals = x.Item1.ToString() == y.Item1.ToString();
-            return @equals;
+            var equals = x.Item1.ToString() == y.Item1.ToString();
+            return equals;
         }
 
-        public int GetHashCode((Expression<Func<TDest, object>>, Expression<Func<TProjection, object>>) obj)
+        public int GetHashCode((Expression<Func<TDest, TProjection1>>, Expression<Func<TProjection, TProjection1>>) obj)
         {
             var s = string.Join('.', obj.Item1.Body.ReplaceObjectConvert().ToString().Split('.').Skip(1));
             var hashCode = s.GetHashCode();
