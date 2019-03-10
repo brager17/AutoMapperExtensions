@@ -18,7 +18,7 @@ namespace Tests
                 Identity = new IdentityCard
                 {
                     Passport = new Passport {Name = "name", Number = "123", Surname = "surname"},
-                    TIN = new TIN() {Number = "123", DateOfReceiving = new DateTime(1, 2, 3)}
+                    Tin = new TIN() {Number = "123", DateOfReceiving = new DateTime(1, 2, 3)}
                 }
             };
             return mock;

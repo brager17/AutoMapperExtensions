@@ -25,7 +25,7 @@ namespace Tests
                     {
                         Id = "id",
                         Passport = new Passport {Age = 9, Name = "fatherName", Number = "1", Surname = "fatherSurname"},
-                        TIN = new TIN {Number = "fatherTIN", DateOfReceiving = DateTime.Now}
+                        Tin = new TIN {Number = "fatherTIN", DateOfReceiving = DateTime.Now}
                     }
                 },
                 Mother = new Human
@@ -38,7 +38,7 @@ namespace Tests
                     {
                         Id = "id",
                         Passport = new Passport {Age = 9, Name = "momName", Number = "1", Surname = "momSurname"},
-                        TIN = new TIN {Number = "MotherTIN", DateOfReceiving = DateTime.Now}
+                        Tin = new TIN {Number = "MotherTIN", DateOfReceiving = DateTime.Now}
                     }
                 },
                 Children = new List<Human>() { }
@@ -50,7 +50,7 @@ namespace Tests
         {
             var family = context.Families.First();
             var projectTo = context.Families.ProjectTo<FatherDto>();
-            var s = projectTo.First();
+            var sssss = projectTo.First();
             Assert.DoesNotThrow(() => projectTo.ToList());
         }
 

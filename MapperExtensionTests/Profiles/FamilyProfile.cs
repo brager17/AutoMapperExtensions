@@ -11,9 +11,11 @@ namespace MapperExtensions.Models
         public FamilyProfile()
         {
             CreateMap<Family, FatherDto>()
-                .From(x => x.Father.IdentityCard.Passport).To()
-                .From(x => x.Father.IdentityCard)
-                .To((x => x.PassportNumber, x => x.Passport.Number), (x => x.TinNumber, x => x.TIN.Number))
+                .From(x=>x.Father.IdentityCard.Passport).To((x=>x.Number,x=>x.Surname))
+                .From(x => x.Father.IdentityCard).To()
+                .From(x => x.Father.AddressCard).To()
+                .From(x => x.Mother.IdentityCard.Passport)
+                .To((x => x.WifeName, x => x.Name), (x => x.WifeSurname, x => x.Surname))
                 ;
             //
 
@@ -21,9 +23,9 @@ namespace MapperExtensions.Models
 //                .ForMember(x => x.Name, s => s.MapFrom(x => x.Father.IdentityCard.Passport.Name))
 //                .ForMember(x => x.Surname, s => s.MapFrom(x => x.Father.IdentityCard.Passport.Surname))
 //                .ForMember(x => x.Age, s => s.MapFrom(x => x.Father.IdentityCard.Passport.Age))
-//                .ForMember(x => x.TinNumber, s => s.MapFrom(x => x.Father.IdentityCard.TIN.Number))
-//                .ForMember(x => x.BornCity, s => s.MapFrom(x => x.Father.AddressCard.City))
-//                .ForMember(x => x.BornCountry, s => s.MapFrom(x => x.Father.AddressCard.Country))
+//                .ForMember(x => x.TinNumber, s => s.MapFrom(x => x.Father.IdentityCard.Tin.Number))
+//                .ForMember(x => x.City, s => s.MapFrom(x => x.Father.AddressCard.City))
+//                .ForMember(x => x.Country, s => s.MapFrom(x => x.Father.AddressCard.Country))
 //                .ForMember(x => x.WifeName,
 //                    s => s.MapFrom(x => x.Mother.IdentityCard.Passport.Name))
 //                .ForMember(x => x.WifeSurname,

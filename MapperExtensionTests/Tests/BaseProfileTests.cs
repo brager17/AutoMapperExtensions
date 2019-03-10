@@ -18,7 +18,7 @@ namespace Tests
             context.Database.EnsureCreated();
             context.Add(MockData());
             context.SaveChanges();
-            Mapper.Initialize(x => { x.AddProfile<TProfile>(); });
+             Mapper.Initialize(x => { x.AddProfile<TProfile>(); });
         }
 
         protected abstract TAggregateEntity MockData();

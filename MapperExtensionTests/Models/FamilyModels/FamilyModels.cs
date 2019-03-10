@@ -21,14 +21,14 @@ namespace MapperExtensionTests.Models
 
    public class FatherDto
    {
-      public string Name { get; set; }
-      public string Surname { get; set; }
-      public int Age { get; set; }
+      public string PassportName { get; set; }
+      public string PassportSurname { get; set; }
+      public int PassportAge { get; set; }
       public string TinNumber { get; set; }
       public string WifeName { get; set; }
       public string WifeSurname { get; set; }
-      public string PassportNumber { get; set; }
-      public string BornCity { get; set; }
-      public string BornCountry { get; set; }
+      public string Number { get; set; }
+      public string City { get; set; }
+      public string Country { get; set; }
    }
 }

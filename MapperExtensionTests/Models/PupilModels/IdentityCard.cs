@@ -1,4 +1,5 @@
 using System;
+using AutoMapper.Configuration.Conventions;
 
 namespace MapperExtensions.Models
 {
@@ -6,7 +7,7 @@ namespace MapperExtensions.Models
     {
         public string Id { get; set; }
         public Passport Passport { get; set; }
-        public TIN TIN { get; set; }
+        public TIN Tin { get; set; }
     }
 
     public class TIN
