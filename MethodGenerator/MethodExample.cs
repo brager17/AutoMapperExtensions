@@ -3,27 +3,16 @@ using System.Linq;
 using System.Linq.Expressions;
 using AutoMapper;
 using MapperExtensions.Models;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace MethodGenerator
 {
-    public static class MethodExample
+    public static partial class MethodExample
     {
         public static IMappingExpression<TSource, TDest> To<TSource, TDest, TProjection>(
-            this MapperExpressionWrapper<TSource, TDest, TProjection> mapperExpressionWrapper,
-            params (Expression<Func<TDest, object>>, Expression<Func<TProjection, object>>)[] rules)
+            this MapperExpressionWrapper<TSource, TDest, TProjection> mapperExpressionWrapper)
         {
-            var rulesByConvention =
-                Helpers.GetConventionMap<TSource, TDest, TProjection, Object>(mapperExpressionWrapper.Expression);
-            var concatProjection = rules.Select(x =>
-            {
-                var (from, @for) = x;
-                var result = mapperExpressionWrapper.Expression.ConcatPropertyExpressionToLambda<TSource, object>(@for);
-                return (from, result);
-            });
-            var concatMapRules =
-                concatProjection.LeftJoin(rulesByConvention, new ExpressionTupleComparer<TDest, TSource, object>());
-            RefactorExtensions.Register(mapperExpressionWrapper.MappingExpression, concatMapRules);
-            return mapperExpressionWrapper.MappingExpression;
+            throw new NotImplementedException();
         }
     }
 }

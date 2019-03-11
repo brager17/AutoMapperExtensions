@@ -18,7 +18,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\MapperExtensions\MapperExtensions.csproj" />
       <ProjectReference Include="..\MethodGenerator\MethodGenerator.csproj" />
     </ItemGroup>
 
