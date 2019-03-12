@@ -27,20 +27,31 @@ namespace MethodGenerator
             var exampleMethodCode = fileReader.Handle(new FileInfoDto() {PathToFile = input.PathToExampleCodeFile});
             var exampleCode = CSharpSyntaxTree.ParseText(exampleMethodCode).GetRoot();
 
+            var exampleMethodDeclarationSyntax = exampleCode
+                .DescendantNodes()
+                .OfType<MethodDeclarationSyntax>()
+                .Single();
 
+            var exampleClassDeclarationSyntax = exampleCode
+                .DescendantNodes()
+                .OfType<ClassDeclarationSyntax>()
+                .Single();
             var methods =
                 input.MethodsInfo.ToList().Select(x =>
-                {
-                    var nodeOrTokenList = getGenerationCode.Handle(x.AddedParameters);
-                    var separatedList = SeparatedList<ParameterSyntax>(nodeOrTokenList);
-                    return new ParameterReWriter().Visit(exampleCode, new ReWriteMethodInfo
                     {
-                        NewName = x.NewMethodName,
-                        AddedParameters = ParameterList(separatedList),
-                        OldName = x.OldMethodName
-                    });
-                });
-            var str = methods.Aggregate(string.Empty, (a, c) => $"{a}\n\n{c.NormalizeWhitespace().ToString()}");
+                        var nodeOrTokenList = getGenerationCode.Handle(x.AddedParameters);
+                        var separatedList = SeparatedList<ParameterSyntax>(nodeOrTokenList);
+                        return new ParameterReWriter().Visit(exampleMethodDeclarationSyntax,
+                            new ReWriteMethodInfo
+                            {
+                                NewName = x.NewMethodName,
+                                AddedParameters = ParameterList(separatedList),
+                                OldName = x.OldMethodName
+                            });
+                    })
+                    .OfType<MethodDeclarationSyntax>();
+            var str = new ClassReWriter().Visit(exampleCode, methods).ToString();
+
 
             fileWriter.Handle(new WriteFileInfoDto
             {
