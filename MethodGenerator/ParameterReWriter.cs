@@ -41,7 +41,7 @@ namespace MethodGenerator
 
         public override SyntaxNode VisitClassDeclaration(ClassDeclarationSyntax node)
         {
-            //refactring it
+            //todo refactring it
             return node.Update(
                 node.AttributeLists,
                 node.Modifiers,

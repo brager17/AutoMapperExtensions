@@ -18,34 +18,30 @@ namespace Tests
             var r = Enumerable.Range(1, 4).Select(x =>
             {
                 var maxNumber = Convert.ToInt32(Math.Pow(10, x));
-                var generateInfos = Enumerable.Range(0, maxNumber)
-                    .Select(xx =>
+                var generateInfos = Enumerable.Range(0, maxNumber).Select(xx =>
                     {
                         if (xx.ToString().Any(xxx => int.Parse(xxx.ToString()) >= enumCounts))
                             return null;
                         var str = AddedEmptyElements(xx, maxNumber.ToString().Length - 1);
-                        var enumerable = ListTypeEnumByString(str);
-                        return enumerable;
+                        return ListTypeEnumByString(str);
                     })
-                    .Where(xx => xx != null)
-                    .ToList();
+                    .Where(xx => xx != null);
                 return generateInfos;
-            }).SelectMany(x => x.Select((xx, i) =>
+            }).SelectMany(x => x.Select((xx, i) => new GenerateMethodInfo
             {
-                return new GenerateMethodInfo
-                {
-                    AddedParameters = xx,
-                    NewMethodName = "MethodExample" + i,
-                    OldMethodName = "MethodExample0"
-                };
+                AddedParameters = xx,
+                NewMethodName = "MethodExample" + i,
+                OldMethodName = "MethodExample0"
             }));
+
+
             var t = new GenerateMethodsInfo
             {
                 MethodsInfo = r,
                 PathToExampleCodeFile =
-                    @"/home/evgeny/Документы/automapper/MethodGenerator/MethodExample.cs",
+                    @"C:\Users\evgeniy\RiderProjects\MapperExtensionTests\MethodGenerator\MethodExample.cs",
                 PathToDestinationFile =
-                    @"/home/evgeny/Документы/automapper/MethodGenerator/MethodExample1.cs",
+                    @"C:\Users\evgeniy\RiderProjects\MapperExtensionTests\MethodGenerator\MethodExample1.cs",
             };
             s.Handle(t);
         }
@@ -59,9 +55,8 @@ namespace Tests
             return addedEmptyElements;
         }
 
-        public IEnumerable<TypeEnum> ListTypeEnumByString(string str)
+        private IEnumerable<TypeEnum> ListTypeEnumByString(string str)
         {
-            var t = str.Select(x => x.ToString());
             return str.Select(x => (TypeEnum) int.Parse(x.ToString()));
         }
     }

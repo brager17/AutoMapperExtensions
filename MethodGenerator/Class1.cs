@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Xml.Linq;
 using Microsoft.CodeAnalysis;
@@ -15,8 +14,13 @@ namespace MethodGenerator
         private IQueryHandler<IEnumerable<TypeEnum>, SyntaxNodeOrTokenList> getGenerationCode { get; set; }
         private IHandler<WriteFileInfoDto> fileWriter { get; set; }
 
+        private ClassReWriter ClassReWriter { get; set; }
+        private ParameterReWriter MethodParametersReWriter { get; set; }
+
         public ToMethodGenerator()
         {
+            MethodParametersReWriter = new ParameterReWriter();
+            ClassReWriter = new ClassReWriter();
             fileReader = new FileReader();
             getGenerationCode = new GetGenerationCode();
             fileWriter = new FileWriter();
@@ -32,26 +36,21 @@ namespace MethodGenerator
                 .OfType<MethodDeclarationSyntax>()
                 .Single();
 
-            var exampleClassDeclarationSyntax = exampleCode
-                .DescendantNodes()
-                .OfType<ClassDeclarationSyntax>()
-                .Single();
-            var methods =
-                input.MethodsInfo.ToList().Select(x =>
-                    {
-                        var nodeOrTokenList = getGenerationCode.Handle(x.AddedParameters);
-                        var separatedList = SeparatedList<ParameterSyntax>(nodeOrTokenList);
-                        return new ParameterReWriter().Visit(exampleMethodDeclarationSyntax,
-                            new ReWriteMethodInfo
-                            {
-                                NewName = x.NewMethodName,
-                                AddedParameters = ParameterList(separatedList),
-                                OldName = x.OldMethodName
-                            });
-                    })
-                    .OfType<MethodDeclarationSyntax>();
-            var str = new ClassReWriter().Visit(exampleCode, methods).ToString();
-
+            var methods = input.MethodsInfo.ToList().Select(x =>
+                {
+                    var nodeOrTokenList = getGenerationCode.Handle(x.AddedParameters);
+                    var separatedList = SeparatedList<ParameterSyntax>(nodeOrTokenList);
+                    return MethodParametersReWriter.Visit(exampleMethodDeclarationSyntax,
+                        new ReWriteMethodInfo
+                        {
+                            NewName = x.NewMethodName,
+                            AddedParameters = ParameterList(separatedList),
+                            OldName = x.OldMethodName
+                        });
+                })
+                .OfType<MethodDeclarationSyntax>();
+            var classReWriter = new ClassReWriter();
+            var str = classReWriter.Visit(exampleCode, methods).ToString();
 
             fileWriter.Handle(new WriteFileInfoDto
             {
@@ -59,46 +58,5 @@ namespace MethodGenerator
                 PathToFile = input.PathToDestinationFile
             });
         }
-    }
-
-    public class FileWriter : IHandler<WriteFileInfoDto>
-    {
-        public void Handle(WriteFileInfoDto input)
-        {
-            File.WriteAllText($"{input.PathToFile}", input.Code);
-        }
-    }
-
-    public class FileReader : IQueryHandler<FileInfoDto, string>
-    {
-        public string Handle(FileInfoDto input)
-        {
-            return File.ReadAllText($"{input.PathToFile}");
-        }
-    }
-
-    public class FileInfoDto
-    {
-        public string PathToFile { get; set; }
-    }
-
-    public class WriteFileInfoDto : FileInfoDto
-    {
-        public string Code { get; set; }
-    }
-
-    public class GenerateMethodsInfo
-    {
-        public string PathToDestinationFile { get; set; }
-        public string PathToExampleCodeFile { get; set; }
-        public IEnumerable<GenerateMethodInfo> MethodsInfo { get; set; }
-    }
-
-
-    public class GenerateMethodInfo
-    {
-        public string NewMethodName { get; set; }
-        public string OldMethodName { get; set; }
-        public IEnumerable<TypeEnum> AddedParameters { get; set; }
     }
 }
