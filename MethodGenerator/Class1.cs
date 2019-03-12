@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Xml.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -8,7 +9,7 @@ using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 
 namespace MethodGenerator
 {
-    public class ToMethodGenerator : IHandler<MethodGeneratorDto>
+    public class ToMethodGenerator : IHandler<GenerateMethodsInfo>
     {
         private IQueryHandler<FileInfoDto, string> fileReader { get; set; }
         private IQueryHandler<IEnumerable<TypeEnum>, SyntaxNodeOrTokenList> getGenerationCode { get; set; }
@@ -21,23 +22,29 @@ namespace MethodGenerator
             fileWriter = new FileWriter();
         }
 
-        public void Handle(MethodGeneratorDto input)
+        public void Handle(GenerateMethodsInfo input)
         {
             var exampleMethodCode = fileReader.Handle(new FileInfoDto() {PathToFile = input.PathToExampleCodeFile});
             var exampleCode = CSharpSyntaxTree.ParseText(exampleMethodCode).GetRoot();
-            var nodeOrTokenList = getGenerationCode.Handle(input.AddedParameters);
-            var separatedList = SeparatedList<ParameterSyntax>(nodeOrTokenList);
 
-            var ReWrittenCode = new ParameterReWriter().Visit(exampleCode, new ReWriteMethodInfo
-            {
-                NewName = input.NewClassName,
-                AddedParameters = ParameterList(separatedList),
-                OldName = input.OldClassName
-            });
+
+            var methods =
+                input.MethodsInfo.ToList().Select(x =>
+                {
+                    var nodeOrTokenList = getGenerationCode.Handle(x.AddedParameters);
+                    var separatedList = SeparatedList<ParameterSyntax>(nodeOrTokenList);
+                    return new ParameterReWriter().Visit(exampleCode, new ReWriteMethodInfo
+                    {
+                        NewName = x.NewMethodName,
+                        AddedParameters = ParameterList(separatedList),
+                        OldName = x.OldMethodName
+                    });
+                });
+            var str = methods.Aggregate(string.Empty, (a, c) => $"{a}\n\n{c.NormalizeWhitespace().ToString()}");
 
             fileWriter.Handle(new WriteFileInfoDto
             {
-                Code = ReWrittenCode.NormalizeWhitespace().ToString(),
+                Code = str,
                 PathToFile = input.PathToDestinationFile
             });
         }
@@ -69,19 +76,18 @@ namespace MethodGenerator
         public string Code { get; set; }
     }
 
-    public class MethodGeneratorDto : IReWriteMethodInfo
+    public class GenerateMethodsInfo
     {
-        public string NewClassName { get; set; }
-        public string OldClassName { get; set; }
         public string PathToDestinationFile { get; set; }
         public string PathToExampleCodeFile { get; set; }
-        public IEnumerable<TypeEnum> AddedParameters { get; set; }
+        public IEnumerable<GenerateMethodInfo> MethodsInfo { get; set; }
     }
 
-    public interface IReWriteMethodInfo
+
+    public class GenerateMethodInfo
     {
-        string NewClassName { get; set; }
-        string OldClassName { get; set; }
-        IEnumerable<TypeEnum> AddedParameters { get; set; }
+        public string NewMethodName { get; set; }
+        public string OldMethodName { get; set; }
+        public IEnumerable<TypeEnum> AddedParameters { get; set; }
     }
 }
