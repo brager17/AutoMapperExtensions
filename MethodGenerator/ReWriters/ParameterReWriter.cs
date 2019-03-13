@@ -26,12 +26,26 @@ namespace MethodGenerator
                 return SyntaxFactory.IdentifierName(ReWriteMethodInfo.NewName);
             return base.VisitIdentifierName(node);
         }
+
+        public override SyntaxNode VisitInitializerExpression(InitializerExpressionSyntax node)
+        {
+           return node.Update(node.OpenBraceToken, ReWriteMethodInfo.lambdaParameters, node.CloseBraceToken);
+        }
     }
 
     public class ReWriteMethodInfo
     {
-        public string OldName { get; set; }
-        public string NewName { get; set; }
-        public ParameterListSyntax AddedParameters { get; set; }
+        public ReWriteMethodInfo(string oldName, string newName, ParameterListSyntax addedParameters, SeparatedSyntaxList<ExpressionSyntax> lambdaParameters)
+        {
+            OldName = oldName;
+            NewName = newName;
+            AddedParameters = addedParameters;
+            this.lambdaParameters = lambdaParameters;
+        }
+        public string OldName { get; }
+        public string NewName { get; }
+        public ParameterListSyntax AddedParameters { get; }
+
+        public SeparatedSyntaxList<ExpressionSyntax> lambdaParameters { get; }
     }
 }

@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using AutoMapper;
+using AutoMapper.Configuration.Conventions;
 
 namespace MapperExtensions.Models
 {
@@ -14,42 +15,24 @@ namespace MapperExtensions.Models
             this IMappingExpression<TSource, TDest> mapping, Expression<Func<TSource, TProjection>> expression)
             => new MapperExpressionWrapper<TSource, TDest, TProjection>(mapping, expression);
 
-        public static IMappingExpression<TSource, TDest> To<TSource, TDest, TProjection>(
-            this MapperExpressionWrapper<TSource, TDest, TProjection> mapperExpressionWrapper,
-            params (Expression<Func<TDest, object>>, Expression<Func<TProjection, object>>)[] rules)
-        {
-            var rulesByConvention =
-                Helpers.GetConventionMap<TSource, TDest, TProjection, Object>(mapperExpressionWrapper.Expression);
-            var concatProjection = rules.Select(x =>
-            {
-                var (from, @for) = x;
-                var result = mapperExpressionWrapper.Expression.ConcatPropertyExpressionToLambda<TSource, object>(@for);
-                return (from, result);
-            });
-            var concatMapRules =
-                concatProjection.LeftJoin(rulesByConvention, new ExpressionTupleComparer<TDest, TSource, object>());
-            Register(mapperExpressionWrapper.MappingExpression, concatMapRules);
-            return mapperExpressionWrapper.MappingExpression;
-        }
+//        public static IMappingExpression<TSource, TDest> To<TSource, TDest, TProjection>(
+//            this MapperExpressionWrapper<TSource, TDest, TProjection> mapperExpressionWrapper,
+//            params (Expression<Func<TDest, object>>, Expression<Func<TProjection, object>>)[] rules)
+//        {
+//            var rulesByConvention =
+//                Helpers.GetConventionMap<TSource, TDest, TProjection, Object>(mapperExpressionWrapper.Expression);
+//            var concatProjection = rules.Select(x =>
+//            {
+//                var (from, @for) = x;
+//                var result = mapperExpressionWrapper.Expression.ConcatPropertyExpressionToLambda<TSource, object>(@for);
+//                return (from, result);
+//            });
+//            var concatMapRules =
+//                concatProjection.LeftJoin(rulesByConvention, new ExpressionTupleComparer<TDest, TSource, object>());
+//            Register(mapperExpressionWrapper.MappingExpression, concatMapRules);
+//            return mapperExpressionWrapper.MappingExpression;
+//        }
 
-
-        public static IMappingExpression<TSource, TDest> To<TSource, TDest, TProjection>(
-            this MapperExpressionWrapper<TSource, TDest, TProjection> mapperExpressionWrapper,
-            params (Expression<Func<TDest, int>>, Expression<Func<TProjection, int>>)[] rules)
-        {
-            var rulesByConvention =
-                Helpers.GetConventionMap<TSource, TDest, TProjection, int>(mapperExpressionWrapper.Expression);
-            var concatProjection = rules.Select(x =>
-            {
-                var (from, @for) = x;
-                var result = mapperExpressionWrapper.Expression.ConcatPropertyExpressionToLambda<TSource, int>(@for);
-                return (from, result);
-            });
-            var concatMapRules =
-                concatProjection.LeftJoin(rulesByConvention, new ExpressionTupleComparer<TDest, TSource, int>());
-            Register(mapperExpressionWrapper.MappingExpression, concatMapRules);
-            return mapperExpressionWrapper.MappingExpression;
-        }
 
         public static void Register<TSource, TDest, TProjection1>(
             IMappingExpression<TSource, TDest> MappingExpression,
@@ -155,10 +138,13 @@ namespace MapperExtensions.Models
             return result;
         }
 
+        
+
         public static Expression<Func<T, R>> GetLambdaByPropertyNames<T, R>(IEnumerable<string> properties,
             Type parameterType)
         {
             var parameter = Expression.Parameter(parameterType);
+
             var result = Expression.Lambda<Func<T, R>>(
                 Expression.Convert(properties.Aggregate((Expression) parameter, Expression.Property),
                     typeof(object)), parameter);

@@ -11,7 +11,6 @@
     <e p="C:\Users\evgeniy\.Rider2018.3\system\resharper-host\local\Transient\ReSharperHost\v183\SolutionCaches\_MapperExtensionTests.663555080.00" t="ExcludeRecursive" />
     <e p="C:\Users\evgeniy\RiderProjects\MapperExtensionTests" t="IncludeFlat">
       <e p="MapperExtensions" t="IncludeRecursive">
-        <e p="AutoMapperExtensions.cs" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="MapperExpressionWrapper.cs" t="Include" />
         <e p="MapperExtensions.csproj" t="IncludeRecursive" />
@@ -96,6 +95,7 @@
         <e p="IHandler.cs" t="Include" />
         <e p="IQueryHandler.cs" t="Include" />
         <e p="MethodExample.cs" t="Include" />
+        <e p="MethodExample1.cs" t="Include" />
         <e p="MethodGenerator.csproj" t="IncludeRecursive" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">

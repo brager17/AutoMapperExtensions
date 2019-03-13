@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
+using AutoMapper;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -34,8 +35,7 @@ namespace MethodGenerator
             var exampleMethodDeclarationSyntax = exampleCode
                 .DescendantNodes()
                 .OfType<MethodDeclarationSyntax>()
-                .Single();
-
+                .Last();
             var methods = input.MethodsInfo.ToList().Select(x =>
                 {
                     var nodeOrTokenList = getGenerationCode.Handle(x.AddedParameters);
@@ -45,7 +45,7 @@ namespace MethodGenerator
                         {
                             NewName = x.NewMethodName,
                             AddedParameters = ParameterList(separatedList),
-                            OldName = x.OldMethodName
+                            OldName = x.OldMethodName,
                         });
                 })
                 .OfType<MethodDeclarationSyntax>();
