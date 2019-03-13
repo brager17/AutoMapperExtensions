@@ -39,9 +39,9 @@ namespace Tests
             {
                 MethodsInfo = r,
                 PathToExampleCodeFile =
-                    @"C:\Users\evgeniy\RiderProjects\MapperExtensionTests\MethodGenerator\MethodExample.cs",
+                    @"/home/evgeny/Документы/automapper/MethodGenerator/MethodExample.cs",
                 PathToDestinationFile =
-                    @"C:\Users\evgeniy\RiderProjects\MapperExtensionTests\MethodGenerator\MethodExample2.cs",
+                    @"/home/evgeny/Документы/automapper/MethodGenerator/MethodExample1.cs",
             };
             s.Handle(t);
         }
@@ -55,7 +55,6 @@ namespace Tests
             return addedEmptyElements;
         }
 
-       
 
         private IEnumerable<TypeEnum> ListTypeEnumByString(string str)
         {

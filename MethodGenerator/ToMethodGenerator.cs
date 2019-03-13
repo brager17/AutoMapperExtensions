@@ -18,13 +18,20 @@ namespace MethodGenerator
         private ClassReWriter ClassReWriter { get; set; }
         private ParameterReWriter MethodParametersReWriter { get; set; }
 
+        private IQueryHandler<IEnumerable<Parameter>, SeparatedSyntaxList<ExpressionSyntax>> getParameterList
+        {
+            get;
+            set;
+        }
+
         public ToMethodGenerator()
         {
             MethodParametersReWriter = new ParameterReWriter();
             ClassReWriter = new ClassReWriter();
             fileReader = new FileReader();
-            getGenerationCode = new GetGenerationCode();
+            getGenerationCode = new GetGenerationMethodParametersList();
             fileWriter = new FileWriter();
+            getParameterList = new GetGenerationArrayInitializer();
         }
 
         public void Handle(GenerateMethodsInfo input)
@@ -40,13 +47,18 @@ namespace MethodGenerator
                 {
                     var nodeOrTokenList = getGenerationCode.Handle(x.AddedParameters);
                     var separatedList = SeparatedList<ParameterSyntax>(nodeOrTokenList);
+                    var arrayParameters = getParameterList.Handle(
+                        // todo refactoring it
+                        // names arg0,arg1,... должны задавать в input сущности GenerateMethodsInfo
+                        // либо генерироваться в этом хэндлере, а не в каждом handler'e(getGenerationCode,getGenerationList)
+                        Enumerable.Range(0, x.AddedParameters.Count()).Select(
+                            xx => new Parameter()
+                            {
+                                ParameterName = $"arg{xx}"
+                            }).ToList());
                     return MethodParametersReWriter.Visit(exampleMethodDeclarationSyntax,
-                        new ReWriteMethodInfo
-                        {
-                            NewName = x.NewMethodName,
-                            AddedParameters = ParameterList(separatedList),
-                            OldName = x.OldMethodName,
-                        });
+                        new ReWriteMethodInfo(x.OldMethodName, x.NewMethodName, ParameterList(separatedList),
+                            arrayParameters));
                 })
                 .OfType<MethodDeclarationSyntax>();
             var classReWriter = new ClassReWriter();
