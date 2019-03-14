@@ -9,12 +9,12 @@ namespace MethodGenerator.Extentions
     {
         public static IEnumerable<TAttribute> GetAttributes<TAttribute>(this Enum @enum)
         {
-            var result = @enum.GetType()
+            var attributes = @enum.GetType()
                 .GetMembers()
                 .Single(x => x.Name == @enum.ToString())
                 .GetCustomAttributes(true)
                 .Cast<TAttribute>();
-            return result;
+            return attributes;
         }
     }
 }

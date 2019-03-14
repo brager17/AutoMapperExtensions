@@ -15,25 +15,7 @@ namespace MapperExtensions.Models
             this IMappingExpression<TSource, TDest> mapping, Expression<Func<TSource, TProjection>> expression)
             => new MapperExpressionWrapper<TSource, TDest, TProjection>(mapping, expression);
 
-//        public static IMappingExpression<TSource, TDest> To<TSource, TDest, TProjection>(
-//            this MapperExpressionWrapper<TSource, TDest, TProjection> mapperExpressionWrapper,
-//            params (Expression<Func<TDest, object>>, Expression<Func<TProjection, object>>)[] rules)
-//        {
-//            var rulesByConvention =
-//                Helpers.GetConventionMap<TSource, TDest, TProjection, Object>(mapperExpressionWrapper.Expression);
-//            var concatProjection = rules.Select(x =>
-//            {
-//                var (from, @for) = x;
-//                var result = mapperExpressionWrapper.Expression.ConcatPropertyExpressionToLambda<TSource, object>(@for);
-//                return (from, result);
-//            });
-//            var concatMapRules =
-//                concatProjection.LeftJoin(rulesByConvention, new ExpressionTupleComparer<TDest, TSource, object>());
-//            Register(mapperExpressionWrapper.MappingExpression, concatMapRules);
-//            return mapperExpressionWrapper.MappingExpression;
-//        }
-
-        public static IMappingExpression<TSource, TDest> ObjectTo<TSource, TDest, TProjection>(
+        public static IMappingExpression<TSource, TDest> FixRules<TSource, TDest, TProjection>(
             this MapperExpressionWrapper<TSource, TDest, TProjection> mapperExpressionWrapper,
             IEnumerable<(Expression<Func<TDest, object>>, Expression<Func<TProjection, object>>)> rules)
         {
@@ -47,12 +29,12 @@ namespace MapperExtensions.Models
             });
             var concatMapRules =
                 concatProjection.LeftJoin(rulesByConvention, new ExpressionTupleComparer<TDest, TSource, object>());
-            RefactorExtensions.Register(mapperExpressionWrapper.MappingExpression, concatMapRules);
+            Register(mapperExpressionWrapper.MappingExpression, concatMapRules);
             return mapperExpressionWrapper.MappingExpression;
         }
 
 
-        public static void Register<TSource, TDest, TProjection1>(
+        private static void Register<TSource, TDest, TProjection1>(
             IMappingExpression<TSource, TDest> MappingExpression,
             IEnumerable<(Expression<Func<TDest, TProjection1>>, Expression<Func<TSource, TProjection1>>)> expressions)
         {
@@ -86,7 +68,7 @@ namespace MapperExtensions.Models
                     var from = GetLambdaByPropertyNames<TSource, TProjection1>(x.PathToSourceProperty,
                         typeof(TSource));
                     return (@for, from);
-                }).ToList();
+                });
             return result;
         }
 
@@ -110,7 +92,7 @@ namespace MapperExtensions.Models
                 var propertyPath = Regex.Matches(x.Name, "[A-Z][a-z]+").Select(xx => xx.Value);
                 var check = ContainsPropertyChecker(propertyPath, typeof(TProjection));
                 return check;
-            }).ToList();
+            });
             var result = join.Select(x =>
                 new MapPropertyInfo(x.Name,
                     sourceToProjections?.Concat(Regex.Matches(x.Name, "[A-Z][a-z]+").Select(xx => xx.Value))));
@@ -179,45 +161,5 @@ namespace MapperExtensions.Models
             var deepProperty = propertyType.GetProperties().SingleOrDefault(x => x.Name == propertyName);
             return deepProperty != null && ContainsPropertyChecker(propertyNames.Skip(1), deepProperty.PropertyType);
         }
-    }
-
-    public static class IEnumerableExtensions
-    {
-        public static IEnumerable<T> LeftJoin<T>(this IEnumerable<T> enumerable1, IEnumerable<T> enumerable2,
-            IEqualityComparer<T> equalityComparer)
-        {
-            var result = enumerable1.Union(enumerable2, equalityComparer).ToList();
-            return result;
-        }
-    }
-
-    public class ExpressionTupleComparer<TDest, TProjection, TProjection1>
-        : IEqualityComparer<(Expression<Func<TDest, TProjection1>>, Expression<Func<TProjection, TProjection1>>)>
-    {
-        public bool Equals((Expression<Func<TDest, TProjection1>>, Expression<Func<TProjection, TProjection1>>) x,
-            (Expression<Func<TDest, TProjection1>>, Expression<Func<TProjection, TProjection1>>) y)
-        {
-            var equals = x.Item1.ToString() == y.Item1.ToString();
-            return equals;
-        }
-
-        public int GetHashCode((Expression<Func<TDest, TProjection1>>, Expression<Func<TProjection, TProjection1>>) obj)
-        {
-            var s = string.Join('.', obj.Item1.Body.ReplaceObjectConvert().ToString().Split('.').Skip(1));
-            var hashCode = s.GetHashCode();
-            return hashCode;
-        }
-    }
-
-    public class MapPropertyInfo
-    {
-        public MapPropertyInfo(string destinationPropertyName, IEnumerable<string> pathToSourceProperty)
-        {
-            DestinationPropertyName = destinationPropertyName;
-            PathToSourceProperty = pathToSourceProperty;
-        }
-
-        public string DestinationPropertyName { get; set; }
-        public IEnumerable<string> PathToSourceProperty { get; set; }
     }
 }

@@ -4,8 +4,11 @@ namespace MethodGenerator
 {
     public class GenerateMethodInfo
     {
-        public string NewMethodName { get; set; }
-        public string OldMethodName { get; set; }
-        public IEnumerable<TypeEnum> AddedParameters { get; set; }
+        public IEnumerable<ToMethodParameter> AddedParameters { get; set; }
+
+        public GenerateMethodInfo(IEnumerable<ToMethodParameter> addedParameters)
+        {
+            AddedParameters = addedParameters;
+        }
     }
 }

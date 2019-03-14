@@ -1,7 +1,9 @@
+using System;
 using Microsoft.CodeAnalysis.CSharp;
 
 namespace MethodGenerator
 {
+    [Flags]
     public enum TypeEnum : byte
     {
         [SyntaxType(SyntaxKind.IntKeyword)] Int,
@@ -9,6 +11,6 @@ namespace MethodGenerator
         [SyntaxType(SyntaxKind.DoubleKeyword)] Double,
         [SyntaxType(SyntaxKind.FloatKeyword)] Float,
         [IdentifierType("DateTime")] DateTime,
-        [SyntaxType(SyntaxKind.StringKeyword)] String
+        [SyntaxType(SyntaxKind.StringKeyword)] String,
     }
 }

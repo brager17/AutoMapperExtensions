@@ -17,52 +17,23 @@ namespace MethodGenerator
 
         public override SyntaxNode VisitMethodDeclaration(MethodDeclarationSyntax node)
         {
-            if (node.Identifier.Value.ToString() == "To")
-            {
-                var body = (BlockSyntax) base.Visit(node.Body);
-                return node.Update(
-                    node.AttributeLists, node.Modifiers, node.ReturnType,
-                    node.ExplicitInterfaceSpecifier, node.Identifier, node.TypeParameterList,
-                    node.ParameterList.AddParameters(ReWriteMethodInfo.AddedParameters.Parameters.ToArray()),
-                    node.ConstraintClauses, body, node.SemicolonToken);
-            }
-
-            return base.VisitMethodDeclaration(node);
-        }
-
-        public override SyntaxNode VisitParameterList(ParameterListSyntax node)
-        {
-            return node.AddParameters(ReWriteMethodInfo.AddedParameters.Parameters.ToArray());
-        }
-
-        public override SyntaxNode VisitIdentifierName(IdentifierNameSyntax node)
-        {
-            if (node.ToString() == ReWriteMethodInfo.OldName)
-                return SyntaxFactory.IdentifierName(ReWriteMethodInfo.NewName);
-            return base.VisitIdentifierName(node);
+            // this is not the "To" method
+            if (node.Identifier.Value.ToString() != "To") return base.VisitMethodDeclaration(node);
+            var body = (BlockSyntax) base.Visit(node.Body);
+            //todo ref it
+            return node.Update(
+                node.AttributeLists, node.Modifiers, node.ReturnType,
+                node.ExplicitInterfaceSpecifier, node.Identifier, node.TypeParameterList,
+                // to add parameters to the method
+                node.ParameterList.AddParameters(ReWriteMethodInfo.AddedParameters.Parameters.ToArray()),
+                node.ConstraintClauses, body, node.SemicolonToken);
         }
 
         public override SyntaxNode VisitInitializerExpression(InitializerExpressionSyntax node)
         {
-            return node.Update(node.OpenBraceToken, ReWriteMethodInfo.lambdaParameters, node.CloseBraceToken);
+            // to add parameters to the array initializer
+            //todo ref it
+            return node.Update(node.OpenBraceToken, ReWriteMethodInfo.LambdaParameters, node.CloseBraceToken);
         }
-    }
-
-    public class ReWriteMethodInfo
-    {
-        public ReWriteMethodInfo(string oldName, string newName, ParameterListSyntax addedParameters,
-            SeparatedSyntaxList<ExpressionSyntax> lambdaParameters)
-        {
-            OldName = oldName;
-            NewName = newName;
-            AddedParameters = addedParameters;
-            this.lambdaParameters = lambdaParameters;
-        }
-
-        public string OldName { get; }
-        public string NewName { get; }
-        public ParameterListSyntax AddedParameters { get; }
-
-        public SeparatedSyntaxList<ExpressionSyntax> lambdaParameters { get; }
     }
 }

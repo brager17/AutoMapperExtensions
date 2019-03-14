@@ -11,64 +11,48 @@ namespace MethodGenerator
 {
     public class ToMethodGenerator : IHandler<GenerateMethodsInfo>
     {
-        private IQueryHandler<FileInfoDto, string> fileReader { get; set; }
-        private IQueryHandler<IEnumerable<TypeEnum>, SyntaxNodeOrTokenList> getGenerationCode { get; set; }
-        private IHandler<WriteFileInfoDto> fileWriter { get; set; }
+        private IQueryHandler<FileInfoDto, string> FileReader { get; set; }
+        private IQueryHandler<IEnumerable<ToMethodParameter>, SyntaxNodeOrTokenList> GetGenerationCode { get; set; }
+        private IHandler<WriteFileInfoDto> FileWriter { get; set; }
 
         private ClassReWriter ClassReWriter { get; set; }
         private ParameterReWriter MethodParametersReWriter { get; set; }
 
-        private IQueryHandler<IEnumerable<Parameter>, SeparatedSyntaxList<ExpressionSyntax>> getParameterList
-        {
-            get;
-        }
+        private IQueryHandler<IEnumerable<Parameter>, SeparatedSyntaxList<ExpressionSyntax>> GetParameterList { get; }
 
         public ToMethodGenerator()
         {
             MethodParametersReWriter = new ParameterReWriter();
             ClassReWriter = new ClassReWriter();
-            fileReader = new FileReader();
-            getGenerationCode = new GetGenerationMethodParametersList();
-            fileWriter = new FileWriter();
-            getParameterList = new GetGenerationArrayInitializer();
+            FileReader = new FileReader();
+            GetGenerationCode = new GetGenerationMethodParametersList();
+            FileWriter = new FileWriter();
+            GetParameterList = new GetGenerationArrayInitializer();
         }
 
         public void Handle(GenerateMethodsInfo input)
         {
-            var exampleMethodCode = fileReader.Handle(new FileInfoDto() {PathToFile = input.PathToExampleCodeFile});
+            var exampleMethodCode = FileReader.Handle(new FileInfoDto(input.PathToExampleCodeFile));
             var exampleCode = CSharpSyntaxTree.ParseText(exampleMethodCode).GetRoot();
 
             var exampleMethodDeclarationSyntax = exampleCode
                 .DescendantNodes()
                 .OfType<MethodDeclarationSyntax>()
                 .Last();
-            
+
             var methods = input.MethodsInfo.ToList().Select(x =>
                 {
-                    var nodeOrTokenList = getGenerationCode.Handle(x.AddedParameters);
+                    // method parameter generation
+                    var nodeOrTokenList = GetGenerationCode.Handle(x.AddedParameters);
                     var separatedList = SeparatedList<ParameterSyntax>(nodeOrTokenList);
-                    var arrayParameters = getParameterList.Handle(
-                        // todo refactoring it
-                        // names arg0,arg1,... должны задавать в input сущности GenerateMethodsInfo
-                        // либо генерироваться в этом хэндлере, а не в каждом handler'e(getGenerationCode,getGenerationList)
-                        Enumerable.Range(0, x.AddedParameters.Count()).Select(
-                            xx => new Parameter()
-                            {
-                                ParameterName = $"arg{xx}"
-                            }).ToList());
+                    // generation of array 'parameters' initializer
+                    var arrayParameters = GetParameterList.Handle(x.AddedParameters);
                     return MethodParametersReWriter.Visit(exampleMethodDeclarationSyntax,
-                        new ReWriteMethodInfo(x.OldMethodName, x.NewMethodName, ParameterList(separatedList),
-                            arrayParameters));
+                        new ReWriteMethodInfo(ParameterList(separatedList), arrayParameters));
                 })
                 .OfType<MethodDeclarationSyntax>();
-            var classReWriter = new ClassReWriter();
-            var str = classReWriter.Visit(exampleCode, methods).ToString();
-
-            fileWriter.Handle(new WriteFileInfoDto
-            {
-                Code = str,
-                PathToFile = input.PathToDestinationFile
-            });
+            var code = ClassReWriter.Visit(exampleCode, methods).ToString();
+            FileWriter.Handle(new WriteFileInfoDto(input.PathToDestinationFile, code));
         }
     }
 }
