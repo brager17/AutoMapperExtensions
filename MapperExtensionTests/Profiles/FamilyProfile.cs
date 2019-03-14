@@ -13,7 +13,7 @@ namespace MapperExtensions.Models
         {
             bool Must = false;
             CreateMap<Family, FatherDto>()
-                .From(x => x.Father.IdentityCard.Passport).To((x => x.Number, x => x.Surname))
+                .From(x => x.Father.IdentityCard.Passport).To(x => x.Number, x => x.Surname)
                 .From(x => x.Father.IdentityCard).To()
                 .From(x => x.Father.AddressCard).To()
                 .From(x => x.Mother.IdentityCard.Passport)
