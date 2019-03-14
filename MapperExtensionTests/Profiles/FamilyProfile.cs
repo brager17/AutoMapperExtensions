@@ -11,14 +11,15 @@ namespace MapperExtensions.Models
     {
         public FamilyProfile()
         {
+            bool Must = false;
             CreateMap<Family, FatherDto>()
-                .From(x=>x.Father.IdentityCard.Passport).To((x=>x.Number,x=>x.Surname))
+                .From(x => x.Father.IdentityCard.Passport).To((x => x.Number, x => x.Surname))
                 .From(x => x.Father.IdentityCard).To()
                 .From(x => x.Father.AddressCard).To()
                 .From(x => x.Mother.IdentityCard.Passport)
-                .To((x => x.WifeName, x => x.Name), (x => x.WifeSurname, x => x.Surname))
+                .To((x => x.WifeName, x => x.Name), (x => x.WifeSurname, x => Must ? x.Surname : x.Name))
                 ;
-            
+
             //
 
 //            CreateMap<Family, FatherDto>()

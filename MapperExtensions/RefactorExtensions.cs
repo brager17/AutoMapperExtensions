@@ -21,6 +21,13 @@ namespace MapperExtensions.Models
         {
             var rulesByConvention =
                 Helpers.GetConventionMap<TSource, TDest, TProjection, Object>(mapperExpressionWrapper.Expression);
+         
+            // вот тут нужно добавить visitor и разобрать:
+            // константа
+            // тернарник
+            // property
+            // поле автосгенерированного класса
+            
             var concatProjection = rules.Select(x =>
             {
                 var (from, @for) = x;
