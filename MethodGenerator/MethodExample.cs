@@ -11,31 +11,21 @@ namespace MethodGenerator
     public static partial class MethodExample
     {
         //stub for code generate
-        private static (Expression<Func<TDest, object>>, Expression<Func<TProjection, object>>) Stub<TDest,TProjection>()
+        private static (Expression<Func<TDest, object>>, Expression<Func<TProjection, object>>)
+            Stub<TDest, TProjection>()
         {
             return (x => (object) 1, x => (object) 2);
         }
         //
-     
+
+
         public static IMappingExpression<TSource, TDest> To<TSource, TDest, TProjection>(
-            this MapperExpressionWrapper<TSource, TDest, TProjection> mapperExpressionWrapper,
-            params (Expression<Func<TDest, object>>, Expression<Func<TProjection, object>>)[] rules)
+            this MapperExpressionWrapper<TSource, TDest, TProjection> mapperExpressionWrapper)
         {
-            var rulesByConvention =
-                Helpers.GetConventionMap<TSource, TDest, TProjection, Object>(mapperExpressionWrapper.Expression);
-            var concatProjection = rules.Select(x =>
-            {
-                var (from, @for) = x;
-                var result = mapperExpressionWrapper.Expression.ConcatPropertyExpressionToLambda<TSource, object>(@for);
-                return (from, result);
-            });
-            var concatMapRules =
-                concatProjection.LeftJoin(rulesByConvention, new ExpressionTupleComparer<TDest, TSource, object>());
-            RefactorExtensions.Register(mapperExpressionWrapper.MappingExpression, concatMapRules);
-            return mapperExpressionWrapper.MappingExpression;
+            var parameters = new[] {Stub<TDest, TProjection>()};
+            return mapperExpressionWrapper.ObjectTo(parameters);
         }
-        
-        
+
         public static (Expression<Func<T1, object>>, Expression<Func<T2, object>>) ToObjectLambdas<T1, T2, T3>
             ((Expression<Func<T1, T3>>, Expression<Func<T2, T3>>) lambda)
         {
@@ -48,15 +38,5 @@ namespace MethodGenerator
                 (Expression.Lambda<Func<T1, object>>(Expression.Convert(l1Body, typeof(object)), l1Parameters),
                     Expression.Lambda<Func<T2, object>>(Expression.Convert(l2Body, typeof(object)), l2Parameters));
         }
-
-        
-        public static IMappingExpression<TSource, TDest> To<TSource, TDest, TProjection>(
-            this MapperExpressionWrapper<TSource, TDest, TProjection> mapperExpressionWrapper)
-        {
-            var parameters = new[] {Stub<TDest, TProjection>()};
-            return ObjectTo(mapperExpressionWrapper, parameters);
-        }
-        
-      
     }
 }

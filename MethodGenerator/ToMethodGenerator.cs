@@ -21,7 +21,6 @@ namespace MethodGenerator
         private IQueryHandler<IEnumerable<Parameter>, SeparatedSyntaxList<ExpressionSyntax>> getParameterList
         {
             get;
-            set;
         }
 
         public ToMethodGenerator()
@@ -43,6 +42,7 @@ namespace MethodGenerator
                 .DescendantNodes()
                 .OfType<MethodDeclarationSyntax>()
                 .Last();
+            
             var methods = input.MethodsInfo.ToList().Select(x =>
                 {
                     var nodeOrTokenList = getGenerationCode.Handle(x.AddedParameters);

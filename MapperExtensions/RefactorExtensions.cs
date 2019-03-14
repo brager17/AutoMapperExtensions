@@ -33,6 +33,24 @@ namespace MapperExtensions.Models
 //            return mapperExpressionWrapper.MappingExpression;
 //        }
 
+        public static IMappingExpression<TSource, TDest> ObjectTo<TSource, TDest, TProjection>(
+            this MapperExpressionWrapper<TSource, TDest, TProjection> mapperExpressionWrapper,
+            IEnumerable<(Expression<Func<TDest, object>>, Expression<Func<TProjection, object>>)> rules)
+        {
+            var rulesByConvention =
+                Helpers.GetConventionMap<TSource, TDest, TProjection, Object>(mapperExpressionWrapper.Expression);
+            var concatProjection = rules.Select(x =>
+            {
+                var (from, @for) = x;
+                var result = mapperExpressionWrapper.Expression.ConcatPropertyExpressionToLambda<TSource, object>(@for);
+                return (from, result);
+            });
+            var concatMapRules =
+                concatProjection.LeftJoin(rulesByConvention, new ExpressionTupleComparer<TDest, TSource, object>());
+            RefactorExtensions.Register(mapperExpressionWrapper.MappingExpression, concatMapRules);
+            return mapperExpressionWrapper.MappingExpression;
+        }
+
 
         public static void Register<TSource, TDest, TProjection1>(
             IMappingExpression<TSource, TDest> MappingExpression,
@@ -138,7 +156,6 @@ namespace MapperExtensions.Models
             return result;
         }
 
-        
 
         public static Expression<Func<T, R>> GetLambdaByPropertyNames<T, R>(IEnumerable<string> properties,
             Type parameterType)

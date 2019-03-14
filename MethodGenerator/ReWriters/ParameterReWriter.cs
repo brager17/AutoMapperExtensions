@@ -15,6 +15,21 @@ namespace MethodGenerator
             return base.Visit(node);
         }
 
+        public override SyntaxNode VisitMethodDeclaration(MethodDeclarationSyntax node)
+        {
+            if (node.Identifier.Value.ToString() == "To")
+            {
+                var body = (BlockSyntax) base.Visit(node.Body);
+                return node.Update(
+                    node.AttributeLists, node.Modifiers, node.ReturnType,
+                    node.ExplicitInterfaceSpecifier, node.Identifier, node.TypeParameterList,
+                    node.ParameterList.AddParameters(ReWriteMethodInfo.AddedParameters.Parameters.ToArray()),
+                    node.ConstraintClauses, body, node.SemicolonToken);
+            }
+
+            return base.VisitMethodDeclaration(node);
+        }
+
         public override SyntaxNode VisitParameterList(ParameterListSyntax node)
         {
             return node.AddParameters(ReWriteMethodInfo.AddedParameters.Parameters.ToArray());
@@ -29,19 +44,21 @@ namespace MethodGenerator
 
         public override SyntaxNode VisitInitializerExpression(InitializerExpressionSyntax node)
         {
-           return node.Update(node.OpenBraceToken, ReWriteMethodInfo.lambdaParameters, node.CloseBraceToken);
+            return node.Update(node.OpenBraceToken, ReWriteMethodInfo.lambdaParameters, node.CloseBraceToken);
         }
     }
 
     public class ReWriteMethodInfo
     {
-        public ReWriteMethodInfo(string oldName, string newName, ParameterListSyntax addedParameters, SeparatedSyntaxList<ExpressionSyntax> lambdaParameters)
+        public ReWriteMethodInfo(string oldName, string newName, ParameterListSyntax addedParameters,
+            SeparatedSyntaxList<ExpressionSyntax> lambdaParameters)
         {
             OldName = oldName;
             NewName = newName;
             AddedParameters = addedParameters;
             this.lambdaParameters = lambdaParameters;
         }
+
         public string OldName { get; }
         public string NewName { get; }
         public ParameterListSyntax AddedParameters { get; }
