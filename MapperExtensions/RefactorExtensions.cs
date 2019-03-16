@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
+using System.Security.Cryptography.X509Certificates;
 using System.Text.RegularExpressions;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace MapperExtensions.Models
 {
@@ -55,7 +57,6 @@ namespace MapperExtensions.Models
                     (Expression<Func<TSource, object>>) t;
                 return (from, result);
             }).ToList();
-
 
             var concatMapRules =
                 concatProjection.LeftJoin(rulesByConvention, new ExpressionTupleComparer<TDest, TSource, object>());
@@ -108,9 +109,9 @@ namespace MapperExtensions.Models
         {
             var destProperties = typeof(TDest).GetProperties();
             var projectProperties = typeof(TProjection).GetProperties();
-            var simpleMapRules = GetSimpleConventionInfo(destProperties, projectProperties, projectExpression);
-            var advancedMapRules = GetAdvancesConventionInfo(destProperties, projectProperties, projectExpression);
-            var result = simpleMapRules.Concat(advancedMapRules)
+            var advancedMapRules = GetAdvancesConventionInfo(destProperties, projectProperties, projectExpression)
+                .Where(x => x.PathToSourceProperty.All(xx => xx != null));
+            var result = advancedMapRules
                 .Select(x =>
                 {
                     var @for = GetLambdaByPropertyNames<TDest, TProjection1>(new[] {x.DestinationPropertyName},
@@ -118,7 +119,7 @@ namespace MapperExtensions.Models
                     var from = GetLambdaByPropertyNames<TSource, TProjection1>(x.PathToSourceProperty,
                         typeof(TSource));
                     return (@for, from);
-                });
+                }).ToList();
             return result;
         }
 
@@ -136,16 +137,15 @@ namespace MapperExtensions.Models
             IEnumerable<PropertyInfo> destProperties, IEnumerable<PropertyInfo> projectProperties,
             Expression<Func<TSource, TProjection>> fromSourceToProjectionPath)
         {
-            var sourceToProjections = fromSourceToProjectionPath?.PropertiesStr();
-            var join = destProperties.Where(x =>
+            var result = destProperties.Select(x =>
             {
-                var propertyPath = Regex.Matches(x.Name, "[A-Z][a-z]+").Select(xx => xx.Value);
-                var check = ContainsPropertyChecker(propertyPath, typeof(TProjection));
-                return check;
-            });
-            var result = join.Select(x =>
-                new MapPropertyInfo(x.Name,
-                    sourceToProjections?.Concat(Regex.Matches(x.Name, "[A-Z][a-z]+").Select(xx => xx.Value))));
+                var result1 = AdvanceMapProperty(GetIEnumerableStringByUppLetter(x.Name), typeof(TProjection));
+                return result1.All(xx => xx != null)
+                    ? new MapPropertyInfo(x.Name, fromSourceToProjectionPath.PropertiesStr().Concat(result1))
+                    : null;
+            }).Where(x => x != null);
+
+
             return result;
         }
 
@@ -159,6 +159,8 @@ namespace MapperExtensions.Models
         public static Expression ReplaceObjectConvert(this Expression expression)
         {
             Expression result;
+            //todo fix it
+
             switch (expression)
             {
                 case UnaryExpression unary when unary.Operand is MemberExpression member:
@@ -253,16 +255,30 @@ namespace MapperExtensions.Models
             return result;
         }
 
-        private static bool ContainsPropertyChecker(IEnumerable<string> propertyNames, Type property)
+
+        public static IEnumerable<string> AdvanceMapProperty(IEnumerable<string> path, Type properType)
         {
-            if (!propertyNames.Any())
-                return true;
-            var propertyType = property;
-            if (propertyType.IsValueType)
-                return false;
-            var propertyName = propertyNames.First();
-            var deepProperty = propertyType.GetProperties().SingleOrDefault(x => x.Name == propertyName);
-            return deepProperty != null && ContainsPropertyChecker(propertyNames.Skip(1), deepProperty.PropertyType);
+            var properties = properType.GetProperties().ToList();
+            var pathStr = path.Join("");
+            foreach (var prop in properties)
+            {
+                if (!pathStr.StartsWith(prop.Name)) continue;
+                var newPath = GetIEnumerableStringByUppLetter(pathStr.Remove(0, prop.Name.Length));
+                if (!newPath.Any())
+                    return new[] {prop.Name};
+                var analyze = AdvanceMapProperty(newPath, prop.PropertyType);
+                if (analyze.All(x => x != null))
+                    return new[] {prop.Name}.Concat(analyze);
+            }
+
+            return new string[] {null};
+        }
+
+        private static IEnumerable<string> GetIEnumerableStringByUppLetter(string str)
+        {
+            return Regex.Matches(str, @"[A-Z][\w]+").Select(xx => xx.Value).ToList();
         }
     }
+
+   
 }

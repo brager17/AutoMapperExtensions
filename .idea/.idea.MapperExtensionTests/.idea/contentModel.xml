@@ -61,6 +61,7 @@
           <e p="FunctionTests" t="Include">
             <e p="AutoMapperTests.cs" t="Include" />
           </e>
+          <e p="PropertyFindertests.cs" t="Include" />
           <e p="RoslynTest.cs" t="Include" />
           <e p="SimpleFromPupilProfileTests.cs" t="Include" />
         </e>

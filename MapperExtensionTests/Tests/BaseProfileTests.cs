@@ -14,6 +14,7 @@ namespace Tests
         protected void Setup()
         {
             context = new TestDbContext();
+            context.Database.EnsureDeleted();
             context.Database.EnsureCreated();
             context.Add(MockData());
             context.SaveChanges();

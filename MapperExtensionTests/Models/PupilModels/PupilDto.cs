@@ -9,7 +9,7 @@ namespace MapperExtensions.Models
         public string Country { get; set; }
         public string Street { get; set; }
         public int House { get; set; }
-        public string EducationCardStudyGroupNumber { get; set; }
+        public string StudyGroupNumber { get; set; }
         public string Number { get; set; }
         public DateTime DateOfReceiving { get; set; }
     }

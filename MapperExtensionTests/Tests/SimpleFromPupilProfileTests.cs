@@ -14,11 +14,11 @@ namespace Tests
         {
             var mock = new Pupil
             {
-                Address = new AddressCard {Id = "1", House = 1, Street = "street", Country = "country", City = "city"},
+                Address = new AddressCard {Id = "1", House = 10, Street = "Grivki", Country = "Russia", City = "Kazan"},
                 Identity = new IdentityCard
                 {
-                    Passport = new Passport {Name = "name", Number = "123", Surname = "surname"},
-                    Tin = new TIN() {Number = "123", DateOfReceiving = new DateTime(1, 2, 3)}
+                    Passport = new Passport {Name = "Evgeny", Number = "First one", Surname = "Terekhin"},
+                    Tin = new TIN() {Number = "123", DateOfReceiving = new DateTime(1998, 05, 05)}
                 },
                 EducationCard = new EducationCard
                 {
@@ -26,27 +26,27 @@ namespace Tests
                     {
                         new Exam
                         {
-                            Name = "exam1",
+                            Name = "Math",
                             Date = DateTime.Now,
-                            Mark = Mark.Excellent
+                            Mark = MapperExtensions.Models.Mark.Excellent
                         },
                         new Exam
                         {
-                            Name = "exam2",
+                            Name = "Fithicks",
                             Date = DateTime.Now,
-                            Mark = Mark.Bad
+                            Mark = MapperExtensions.Models.Mark.Bad
                         },
                         new Exam
                         {
-                            Name = "exam3",
+                            Name = "English",
                             Date = DateTime.Now,
-                            Mark = Mark.Bad
+                            Mark = MapperExtensions.Models.Mark.Bad
                         },
                     },
                     StudyGroup = new StudyGroup
                     {
-                        Number = "11",
-                        CountStudents = 20
+                        Number = "11-608",
+                        CountStudents = 9
                     }
                 }
             };
@@ -57,8 +57,7 @@ namespace Tests
         [Test]
         public void PupilProfile__SimpleMapRules__GetPupilCorrectDto()
         {
-            var projectTo = context.Pupils.ProjectTo<PupilDto>();
-            var pupil = projectTo.First();
+            var projectTo = context.Pupils.ProjectTo<PupilDto>().OrderBy(x => x.Name);
             Assert.DoesNotThrow(() => projectTo.ToList());
         }
     }

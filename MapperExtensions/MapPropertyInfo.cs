@@ -4,7 +4,7 @@ namespace MapperExtensions.Models
 {
     public class MapPropertyInfo
     {
-        public MapPropertyInfo(string destinationPropertyName, IEnumerable<string> pathToSourceProperty)
+        public     MapPropertyInfo(string destinationPropertyName, IEnumerable<string> pathToSourceProperty)
         {
             DestinationPropertyName = destinationPropertyName;
             PathToSourceProperty = pathToSourceProperty;

@@ -16,6 +16,31 @@ namespace MethodGenerator
             return mapperExpressionWrapper.FixRules(parameters);
         }
 
+        public static IMappingExpression<TSource, TDest> ToIf<TSource, TDest, TProjection>(
+            this MapperExpressionWrapper<TSource, TDest, TProjection> mapperExpressionWrapper,
+            Expression<Func<TDest, string>> @for,
+            Expression<Func<TProjection, Boolean>> Test,
+            Expression<Func<TProjection, string>> IfTrue,
+            Expression<Func<TProjection, string>> IfFalse)
+        {
+            var projectParameter = mapperExpressionWrapper.Expression.Parameters.First();
+            var projectProperties = mapperExpressionWrapper.Expression.Body.ToString().Split('.').Skip(1);
+            var ifTrueProperties = projectProperties.Concat(IfTrue.Body.ToString().Split('.').Skip(1));
+            var ifFalseBody = projectProperties.Concat(IfFalse.Body.ToString().Split('.').Skip(1));
+            var projectIfTrue =
+                Expression.Lambda(ifTrueProperties.Aggregate(((Expression) projectParameter), Expression.Property),
+                    projectParameter);
+            var projectIfFalse =
+                Expression.Lambda(ifFalseBody.Aggregate(((Expression) projectParameter), Expression.Property),
+                    projectParameter);
+            var condition = Expression.Condition(Test.Body, projectIfTrue, projectIfFalse);
+            var lambda = Expression.Lambda(condition, projectParameter);
+            mapperExpressionWrapper.MappingExpression.ForMember(@for.PropertiesStr().ToString(), 
+                s => s.MapFrom((dynamic) lambda));
+            return mapperExpressionWrapper.MappingExpression;
+        }
+
+
         public static IMappingExpression<TSource, TDest> To<TSource, TDest, TProjection>(
             this MapperExpressionWrapper<TSource, TDest, TProjection> mapperExpressionWrapper)
         {
