@@ -1,22 +1,16 @@
+using System.Collections.Generic;
+
 namespace MethodGenerator
 {
     public class Parameter
     {
-        public string ParameterName { get; set; }
+        public string GenericName { get; set; }
+        public string Argument { get; set; }
 
-        public Parameter(string parameterName)
-        {
-            ParameterName = parameterName;
-        }
     }
-    
-    public class ToMethodParameter : Parameter
-    {
-        public TypeEnum TypeEnum { get; set; }
 
-        public ToMethodParameter(string parameterName, TypeEnum typeEnum) : base(parameterName)
-        {
-            TypeEnum = typeEnum;
-        }
+    public class ToMethodParameter
+    {
+        public List<Parameter> Parameters { get; set; }
     }
 }

@@ -3,11 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using AutoMapper;
-using AutoMapper.Configuration.Conventions;
 
 namespace MapperExtensions.Models
 {
@@ -19,13 +16,6 @@ namespace MapperExtensions.Models
         {
             _projectionLambda = projectionLambda;
         }
-
-
-        public override Expression Visit(Expression node)
-        {
-            return base.Visit(node);
-        }
-
 
         protected override Expression VisitLambda<T>(Expression<T> node)
         {
@@ -258,7 +248,7 @@ namespace MapperExtensions.Models
                 newFalse = @false.MemberExpressionWithProjectionConcat(expression);
             }
 
-            var result = Expression.Convert((Expression.Condition(newTest, newTrue, newFalse)), typeof(object));
+            var result = Expression.Convert(Expression.Condition(newTest, newTrue, newFalse), typeof(object));
 
             return result;
         }

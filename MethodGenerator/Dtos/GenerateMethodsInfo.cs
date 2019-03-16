@@ -6,9 +6,9 @@ namespace MethodGenerator
     {
         public string PathToDestinationFile { get; set; }
         public string PathToExampleCodeFile { get; set; }
-        public IEnumerable<GenerateMethodInfo> MethodsInfo { get; set; }
+        public GenerateMethodInfo MethodsInfo { get; set; }
 
-        public GenerateMethodsInfo(string pathToDestinationFile, string pathToExampleCodeFile, IEnumerable<GenerateMethodInfo> methodsInfo)
+        public GenerateMethodsInfo(string pathToDestinationFile, string pathToExampleCodeFile, GenerateMethodInfo methodsInfo)
         {
             PathToDestinationFile = pathToDestinationFile;
             PathToExampleCodeFile = pathToExampleCodeFile;

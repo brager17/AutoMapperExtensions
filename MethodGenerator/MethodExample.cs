@@ -1,50 +1,31 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using AutoMapper;
 using MapperExtensions.Models;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace MethodGenerator
 {
     public static partial class MethodExample
     {
-        private static (Expression<Func<T1, object>>, Expression<Func<T2, object>>) ToObjectLambdas<T1, T2, T3>
-            ((Expression<Func<T1, T3>>, Expression<Func<T2, T3>>) lambda)
+        public static IMappingExpression<TSource, TDest> To<TSource, TDest, TProjection, T>(
+            this MapperExpressionWrapper<TSource, TDest, TProjection> mapperExpressionWrapper,
+            (Expression<Func<TDest, T>>, Expression<Func<TProjection, T>>) arg0)
         {
-            var (l1, l2) = lambda;
-            var l1Body = l1.Body;
-            var l2Body = l2.Body;
-            var l1Parameters = l1.Parameters;
-            var l2Parameters = l2.Parameters;
-            return
-                (Expression.Lambda<Func<T1, object>>(Expression.Convert(l1Body, typeof(object)), l1Parameters),
-                    Expression.Lambda<Func<T2, object>>(Expression.Convert(l2Body, typeof(object)), l2Parameters));
+            var parameters = new[] {Convert(arg0)};
+            return mapperExpressionWrapper.FixRules(parameters);
         }
 
-        // example code
-        //stub for code generate
-        private static (Expression<Func<TDest, object>>, Expression<Func<TProjection, object>>)
-            Stub<TDest, TProjection>()
+        public static (Expression<Func<TDest, object>>, Expression<Func<TProjection, object>>)
+            Convert<TDest, T, TProjection>(
+                (Expression<Func<TDest, T>>,
+                    Expression<Func<TProjection, T>>) arg)
         {
-            return (x => (object) 1, x => (object) 2);
-        }
-
-
-//        public static IMappingExpression<TSource, TDest> To<TSource, TDest, TProjection>(
-//            this MapperExpressionWrapper<TSource, TDest, TProjection> mapperExpressionWrapper)
-//        {
-//            var parameters = new[] {Stub<TDest, TProjection>()};
-//            return mapperExpressionWrapper.FixRules(parameters);
-//        }
-
-
-        public static IMappingExpression<TSource, TDest> To<TSource, TDest, TProjection>(
-            this MapperExpressionWrapper<TSource, TDest, TProjection> mapperExpressionWrapper)
-        {
-            return mapperExpressionWrapper.FixRules(Enumerable
-                .Empty<(Expression<Func<TDest, object>>, Expression<Func<TProjection, object>>)>());
+            var convertLambda = Expression.Lambda<Func<TDest, object>>(
+                Expression.Convert(arg.Item1.Body, typeof(object)), arg.Item1.Parameters.First());
+            var convertLambda1 = Expression.Lambda<Func<TProjection, object>>(
+                Expression.Convert(arg.Item2.Body, typeof(object)), arg.Item2.Parameters.First());
+            return (convertLambda, convertLambda1);
         }
     }
 }

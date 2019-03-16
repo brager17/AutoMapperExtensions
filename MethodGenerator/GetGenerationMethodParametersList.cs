@@ -66,14 +66,13 @@ namespace MethodGenerator
         }
 
         public SyntaxNodeOrTokenList Handle(IEnumerable<ToMethodParameter> input)
-        {    
-            var nodes = input.Select(x => new
-                {x.TypeEnum.GetAttributes<IGetSyntaxOrNodeToken>().Single().Node, x.ParameterName});
-            var parameters = nodes.Select((x, i) => GetParameter(x.ParameterName, x.Node));
-            // join separated by commas
-            // (two functions are passed because the SyntaxNodeOrTokenList function accepts SyntaxNodeOrToken
-            return parameters.Join<ParameterSyntax, SyntaxToken, SyntaxNodeOrTokenList>
-                ((a, c) => a.Add(c), (a, c) => a.Add(c), Token(SyntaxKind.CommaToken));
+        {
+            return new SyntaxNodeOrTokenList();
+//            var parameters = nodes.Select((x, i) => GetParameter(x.ParameterName, x.Node));
+//            // join separated by commas
+//            // (two functions are passed because the SyntaxNodeOrTokenList function accepts SyntaxNodeOrToken
+//            return parameters.Join<ParameterSyntax, SyntaxToken, SyntaxNodeOrTokenList>
+//                ((a, c) => a.Add(c), (a, c) => a.Add(c), Token(SyntaxKind.CommaToken));
         }
     }
 
@@ -89,12 +88,13 @@ namespace MethodGenerator
 
         public SeparatedSyntaxList<ExpressionSyntax> Handle(IEnumerable<Parameter> input)
         {
-            var items = input.Select(x => GetInitializeItem(x.ParameterName)).ToList();
-            // forming parameters of array 'parameters' initializer
-            var syntaxNodeOrTokens = items.Join<InvocationExpressionSyntax, SyntaxToken, SyntaxNodeOrTokenList>(
-                    (a, c) => a.Add(c), (a, c) => a.Add(c), Token(SyntaxKind.CommaToken))
-                .ToArray();
-            return SeparatedList<ExpressionSyntax>(syntaxNodeOrTokens);
+            return new SeparatedSyntaxList<ExpressionSyntax>();
+//            var items = input.Select(x => GetInitializeItem(x.ParameterName)).ToList();
+//            // forming parameters of array 'parameters' initializer
+//            var syntaxNodeOrTokens = items.Join<InvocationExpressionSyntax, SyntaxToken, SyntaxNodeOrTokenList>(
+//                    (a, c) => a.Add(c), (a, c) => a.Add(c), Token(SyntaxKind.CommaToken))
+//                .ToArray();
+//            return SeparatedList<ExpressionSyntax>(syntaxNodeOrTokens);
         }
     }
 }

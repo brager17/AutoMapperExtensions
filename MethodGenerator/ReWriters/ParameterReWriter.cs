@@ -22,8 +22,11 @@ namespace MethodGenerator
             var body = (BlockSyntax) base.Visit(node.Body);
             //todo ref it
             return node.Update(
-                node.AttributeLists, node.Modifiers, node.ReturnType,
-                node.ExplicitInterfaceSpecifier, node.Identifier, node.TypeParameterList,
+                node.AttributeLists, node.Modifiers,
+                node.ReturnType,
+                node.ExplicitInterfaceSpecifier,
+                node.Identifier,
+                node.TypeParameterList.AddParameters(ReWriteMethodInfo.Generics.Parameters.ToArray()),
                 // to add parameters to the method
                 node.ParameterList.AddParameters(ReWriteMethodInfo.AddedParameters.Parameters.ToArray()),
                 node.ConstraintClauses, body, node.SemicolonToken);
@@ -33,7 +36,10 @@ namespace MethodGenerator
         {
             // to add parameters to the array initializer
             //todo ref it
-            return node.Update(node.OpenBraceToken, ReWriteMethodInfo.LambdaParameters, node.CloseBraceToken);
+            return node.Update(
+                node.OpenBraceToken,
+                node.Expressions.AddRange(ReWriteMethodInfo.LambdaParameters),
+                node.CloseBraceToken);
         }
     }
 }

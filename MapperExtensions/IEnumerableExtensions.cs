@@ -26,7 +26,7 @@ namespace MapperExtensions.Models
             return seed;
         }
 
-        public static R Join<T, S, R>(this IEnumerable<T> enumerable, Func<R, T, R> accFunc, Func<R, S, R> sepFunc,
+        public static R JOIN<T, S, R>(this IEnumerable<T> enumerable, Func<R, T, R> accFunc, Func<R, S, R> sepFunc,
             S Separator)
             where R : new()
         {

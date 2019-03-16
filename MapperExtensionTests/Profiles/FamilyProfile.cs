@@ -17,13 +17,14 @@ namespace MapperExtensions.Models
             bool Must = false;
             CreateMap<Family, FatherDto>()
                 .From(x => x.Father)
-                .FixConditionalFormatRules(x => x.PassportAge,
-                    x => x.IdentityCard.Passport.Age < x.Id, ss, sss);
-//                .From(x => x.Father.IdentityCard).To()
+//                .To((x => x.WifeSurname, s => s.IdentityCard.Id),
+//                    (x => x.WifeSurname, s => s.IdentityCard.Id),
+//                    (x => x.Number, s => s.AddressCard.City));
+            //                .From(x => x.Father.IdentityCard).To()
 //                .From(x => x.Father.AddressCard).To()
 //                .From(x => x.Mother.IdentityCard.Passport)
 //                .To((x => x.WifeName, x => x.Name), (x => x.WifeSurname, x => Must ? x.Surname : x.Name))
-                ;
+            ;
 
             //
 
