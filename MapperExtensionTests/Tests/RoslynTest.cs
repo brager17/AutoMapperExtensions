@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Xml.Linq;
+using MapperExtensions.Models;
 using MapperExtensionTests.Models;
 using MethodGenerator;
 using Microsoft.VisualStudio.TestPlatform.ObjectModel;
@@ -10,10 +11,18 @@ using NUnit.Framework;
 
 namespace Tests
 {
+
     public class RoslynTest
     {
         private static IQueryHandler<CountArguments, IEnumerable<GenerateMethodInfo>> GenerateInfoToMethods =>
             new GenerateInfoToMethods();
+
+        [Test]
+        public void TEST()
+        {
+            Expression<Func<Human, string>> expression = x => x != null ? x.AddressCard.Id : "";
+            Expression<Func<Family, Human>> exp = x => x.Father;
+        }
 
         [Test]
         public void Test()

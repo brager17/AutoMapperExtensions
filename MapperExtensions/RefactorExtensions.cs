@@ -3,12 +3,45 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using AutoMapper;
 using AutoMapper.Configuration.Conventions;
 
 namespace MapperExtensions.Models
 {
+    public class ConcatPropertyVisitor<TSource, TProjection, TDest> : ExpressionVisitor
+    {
+        private readonly Expression<Func<TSource, TProjection>> _projectionLambda;
+
+        public ConcatPropertyVisitor(Expression<Func<TSource, TProjection>> projectionLambda)
+        {
+            _projectionLambda = projectionLambda;
+        }
+
+
+        public override Expression Visit(Expression node)
+        {
+            return base.Visit(node);
+        }
+
+
+        protected override Expression VisitLambda<T>(Expression<T> node)
+        {
+            if (node.Body is UnaryExpression unary && unary.Operand is ConditionalExpression conditional)
+            {
+                var newConditional = Helpers.ConcatConditionalExpressionAndLambda(conditional, _projectionLambda);
+                var result1 =
+                    Expression.Lambda<Func<TSource, object>>(newConditional, _projectionLambda.Parameters.First());
+                return base.VisitLambda(result1);
+            }
+
+            var result = _projectionLambda.ConcatPropertyExpressionToLambda<TSource, object>(node);
+            return base.VisitLambda(result);
+        }
+    }
+
     public static class RefactorExtensions
     {
         public static MapperExpressionWrapper<TSource, TDest, TProjection> From<TSource, TDest, TProjection>(
@@ -21,25 +54,46 @@ namespace MapperExtensions.Models
         {
             var rulesByConvention =
                 Helpers.GetConventionMap<TSource, TDest, TProjection, Object>(mapperExpressionWrapper.Expression);
-         
-            // вот тут нужно добавить visitor и разобрать:
-            // константа
-            // тернарник
-            // property
-            // поле автосгенерированного класса
-            
+
             var concatProjection = rules.Select(x =>
             {
                 var (from, @for) = x;
-                var result = mapperExpressionWrapper.Expression.ConcatPropertyExpressionToLambda<TSource, object>(@for);
+                var t =
+                    new ConcatPropertyVisitor<TSource, TProjection, TDest>(mapperExpressionWrapper.Expression)
+                        .Visit(@for);
+                var result =
+                    (Expression<Func<TSource, object>>) t;
                 return (from, result);
-            });
+            }).ToList();
+
+
             var concatMapRules =
                 concatProjection.LeftJoin(rulesByConvention, new ExpressionTupleComparer<TDest, TSource, object>());
             Register(mapperExpressionWrapper.MappingExpression, concatMapRules);
             return mapperExpressionWrapper.MappingExpression;
         }
 
+        public static MapperExpressionWrapper<TSource, TDest, TProjection> FixConditionalFormatRules<TSource,
+            TProjection, TDest>(
+            this MapperExpressionWrapper<TSource, TDest, TProjection> mapperExpressionWrapper,
+            Expression<Func<TDest, object>> mapExpression,
+            Expression<Func<TProjection, bool>> Test,
+            Expression<Func<TProjection, object>> ifTrue,
+            Expression<Func<TProjection, object>> ifFalse)
+        {
+            var newTest =
+                Test.ConcatPropertyExpressionToLambda<TSource, object>(mapperExpressionWrapper.Expression);
+            var newIfTrue =
+                ifTrue.ConcatPropertyExpressionToLambda<TSource, Object>(mapperExpressionWrapper.Expression);
+            var newIfFalse =
+                ifFalse.ConcatPropertyExpressionToLambda<TSource, object>(mapperExpressionWrapper.Expression);
+            var exprConditional = Expression.Condition(newTest, newIfTrue, newIfFalse);
+            var convertToObject = Expression.Convert(exprConditional, typeof(object));
+            var lambda = Expression.Lambda<Func<TSource, object>>(convertToObject,
+                mapperExpressionWrapper.Expression.Parameters.First());
+            Register(mapperExpressionWrapper.MappingExpression, new[] {(mapExpression, lambda)});
+            return mapperExpressionWrapper;
+        }
 
         private static void Register<TSource, TDest, TProjection1>(
             IMappingExpression<TSource, TDest> MappingExpression,
@@ -51,7 +105,6 @@ namespace MapperExtensions.Models
                     expression.Item2.Parameters.First());
                 var @for = expression.Item1.PropertiesStr().First();
                 MappingExpression.ForMember(@for, s => s.MapFrom((dynamic) from));
-
                 Console.WriteLine($"Registration for: {@for} from: {from}");
             }
         }
@@ -127,10 +180,25 @@ namespace MapperExtensions.Models
                 case ParameterExpression parameter:
                     result = parameter;
                     break;
+                case UnaryExpression unary when unary.Operand is ConditionalExpression conditional:
+                    result = conditional;
+                    break;
                 default:
                     throw new ArgumentException();
             }
 
+            return result;
+        }
+
+        public static MemberExpression MemberExpressionWithProjectionConcat(this MemberExpression e1,
+            LambdaExpression projectionLambda)
+        {
+            var projectionProps = projectionLambda.Body.ToString().Split('.').Skip(1).ToList();
+            var props = e1.ToString().Split('.').Skip(1).ToList();
+            var allstrings = projectionProps.Concat(props);
+            var t = projectionLambda.Parameters.First();
+            var result =
+                (MemberExpression) allstrings.Aggregate((Expression) t, Expression.Property);
             return result;
         }
 
@@ -154,6 +222,44 @@ namespace MapperExtensions.Models
             var result = Expression.Lambda<Func<T, R>>(
                 Expression.Convert(properties.Aggregate((Expression) parameter, Expression.Property),
                     typeof(object)), parameter);
+            return result;
+        }
+
+        public static UnaryExpression ConcatConditionalExpressionAndLambda<TSource, R>(
+            ConditionalExpression conditional, Expression<Func<TSource, R>> expression)
+        {
+            MemberExpression newLeft = null;
+            MemberExpression newRight = null;
+            MemberExpression newFalse = null;
+            MemberExpression newTrue = null;
+            BinaryExpression newTest = null;
+            if (conditional.Test is BinaryExpression test)
+            {
+                if (test.Left is MemberExpression left)
+                {
+                    newLeft = left.MemberExpressionWithProjectionConcat(expression);
+                }
+
+                if (test.Right is MemberExpression right)
+                {
+                    newRight = right.MemberExpressionWithProjectionConcat(expression);
+                }
+
+                newTest = Expression.MakeBinary(test.NodeType, newLeft, newRight);
+            }
+
+            if (conditional.IfTrue is MemberExpression @true)
+            {
+                newTrue = @true.MemberExpressionWithProjectionConcat(expression);
+            }
+
+            if (conditional.IfFalse is MemberExpression @false)
+            {
+                newFalse = @false.MemberExpressionWithProjectionConcat(expression);
+            }
+
+            var result = Expression.Convert((Expression.Condition(newTest, newTrue, newFalse)), typeof(object));
+
             return result;
         }
 

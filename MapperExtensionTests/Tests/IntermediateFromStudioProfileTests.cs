@@ -19,7 +19,7 @@ namespace Tests
                 {
                     AddressCard = new AddressCard
                     {
-                        Id = "Id", City = "fatherCity", House = 1, Street = "fatherStreet", Country = "fatherCountry"
+                        Id = "Id", City = "fatherCity", House = 12, Street = "fatherStreet", Country = "fatherCountry"
                     },
                     IdentityCard = new IdentityCard
                     {
@@ -32,7 +32,7 @@ namespace Tests
                 {
                     AddressCard = new AddressCard
                     {
-                        Id = "Id", City = "city", House = 1, Street = "street", Country = "country"
+                        Id = "Id", City = "city", House = 112, Street = "street", Country = "country"
                     },
                     IdentityCard = new IdentityCard
                     {
@@ -48,11 +48,12 @@ namespace Tests
         [Test]
         public void Test()
         {
-            var family = context.Families.First();
+            var family = context.Families.Select(x => x.Father)
+                    .Select(x => x.IdentityCard.Passport.Age <x.Id ? x.Id : x.AddressCard.House)
+                ;
             var projectTo = context.Families.ProjectTo<FatherDto>();
             var sssss = projectTo.First();
             Assert.DoesNotThrow(() => projectTo.ToList());
         }
-
     }
 }

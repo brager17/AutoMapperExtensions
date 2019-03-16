@@ -11,13 +11,18 @@ namespace MapperExtensions.Models
     {
         public FamilyProfile()
         {
+            Expression<Func<Human, object>> ss = x => x.Id;
+            Expression<Func<Human, object>> sss = x => x.AddressCard.House;
+
             bool Must = false;
             CreateMap<Family, FatherDto>()
-                .From(x => x.Father.IdentityCard.Passport).To(x => x.Number, x => x.Surname)
-                .From(x => x.Father.IdentityCard).To()
-                .From(x => x.Father.AddressCard).To()
-                .From(x => x.Mother.IdentityCard.Passport)
-                .To((x => x.WifeName, x => x.Name), (x => x.WifeSurname, x => Must ? x.Surname : x.Name))
+                .From(x => x.Father)
+                .FixConditionalFormatRules(x => x.PassportAge,
+                    x => x.IdentityCard.Passport.Age < x.Id, ss, sss);
+//                .From(x => x.Father.IdentityCard).To()
+//                .From(x => x.Father.AddressCard).To()
+//                .From(x => x.Mother.IdentityCard.Passport)
+//                .To((x => x.WifeName, x => x.Name), (x => x.WifeSurname, x => Must ? x.Surname : x.Name))
                 ;
 
             //

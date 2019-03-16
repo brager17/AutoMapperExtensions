@@ -10,7 +10,6 @@ namespace MethodGenerator
 {
     public static partial class MethodExample
     {
-       
         private static (Expression<Func<T1, object>>, Expression<Func<T2, object>>) ToObjectLambdas<T1, T2, T3>
             ((Expression<Func<T1, T3>>, Expression<Func<T2, T3>>) lambda)
         {
@@ -32,14 +31,14 @@ namespace MethodGenerator
             return (x => (object) 1, x => (object) 2);
         }
 
-        
+
 //        public static IMappingExpression<TSource, TDest> To<TSource, TDest, TProjection>(
 //            this MapperExpressionWrapper<TSource, TDest, TProjection> mapperExpressionWrapper)
 //        {
 //            var parameters = new[] {Stub<TDest, TProjection>()};
 //            return mapperExpressionWrapper.FixRules(parameters);
 //        }
-        
+
 
         public static IMappingExpression<TSource, TDest> To<TSource, TDest, TProjection>(
             this MapperExpressionWrapper<TSource, TDest, TProjection> mapperExpressionWrapper)

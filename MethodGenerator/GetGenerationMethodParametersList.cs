@@ -66,7 +66,7 @@ namespace MethodGenerator
         }
 
         public SyntaxNodeOrTokenList Handle(IEnumerable<ToMethodParameter> input)
-        {
+        {    
             var nodes = input.Select(x => new
                 {x.TypeEnum.GetAttributes<IGetSyntaxOrNodeToken>().Single().Node, x.ParameterName});
             var parameters = nodes.Select((x, i) => GetParameter(x.ParameterName, x.Node));
