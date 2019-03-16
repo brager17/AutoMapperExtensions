@@ -1,4 +1,5 @@
 using AutoMapper;
+using MethodGenerator;
 
 namespace MapperExtensions.Models
 {
@@ -7,9 +8,9 @@ namespace MapperExtensions.Models
         public PupilProfile()
         {
 //            CreateMap<Pupil, PupilDto>()
-//                .From(x => x.Address).To(x => x.House, x => x.Country, x => x.Street)
-//                .From(x => x.Identity).To(x => x.Id)
-//                .From(x => x.Identity.Passport).To(x => x.Name, x => x.Surname, s => s.Number)
+//                .From(x => x.Address).To()
+//                .From(x => x.Identity).To()
+//                .From(x => x.Identity.Passport).To()
 //                ;
 
 //            CreateMap<Pupil, PupilDto>()

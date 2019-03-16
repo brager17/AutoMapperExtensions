@@ -23,7 +23,7 @@ namespace MethodGenerator
                     {
                         return new ToMethodParameter
                         {
-                            Parameters = Enumerable.Range(0, i)
+                            Parameters = Enumerable.Range(1, i)
                                 .Select(ii => new Parameter {Argument = $"arg{ii}", GenericName = $"T{ii}"}).ToList()
                         };
                     })

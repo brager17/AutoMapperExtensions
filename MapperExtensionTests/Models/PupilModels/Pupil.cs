@@ -5,5 +5,6 @@ namespace MapperExtensions.Models
         public int Id { get; set; }
         public IdentityCard Identity;
         public AddressCard Address;
+        public EducationCard EducationCard { get; set; }
     }
 }

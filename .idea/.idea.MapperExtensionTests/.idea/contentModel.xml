@@ -32,22 +32,15 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="MapperExtensionTests.csproj" t="IncludeRecursive" />
         <e p="Models" t="Include">
-          <e p="FamilyModels" t="Include">
-            <e p="FamilyModels.cs" t="Include" />
-          </e>
           <e p="PupilModels" t="Include">
             <e p="AddressCard.cs" t="Include" />
+            <e p="EducationCard.cs" t="Include" />
+            <e p="Exam.cs" t="Include" />
             <e p="IdentityCard.cs" t="Include" />
+            <e p="Mark.cs" t="Include" />
             <e p="Pupil.cs" t="Include" />
             <e p="PupilDto.cs" t="Include" />
-          </e>
-          <e p="StudioModels" t="Include">
-            <e p="ActingCard.cs" t="Include" />
-            <e p="Actor.cs" t="Include" />
-            <e p="Film.cs" t="Include" />
-            <e p="Position.cs" t="Include" />
-            <e p="Studio.cs" t="Include" />
-            <e p="StudioDto.cs" t="Include" />
+            <e p="StadyGroup.cs" t="Include" />
           </e>
         </e>
         <e p="obj" t="ExcludeRecursive">
@@ -58,9 +51,7 @@
           </e>
         </e>
         <e p="Profiles" t="Include">
-          <e p="FamilyProfile.cs" t="Include" />
           <e p="PupilProfile.cs" t="Include" />
-          <e p="StudioProfile.cs" t="Include" />
         </e>
         <e p="TestDbContext" t="Include">
           <e p="TestDbContext.cs" t="Include" />
@@ -70,7 +61,6 @@
           <e p="FunctionTests" t="Include">
             <e p="AutoMapperTests.cs" t="Include" />
           </e>
-          <e p="IntermediateFromStudioProfileTests.cs" t="Include" />
           <e p="RoslynTest.cs" t="Include" />
           <e p="SimpleFromPupilProfileTests.cs" t="Include" />
         </e>
@@ -103,7 +93,6 @@
         <e p="InitialExpressionBuilder.cs" t="Include" />
         <e p="InitialExpressionBuilderInfo.cs" t="Include" />
         <e p="MethodExample.cs" t="Include" />
-        <e p="MethodExample1.cs" t="Include" />
         <e p="MethodExample12.cs" t="Include" />
         <e p="MethodGenerator.csproj" t="IncludeRecursive" />
         <e p="obj" t="ExcludeRecursive">

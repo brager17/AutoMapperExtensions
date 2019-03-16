@@ -1,17 +1,14 @@
+using System.Text.RegularExpressions;
 using MapperExtensions.Models;
-using MapperExtensionTests.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Console;
-using Tests.Models.StudioModels;
 
 namespace Tests
 {
     public class TestDbContext : DbContext
     {
         public DbSet<Pupil> Pupils { get; set; }
-//        public DbSet<Studio> Studios { get; set; }
-        public DbSet<Family> Families { get; set; }
 
         public TestDbContext()
         {
@@ -21,15 +18,14 @@ namespace Tests
         {
             optionsBuilder
 //                .UseLoggerFactory(MyLoggerFactory)
-                .UseInMemoryDatabase("test")
-                /*.UseNpgsql(
-                    "Username=postgres;Password=18211921;Host=localhost;Port=5432;Database=EducationBot");*/
-                ;
+                .UseSqlServer("Server=.;Initial Catalog=Test;Persist Security Info=False;Integrated Security=True;");
+              
             base.OnConfiguring(optionsBuilder);
         }    
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<StudyGroup>().HasKey(x => x.Number);
             modelBuilder.Entity<IdentityCard>().HasKey(x => x.Id);
             modelBuilder.Entity<Passport>().HasKey(x => x.Number);
             modelBuilder.Entity<TIN>().HasKey(x => x.Number);

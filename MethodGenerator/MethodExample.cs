@@ -16,6 +16,14 @@ namespace MethodGenerator
             return mapperExpressionWrapper.FixRules(parameters);
         }
 
+        public static IMappingExpression<TSource, TDest> To<TSource, TDest, TProjection>(
+            this MapperExpressionWrapper<TSource, TDest, TProjection> mapperExpressionWrapper)
+        {
+            return mapperExpressionWrapper.FixRules(Enumerable
+                .Empty<(Expression<Func<TDest, object>>, Expression<Func<TProjection, object>>)>());
+        }
+
+
         public static (Expression<Func<TDest, object>>, Expression<Func<TProjection, object>>)
             Convert<TDest, T, TProjection>(
                 (Expression<Func<TDest, T>>,
