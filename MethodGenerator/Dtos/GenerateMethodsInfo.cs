@@ -1,14 +1,13 @@
-using System.Collections.Generic;
-
 namespace MethodGenerator
 {
     public class GenerateMethodsInfo
     {
-        public string PathToDestinationFile { get; set; }
-        public string PathToExampleCodeFile { get; set; }
-        public GenerateMethodInfo MethodsInfo { get; set; }
+        public string PathToDestinationFile { get; }
+        public string PathToExampleCodeFile { get; }
+        public GenerateMethodInfo MethodsInfo { get; }
 
-        public GenerateMethodsInfo(string pathToDestinationFile, string pathToExampleCodeFile, GenerateMethodInfo methodsInfo)
+        public GenerateMethodsInfo(string pathToDestinationFile, string pathToExampleCodeFile,
+            GenerateMethodInfo methodsInfo)
         {
             PathToDestinationFile = pathToDestinationFile;
             PathToExampleCodeFile = pathToExampleCodeFile;

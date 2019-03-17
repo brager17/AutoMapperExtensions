@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using MapperExtensions.Models;
@@ -57,12 +58,15 @@ namespace Tests
         [Test]
         public void PupilProfile__SimpleMapRules__GetPupilCorrectDto()
         {
-            var projectTo = context.Pupils.ProjectTo<PupilDto>().OrderBy(x => x.Name);
+            var pupil = context.Pupils.First();
+            var projectTo = context.Pupils
+                    .ProjectTo<PupilDto>()
+                ;
             var ex = context.Pupils.Select(x =>
                 x.Identity.Passport.Age != 0
                     ? x.Identity.Passport.Name
                     : x.Identity.Passport.Name + " " + x.Identity.Passport.Surname);
-            var pupil = projectTo.First();
+            var s = projectTo.First();
             Assert.DoesNotThrow(() => projectTo.ToList());
         }
     }

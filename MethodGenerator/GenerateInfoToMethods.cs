@@ -9,7 +9,7 @@ namespace MethodGenerator
             ArgumentCount = argumentCount;
         }
 
-        public int ArgumentCount { get;  }
+        public int ArgumentCount { get; }
     }
 
     public class GenerateInfoToMethods : IQueryHandler<CountArguments, GenerateMethodInfo>
@@ -24,7 +24,8 @@ namespace MethodGenerator
                         return new ToMethodParameter
                         {
                             Parameters = Enumerable.Range(1, i)
-                                .Select(ii => new Parameter {Argument = $"arg{ii}", GenericName = $"T{ii}"}).ToList()
+                                .Select(ii => new Parameter {ArgumentInfo = $"arg{ii}", GenericName = $"T{ii}"})
+                                .ToList()
                         };
                     })
             };

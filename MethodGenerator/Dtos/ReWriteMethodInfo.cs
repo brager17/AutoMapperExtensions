@@ -8,18 +8,18 @@ namespace MethodGenerator
     {
         public ReWriteMethodInfo(
             ParameterListSyntax addedParameters,
-            IEnumerable<ExpressionSyntax> lambdaParameters,
+            BlockSyntax Block,
             TypeParameterListSyntax generics)
         {
             AddedParameters = addedParameters;
-            LambdaParameters = lambdaParameters;
+            this.Block = Block;
             Generics = generics;
         }
 
         public ParameterListSyntax AddedParameters { get; }
 
-        public IEnumerable<ExpressionSyntax> LambdaParameters { get; }
+        public BlockSyntax Block { get; }
 
-        public TypeParameterListSyntax Generics { get; set; }
+        public TypeParameterListSyntax Generics { get; }
     }
 }

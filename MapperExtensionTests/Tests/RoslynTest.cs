@@ -1,3 +1,4 @@
+using MapperExtensions.Models;
 using MethodGenerator;
 using NUnit.Framework;
 
@@ -16,7 +17,7 @@ namespace Tests
 
             var t = new GenerateMethodsInfo
             (
-                @"C:\Users\evgeniy\RiderProjects\MapperExtensionTests\MethodGenerator\MethodExample12.cs",
+                @"C:\Users\evgeniy\RiderProjects\MapperExtensionTests\MethodGenerator\MethodExample13.cs",
                 @"C:\Users\evgeniy\RiderProjects\MapperExtensionTests\MethodGenerator\MethodExample.cs",
                 methodInfos
             );

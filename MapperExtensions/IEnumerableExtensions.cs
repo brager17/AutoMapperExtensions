@@ -13,19 +13,6 @@ namespace MapperExtensions.Models
             return result;
         }
 
-        public static R Join<T, R>(this IEnumerable<T> enumerable, Func<R, T, R> accFunc, T Separator)
-            where R : new()
-        {
-            var list = enumerable.ToList();
-            var seed = accFunc(new R(), list[0]);
-            for (int i = 1; i < list.Count; i++)
-            {
-                seed = accFunc(accFunc(seed, Separator), list[i]);
-            }
-
-            return seed;
-        }
-
         public static R JOIN<T, S, R>(this IEnumerable<T> enumerable, Func<R, T, R> accFunc, Func<R, S, R> sepFunc,
             S Separator)
             where R : new()

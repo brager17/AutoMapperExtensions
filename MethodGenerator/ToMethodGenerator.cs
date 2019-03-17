@@ -11,67 +11,61 @@ namespace MethodGenerator
     public class ToMethodGenerator : IHandler<GenerateMethodsInfo>
     {
         private IQueryHandler<FileInfoDto, string> FileReader { get; }
-        private IBuilder<ParameterBuildInfo, ParameterSyntax> ParameterBuilder { get; }
+        private IBuilder<Parameter, ParameterSyntax> ParameterBuilder { get; }
         private IHandler<WriteFileInfoDto> FileWriter { get; }
 
         private ClassReWriter ClassReWriter { get; }
         private ParameterReWriter MethodParametersReWriter { get; }
 
-        private IBuilder<InitialExpressionBuilderInfo, InvocationExpressionSyntax> InitialExpressionBuilder { get; }
+        private GetNodeStructureHandler<Parameter, ParameterSyntax, ParameterListSyntax> GetParameters { get; }
+        private GetNodeStructureHandler<IGenericInfo, TypeParameterSyntax, TypeParameterListSyntax> GetGenerics { get; }
+        private GetNodeStructureHandler<IArgumentInfo, StatementSyntax, BlockSyntax> GetBlockStatement { get; }
+
 
         public ToMethodGenerator()
         {
             ParameterBuilder = new ParameterExpressionBuilder();
-            InitialExpressionBuilder = new InitialExpressionBuilder();
             MethodParametersReWriter = new ParameterReWriter();
             ClassReWriter = new ClassReWriter();
             FileReader = new FileReader();
             FileWriter = new FileWriter();
+            GetParameters =
+                new GetNodeStructureHandler<Parameter, ParameterSyntax, ParameterListSyntax>(
+                    new GetParameterListSyntax(new ConcatSyntaxNodeOrToken<ParameterSyntax>()),
+                    new ParameterExpressionBuilder());
+            GetGenerics = new GetNodeStructureHandler<IGenericInfo, TypeParameterSyntax, TypeParameterListSyntax>(
+                new GetTypeParameterListSyntax(new ConcatSyntaxNodeOrToken<TypeParameterSyntax>()),
+                new GenericTypesBuilder());
+            GetBlockStatement =
+                new GetNodeStructureHandler<IArgumentInfo, StatementSyntax, BlockSyntax>(new GetBlockStructure(),
+                    new StatementBuilder());
         }
 
         public void Handle(GenerateMethodsInfo input)
         {
             var exampleMethodCode = FileReader.Handle(new FileInfoDto(input.PathToExampleCodeFile));
-            
+
             var exampleCode = CSharpSyntaxTree.ParseText(exampleMethodCode).GetRoot();
 
             var exampleMethodDeclarationSyntax = exampleCode
                 .DescendantNodes()
                 .OfType<MethodDeclarationSyntax>()
                 .First(x => x.Identifier.Value.ToString() == "To");
-            ;
 
             var generics = input.MethodsInfo.AddedParameters
                 .Select(x =>
                     new
                     {
-                        GenericList = TypeParameterList(
-                            SeparatedList<TypeParameterSyntax>(Concat(x.Parameters
-                                .Select(xx => TypeParameter(Identifier(xx.GenericName)))))),
-
-                        ParameterList = ParameterList(
-                            SeparatedList<ParameterSyntax>(
-                                Concat(x.Parameters.Select(xx =>
-                                    ParameterBuilder.Build(new ParameterBuildInfo
-                                        {ArgumentName = xx.Argument, GenericName = xx.GenericName}))))),
-
-                        initialItems = SeparatedList<ExpressionSyntax>(Concat(x.Parameters
-                            .Select(xx => InitialExpressionBuilder.Build(new InitialExpressionBuilderInfo
-                                {ArgumentName = xx.Argument}))))
+                        GenericList = GetGenerics.Handle(x.Parameters),
+                        ParameterList = GetParameters.Handle(x.Parameters),
+                        StatementList = GetBlockStatement.Handle(x.Parameters)
                     })
-                .Select(x =>
-                    (MethodDeclarationSyntax) MethodParametersReWriter.Visit(exampleMethodDeclarationSyntax,
-                        new ReWriteMethodInfo(x.ParameterList, x.initialItems, x.GenericList))).ToList();
+                .Select(x => (MethodDeclarationSyntax) MethodParametersReWriter.Visit(exampleMethodDeclarationSyntax,
+                    new ReWriteMethodInfo(x.ParameterList, x.StatementList, x.GenericList)))
+                .ToList();
 
             var classNode = ClassReWriter.Visit(exampleCode, generics);
-
             FileWriter.Handle(new WriteFileInfoDto(input.PathToDestinationFile, classNode.ToString()));
-        }
-
-        private static SyntaxNodeOrTokenList Concat<T>(IEnumerable<T> enumerable) where T : SyntaxNode
-        {
-            return enumerable.JOIN<T, SyntaxToken, SyntaxNodeOrTokenList>
-                ((a, c) => a.Add(c), (a, c) => a.Add(c), Token(SyntaxKind.CommaToken));
         }
     }
 }

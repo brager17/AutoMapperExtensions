@@ -4,12 +4,12 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace MethodGenerator
 {
-    public class ParameterExpressionBuilder : IBuilder<ParameterBuildInfo, ParameterSyntax>
+    public class ParameterExpressionBuilder : IBuilder<Parameter, ParameterSyntax>
     {
-        public ParameterSyntax Build(ParameterBuildInfo info)
+        public ParameterSyntax Build(Parameter info)
         {
             return SyntaxFactory.Parameter(
-                    SyntaxFactory.Identifier(info.ArgumentName))
+                    SyntaxFactory.Identifier(info.ArgumentInfo))
                 .WithType(
                     SyntaxFactory.TupleType(
                         SyntaxFactory.SeparatedList<TupleElementSyntax>(

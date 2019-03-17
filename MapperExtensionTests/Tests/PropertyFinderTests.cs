@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Text.RegularExpressions;
+using MapperExtensions;
 using MapperExtensions.Models;
 using NUnit.Framework;
 
@@ -33,7 +34,7 @@ namespace Tests
             var test = new Hard();
             var str = ("ItSmark123StudyGroupGroupNumber");
             var matches = Regex.Matches(str, @"[A-Z][\w]+").Select(xx => xx.Value).ToList();
-            var actual = Helpers.AdvanceMapProperty(matches, typeof(Hard));
+            var actual = HelpersMethod.AdvanceMapProperty(matches, typeof(Hard));
             var expected = new[] {"ItSmark123", "StudyGroup", "GroupNumber"};
             CollectionAssert.AreEqual(expected, actual);
         }

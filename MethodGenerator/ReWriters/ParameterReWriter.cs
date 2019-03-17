@@ -19,27 +19,20 @@ namespace MethodGenerator
         {
             // this is not the "To" method
             if (node.Identifier.Value.ToString() != "To") return base.VisitMethodDeclaration(node);
-            var body = (BlockSyntax) base.Visit(node.Body);
-            //todo ref it
+            var returnStatement = node.Body.Statements.Last();
+            var beforeReturnStatements = node.Body.Statements.SkipLast(1);
+            var newBody = SyntaxFactory.Block(beforeReturnStatements.Concat(ReWriteMethodInfo.Block.Statements)
+                .Concat(new[] {returnStatement}));
             return node.Update(
                 node.AttributeLists, node.Modifiers,
                 node.ReturnType,
                 node.ExplicitInterfaceSpecifier,
                 node.Identifier,
                 node.TypeParameterList.AddParameters(ReWriteMethodInfo.Generics.Parameters.ToArray()),
-                // to add parameters to the method
                 node.ParameterList.AddParameters(ReWriteMethodInfo.AddedParameters.Parameters.ToArray()),
-                node.ConstraintClauses, body, node.SemicolonToken);
-        }
-
-        public override SyntaxNode VisitInitializerExpression(InitializerExpressionSyntax node)
-        {
-            // to add parameters to the array initializer
-            //todo ref it
-            return node.Update(
-                node.OpenBraceToken,
-                node.Expressions.AddRange(ReWriteMethodInfo.LambdaParameters),
-                node.CloseBraceToken);
+                node.ConstraintClauses,
+                newBody,
+                node.SemicolonToken);
         }
     }
 }

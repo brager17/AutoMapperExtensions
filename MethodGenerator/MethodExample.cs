@@ -2,53 +2,60 @@ using System;
 using System.Linq;
 using System.Linq.Expressions;
 using AutoMapper;
+using MapperExtensions;
 using MapperExtensions.Models;
 
 namespace MethodGenerator
 {
-    public static partial class MethodExample
+    public static partial class RefactMapper
     {
+        private static ICachedMethodInfo _cachedMethodInfo = new CachedMethodInfo();
+
         public static IMappingExpression<TSource, TDest> To<TSource, TDest, TProjection, T>(
             this MapperExpressionWrapper<TSource, TDest, TProjection> mapperExpressionWrapper,
             (Expression<Func<TDest, T>>, Expression<Func<TProjection, T>>) arg0)
         {
-            var parameters = new[] {Convert(arg0)};
-            return mapperExpressionWrapper.FixRules(parameters);
-        }
-
-        public static IMappingExpression<TSource, TDest> ToIf<TSource, TDest, TProjection>(
-            this MapperExpressionWrapper<TSource, TDest, TProjection> mapperExpressionWrapper,
-            Expression<Func<TDest, string>> @for,
-            Expression<Func<TProjection, Boolean>> Test,
-            Expression<Func<TProjection, string>> IfTrue,
-            Expression<Func<TProjection, string>> IfFalse)
-        {
-            var projectParameter = mapperExpressionWrapper.Expression.Parameters.First();
-            var projectProperties = mapperExpressionWrapper.Expression.Body.ToString().Split('.').Skip(1);
-            var ifTrueProperties = projectProperties.Concat(IfTrue.Body.ToString().Split('.').Skip(1));
-            var ifFalseBody = projectProperties.Concat(IfFalse.Body.ToString().Split('.').Skip(1));
-            var projectIfTrue =
-                Expression.Lambda(ifTrueProperties.Aggregate(((Expression) projectParameter), Expression.Property),
-                    projectParameter);
-            var projectIfFalse =
-                Expression.Lambda(ifFalseBody.Aggregate(((Expression) projectParameter), Expression.Property),
-                    projectParameter);
-            var condition = Expression.Condition(Test.Body, projectIfTrue, projectIfFalse);
-            var lambda = Expression.Lambda(condition, projectParameter);
-            mapperExpressionWrapper.MappingExpression.ForMember(@for.PropertiesStr().ToString(), 
-                s => s.MapFrom((dynamic) lambda));
+            RegisterByConvention(mapperExpressionWrapper);
+            RegisterRule(mapperExpressionWrapper, arg0);
             return mapperExpressionWrapper.MappingExpression;
         }
 
+        private static void RegisterRule<TSource, TDest, TProjection, T>(
+            MapperExpressionWrapper<TSource, TDest, TProjection> mapperExpressionWrapper,
+            (Expression<Func<TDest, T>>, Expression<Func<TProjection, T>>) rule)
+        {
+            var (from, @for) = rule;
+            var result = Expression.Lambda<Func<TSource, T>>(
+                Expression.Invoke(@for, mapperExpressionWrapper.Expression.Body),
+                mapperExpressionWrapper.Expression.Parameters.First());
+            mapperExpressionWrapper.MappingExpression
+                .ForMember(string.Join('.', from.PropertiesStr()), s => s.MapFrom(result));
+        }
+
+        private static void RegisterByConvention<TSource, TDest, TProjection>(
+            MapperExpressionWrapper<TSource, TDest, TProjection> mapperExpressionWrapper)
+        {
+            var properties = typeof(TDest).GetProperties().ToList();
+            properties.ForEach(prop =>
+            {
+                var ruleByConvention = _cachedMethodInfo
+                    .GetMethod(nameof(HelpersMethod.GetRuleByConvention).Split('.').Last())
+                    .MakeGenericMethod(typeof(TSource), typeof(TProjection), prop.PropertyType)
+                    .Invoke(null, new object[] {prop, mapperExpressionWrapper.Expression});
+                if (ruleByConvention == null) return;
+                mapperExpressionWrapper.MappingExpression.ForMember(prop.Name,
+                    s => s.MapFrom((dynamic) ruleByConvention));
+            });
+        }
 
         public static IMappingExpression<TSource, TDest> To<TSource, TDest, TProjection>(
             this MapperExpressionWrapper<TSource, TDest, TProjection> mapperExpressionWrapper)
         {
             return mapperExpressionWrapper.FixRules(Enumerable
-                .Empty<(Expression<Func<TDest, object>>, Expression<Func<TProjection, object>>)>());
+                .Empty<(Expression<Func<TDest, TProjection>>, Expression<Func<TProjection, TProjection>>)>());
         }
 
-        public static IMappingExpression<TSource, TDest> ToIf<TSource, TDest, TProjection>(
+        public static MapperExpressionWrapper<TSource, TDest, TProjection> ToIf<TSource, TDest, TProjection>(
             this MapperExpressionWrapper<TSource, TDest, TProjection> mapperExpressionWrapper,
             Expression<Func<TDest, string>> @for,
             Expression<Func<TProjection, bool>> Test,
@@ -69,7 +76,7 @@ namespace MethodGenerator
                 projectParameter);
             mapperExpressionWrapper.MappingExpression.ForMember(@for.PropertiesStr().First(),
                 s => s.MapFrom((dynamic) condition));
-            return mapperExpressionWrapper.MappingExpression;
+            return mapperExpressionWrapper;
         }
 
 
