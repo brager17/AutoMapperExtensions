@@ -17,7 +17,7 @@ namespace Tests
                 Address = new AddressCard {Id = "1", House = 1, Street = "street", Country = "country", City = "city"},
                 Identity = new IdentityCard
                 {
-                    Passport = new Passport {Name = "name", Number = "123", Surname = "surname"},
+                    Passport = new Passport {Name = "name", Number = "123", Surname = "surname", Age = 1},
                     Tin = new TIN() {Number = "123", DateOfReceiving = new DateTime(1, 2, 3)}
                 },
                 EducationCard = new EducationCard
@@ -57,6 +57,10 @@ namespace Tests
         [Test]
         public void PupilProfile__SimpleMapRules__GetPupilCorrectDto()
         {
+            var ex = context.Pupils.Select(x =>
+                x.Identity.Passport.Age != 0
+                    ? x.Identity.Passport.Name
+                    : x.Identity.Passport.Name + " " + x.Identity.Passport.Surname);
             var projectTo = context.Pupils.ProjectTo<PupilDto>();
             var pupil = projectTo.First();
             Assert.DoesNotThrow(() => projectTo.ToList());

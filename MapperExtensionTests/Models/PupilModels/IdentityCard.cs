@@ -1,4 +1,5 @@
 using System;
+using System.Linq.Expressions;
 using AutoMapper.Configuration.Conventions;
 
 namespace MapperExtensions.Models
@@ -18,11 +19,12 @@ namespace MapperExtensions.Models
 
     public class Passport
     {
+        public static Expression<Func<Passport, string>> shortFormat = x => x.Name;
+        public static Expression<Func<Passport, string>> fullFormat = x => x.Name + " " + x.Surname;
         public string Number { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
-        
-        public int Age { get; set; }
 
+        public int Age { get; set; }
     }
 }

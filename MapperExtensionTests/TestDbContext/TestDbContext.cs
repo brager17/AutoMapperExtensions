@@ -18,7 +18,8 @@ namespace Tests
         {
             optionsBuilder
 //                .UseLoggerFactory(MyLoggerFactory)
-                .UseSqlServer("Server=.;Initial Catalog=Test;Persist Security Info=False;Integrated Security=True;");
+                .UseInMemoryDatabase("test");
+//                .UseSqlServer("Server=.;Initial Catalog=Test;Persist Security Info=False;Integrated Security=True;");
               
             base.OnConfiguring(optionsBuilder);
         }    
