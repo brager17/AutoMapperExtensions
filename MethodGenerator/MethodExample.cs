@@ -48,6 +48,30 @@ namespace MethodGenerator
                 .Empty<(Expression<Func<TDest, object>>, Expression<Func<TProjection, object>>)>());
         }
 
+        public static IMappingExpression<TSource, TDest> ToIf<TSource, TDest, TProjection>(
+            this MapperExpressionWrapper<TSource, TDest, TProjection> mapperExpressionWrapper,
+            Expression<Func<TDest, string>> @for,
+            Expression<Func<TProjection, bool>> Test,
+            Expression<Func<TProjection, string>> IfTrue,
+            Expression<Func<TProjection, string>> IfFalse)
+        {
+            var projectParameter = mapperExpressionWrapper.Expression.Parameters.First();
+            var projection = mapperExpressionWrapper.Expression;
+            var newTest =
+                Expression.Lambda<Func<TSource, Boolean>>(Expression.Invoke(Test, projection.Body), projectParameter);
+            var newIfTrue =
+                Expression.Lambda<Func<TSource, string>>(Expression.Invoke(IfTrue, projection.Body), projectParameter);
+            var newIfFalse =
+                Expression.Lambda<Func<TSource, string>>(Expression.Invoke(IfFalse, projection.Body), projectParameter);
+
+            var condition = Expression.Lambda<Func<TSource, string>>(
+                Expression.Condition(newTest.Body, newIfTrue.Body, newIfFalse.Body),
+                projectParameter);
+            mapperExpressionWrapper.MappingExpression.ForMember(@for.PropertiesStr().First(),
+                s => s.MapFrom((dynamic) condition));
+            return mapperExpressionWrapper.MappingExpression;
+        }
+
 
         public static (Expression<Func<TDest, object>>, Expression<Func<TProjection, object>>)
             Convert<TDest, T, TProjection>(

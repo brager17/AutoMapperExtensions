@@ -28,7 +28,6 @@ namespace Tests
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-          
             modelBuilder.Entity<StudyGroup>().HasKey(x => x.Number);
             modelBuilder.Entity<IdentityCard>().HasKey(x => x.Id);
             modelBuilder.Entity<Passport>().HasKey(x => x.Number);
