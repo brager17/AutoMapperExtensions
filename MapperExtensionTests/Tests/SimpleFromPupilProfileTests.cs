@@ -18,7 +18,7 @@ namespace Tests
                 Address = new AddressCard {Id = "1", House = 10, Street = "Grivki", Country = "Russia", City = "Kazan"},
                 Identity = new IdentityCard
                 {
-                    Passport = new Passport {Name = "Evgeny", Number = "First one", Surname = "Terekhin"},
+                    Passport = new Passport {Name = "Evgeny", Number = "First one", Surname = "Terekhin", Age = 12},
                     Tin = new TIN() {Number = "123", DateOfReceiving = new DateTime(1998, 05, 05)}
                 },
                 EducationCard = new EducationCard

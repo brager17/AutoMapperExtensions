@@ -12,9 +12,9 @@ namespace MapperExtensions.Models
         public string Country { get; set; }
         public string Street { get; set; }
         public int House { get; set; }
-        public string StudyGroupNumber { get; set; }
+        public string Group { get; set; }
         public int Age { get; set; }
         public DateTime DateOfReceiving { get; set; }
-        public string STR{ get; set; }
+        public int CountStudentsInGroup{ get; set; }
     }
 }

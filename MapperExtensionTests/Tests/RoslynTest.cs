@@ -17,8 +17,8 @@ namespace Tests
 
             var t = new GenerateMethodsInfo
             (
-                @"C:\Users\evgeniy\RiderProjects\MapperExtensionTests\MethodGenerator\MethodExample13.cs",
-                @"C:\Users\evgeniy\RiderProjects\MapperExtensionTests\MethodGenerator\MethodExample.cs",
+                @"/home/evgeny/Документы/automapper/MethodGenerator/MethodExample1.cs",
+                @"/home/evgeny/Документы/automapper/MethodGenerator/MethodExample.cs",
                 methodInfos
             );
             methodGenerator.Handle(t);

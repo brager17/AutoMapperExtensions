@@ -19,10 +19,15 @@ namespace MethodGenerator
         {
             // this is not the "To" method
             if (node.Identifier.Value.ToString() != "To") return base.VisitMethodDeclaration(node);
+            // returnStatement = return mapperExpressionWrapper.MappingExpression;
             var returnStatement = node.Body.Statements.Last();
+            //beforeReturnStatements: 
+            //[RegisterByConvention(mapperExpressionWrapper),RegisterRule(mapperExpressionWrapper, arg0)]
             var beforeReturnStatements = node.Body.Statements.SkipLast(1);
+            //добавляем вызов метода RegisterRule перед returStatement
             var newBody = SyntaxFactory.Block(beforeReturnStatements.Concat(ReWriteMethodInfo.Block.Statements)
                 .Concat(new[] {returnStatement}));
+            // возвращаем перезаписанный узел дерева
             return node.Update(
                 node.AttributeLists, node.Modifiers,
                 node.ReturnType,

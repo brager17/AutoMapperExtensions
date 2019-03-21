@@ -19,12 +19,13 @@ namespace Tests
         {
             optionsBuilder
 //                .UseLoggerFactory(MyLoggerFactory)
-                .UseSqlServer("Server=.;Initial Catalog=Test;Persist Security Info=False;Integrated Security=True;")
+                .UseNpgsql("Host=localhost;Database=test;username=postgres;password=18211921")
+//                .UseSqlServer("Server=.;Initial Catalog=Test;Persist Security Info=False;Integrated Security=True;")
                 .ConfigureWarnings(warnings =>
                     warnings.Throw(RelationalEventId.QueryClientEvaluationWarning));
-              
+
             base.OnConfiguring(optionsBuilder);
-        }    
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
