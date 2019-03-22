@@ -5,6 +5,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\ReWriteInterpolation\ReWriteInterpolation\ReWriteInterpolation.csproj" />
       <ProjectReference Include="..\MapperExtensions\MapperExtensions.csproj" />
     </ItemGroup>
 

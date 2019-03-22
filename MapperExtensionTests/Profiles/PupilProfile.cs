@@ -13,7 +13,7 @@ namespace MapperExtensions.Models
                 .From(x => x.Address).To()
                 .From(x => x.Identity.Passport).To()
                 .From(x => x.EducationCard.StudyGroup)
-                .To((x => x.Group, x => x.Number), (x => x.CountStudentsInGroup, x => x.CountStudents))
+                .To((x => x.Group, x => $"The Best : {x.Number}"), (x => x.CountStudentsInGroup, x => x.CountStudents))
                 ;
 
 //            CreateMap<Pupil, PupilDto>()

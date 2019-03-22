@@ -4,12 +4,14 @@ using System.Linq.Expressions;
 using AutoMapper;
 using MapperExtensions;
 using MapperExtensions.Models;
+using Tests;
 
 namespace MethodGenerator
 {
     public static partial class RefactMapper
     {
         private static ICachedMethodInfo _cachedMethodInfo = new CachedMethodInfo();
+        private static InterpolationStringReplacer _interpolationStringReplacer = new InterpolationStringReplacer();
 
         public static IMappingExpression<TSource, TDest> To<TSource, TDest, TProjection, T>(
             this MapperExpressionWrapper<TSource, TDest, TProjection> mapperExpressionWrapper,
@@ -26,6 +28,8 @@ namespace MethodGenerator
         {
             //rule = (x=>x.Group,x=>x.Number)
             var (from, @for) = rule;
+            // заменяем интерполяцию на конкатенацию строк
+            @for = (Expression<Func<TProjection, T>>) _interpolationStringReplacer.Visit(@for);
             // mapperExpressionWrapper.FromExpression = (x=>x.EducationCard.StudyGroup
             var result = Expression.Lambda<Func<TSource, T>>(
                 Expression.Invoke(@for, mapperExpressionWrapper.FromExpression.Body),
@@ -75,7 +79,7 @@ namespace MethodGenerator
             var projectParameter = mapperExpressionWrapper.FromExpression.Parameters.First();
             var projection = mapperExpressionWrapper.FromExpression;
             var newTest =
-                Expression.Lambda<Func<TSource, Boolean>>(Expression.Invoke(Test, projection.Body), projectParameter);
+                Expression.Lambda<Func<TSource, bool>>(Expression.Invoke(Test, projection.Body), projectParameter);
             var newIfTrue =
                 Expression.Lambda<Func<TSource, string>>(Expression.Invoke(IfTrue, projection.Body), projectParameter);
             var newIfFalse =
