@@ -22,4 +22,8 @@
       <ProjectReference Include="..\MethodGenerator\MethodGenerator.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Profiles" />
+    </ItemGroup>
+
 </Project>

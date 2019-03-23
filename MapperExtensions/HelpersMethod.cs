@@ -40,7 +40,7 @@ namespace MapperExtensions
                 : null;
         }
 
-        public static IEnumerable<string> AdvanceMapProperty(IEnumerable<string> path, Type properType)
+        private static IEnumerable<string> AdvanceMapProperty(IEnumerable<string> path, Type properType)
         {
             var properties = properType.GetProperties().ToList();
             var pathStr = path.Join("");

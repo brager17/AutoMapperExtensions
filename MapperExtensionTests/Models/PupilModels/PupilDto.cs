@@ -14,7 +14,7 @@ namespace MapperExtensions.Models
         public int House { get; set; }
         public string Group { get; set; }
         public int Age { get; set; }
-        public DateTime DateOfReceiving { get; set; }
         public int CountStudentsInGroup{ get; set; }
+        public string TitleAge { get; set; }
     }
 }

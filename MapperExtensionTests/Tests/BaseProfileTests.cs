@@ -10,23 +10,20 @@ namespace Tests
     {
         protected TestDbContext context { get; private set; }
 
+
+        public BaseProfileTests()
+        {
+            Mapper.Initialize(x => { x.AddProfile<TProfile>(); });
+        }
         [SetUp]
         protected void Setup()
         {
             context = new TestDbContext();
             context.Database.EnsureDeleted();
             context.Database.EnsureCreated();
-            context.Add(MockData());
-            context.SaveChanges();
-            Mapper.Initialize(x => { x.AddProfile<TProfile>(); });
         }
-
+        
         protected abstract TAggregateEntity MockData();
-
-        [TearDown]
-        protected void TearDown()
-        {
-            context.Database.EnsureDeleted();
-        }
+       
     }
 }

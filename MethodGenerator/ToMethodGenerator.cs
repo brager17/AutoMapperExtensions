@@ -10,40 +10,36 @@ namespace MethodGenerator
 {
     public class ToMethodGenerator : IHandler<GenerateMethodsInfo>
     {
-        private IQuery<FileInfoDto, string> FileReader { get; }
-        private IBuilder<Parameter, ParameterSyntax> ParameterBuilder { get; }
-        private IHandler<WriteFileInfoDto> FileWriter { get; }
-
-        private ClassReWriter ClassReWriter { get; }
-        private ParameterReWriter MethodParametersReWriter { get; }
-
-        private GetNodeStructure<Parameter, ParameterSyntax, ParameterListSyntax> GetParameters { get; }
-        private GetNodeStructure<IGenericInfo, TypeParameterSyntax, TypeParameterListSyntax> GetGenerics { get; }
-        private GetNodeStructure<IArgumentInfo, StatementSyntax, BlockSyntax> GetBlockStatement { get; }
+        private readonly ParameterReWriter _methodParametersReWriter;
+        private readonly ClassReWriter _classReWriter;
+        private readonly IQuery<FileInfoDto, string> _fileReader;
+        private readonly IHandler<WriteFileInfoDto> _fileWriter;
+        private readonly IQuery<IEnumerable<Parameter>, ParameterListSyntax> _getParametersQuery;
+        private readonly IQuery<IEnumerable<IGenericInfo>, TypeParameterListSyntax> _getGenericsQuery;
+        private readonly IQuery<IEnumerable<IArgumentInfo>, BlockSyntax> _getBlockStatementQuery;
 
 
-        public ToMethodGenerator()
+        public ToMethodGenerator(
+            ParameterReWriter methodParametersReWriter,
+            ClassReWriter classReWriter,
+            IQuery<FileInfoDto, string> fileReader,
+            IHandler<WriteFileInfoDto> fileWriter,
+            IQuery<IEnumerable<Parameter>, ParameterListSyntax> getParametersQuery,
+            IQuery<IEnumerable<IGenericInfo>, TypeParameterListSyntax> getGenericsQuery,
+            IQuery<IEnumerable<IArgumentInfo>, BlockSyntax> getBlockStatementQuery)
         {
-            ParameterBuilder = new ParameterExpressionBuilder();
-            MethodParametersReWriter = new ParameterReWriter();
-            ClassReWriter = new ClassReWriter();
-            FileReader = new FileReader();
-            FileWriter = new FileWriter();
-            GetParameters =
-                new GetNodeStructure<Parameter, ParameterSyntax, ParameterListSyntax>(
-                    new GetParameterListSyntax(new ConcatSyntaxNodeOrToken<ParameterSyntax>()),
-                    new ParameterExpressionBuilder());
-            GetGenerics = new GetNodeStructure<IGenericInfo, TypeParameterSyntax, TypeParameterListSyntax>(
-                new GetTypeParameterListSyntax(new ConcatSyntaxNodeOrToken<TypeParameterSyntax>()),
-                new GenericTypesBuilder());
-            GetBlockStatement =
-                new GetNodeStructure<IArgumentInfo, StatementSyntax, BlockSyntax>(new GetBlockStructure(),
-                    new StatementBuilder());
+            _methodParametersReWriter = methodParametersReWriter;
+            _classReWriter = classReWriter;
+            _fileReader = fileReader;
+            _fileWriter = fileWriter;
+            _getParametersQuery = getParametersQuery;
+            _getGenericsQuery = getGenericsQuery;
+            _getBlockStatementQuery = getBlockStatementQuery;
         }
 
         public void Handle(GenerateMethodsInfo input)
         {
-            var exampleMethodCode = FileReader.Handle(new FileInfoDto(input.PathToExampleCodeFile));
+            var exampleMethodCode = _fileReader.Handle(new FileInfoDto(input.PathToExampleCodeFile));
 
             var exampleCode = CSharpSyntaxTree.ParseText(exampleMethodCode).GetRoot();
 
@@ -56,16 +52,16 @@ namespace MethodGenerator
                 .Select(x =>
                     new
                     {
-                        GenericList = GetGenerics.Handle(x.Parameters),
-                        ParameterList = GetParameters.Handle(x.Parameters),
-                        StatementList = GetBlockStatement.Handle(x.Parameters)
+                        GenericList = _getGenericsQuery.Handle(x.Parameters),
+                        ParameterList = _getParametersQuery.Handle(x.Parameters),
+                        StatementList = _getBlockStatementQuery.Handle(x.Parameters)
                     })
-                .Select(x => (MethodDeclarationSyntax) MethodParametersReWriter.Visit(exampleMethodDeclarationSyntax,
+                .Select(x => (MethodDeclarationSyntax) _methodParametersReWriter.Visit(exampleMethodDeclarationSyntax,
                     new ReWriteMethodInfo(x.ParameterList, x.StatementList, x.GenericList)))
                 .ToList();
 
-            var classNode = ClassReWriter.Visit(exampleCode, generics);
-            FileWriter.Handle(new WriteFileInfoDto(input.PathToDestinationFile, classNode.ToString()));
+            var classNode = _classReWriter.Visit(exampleCode, generics).NormalizeWhitespace();
+            _fileWriter.Handle(new WriteFileInfoDto(input.PathToDestinationFile, classNode.ToString()));
         }
     }
 }

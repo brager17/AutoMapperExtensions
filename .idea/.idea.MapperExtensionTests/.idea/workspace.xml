@@ -2,38 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3833a986-81c6-40b9-8c5a-22223a7ea5e1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/MapperExtensions/Cache/CachedMethodInfo.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MapperExtensions/Cache/ICachedMethodInfo.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MapperExtensions/MapperExtensions.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MethodGenerator/BuildHelpers/Builders/GenericTypesBuilder.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MethodGenerator/BuildHelpers/Builders/IBuilder.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MethodGenerator/BuildHelpers/Builders/StatementBuilder.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MethodGenerator/BuildHelpers/ConcatSyntaxNodeOrToken.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MethodGenerator/BuildHelpers/GetNodeStructure.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MethodGenerator/BuildHelpers/GetStructures/GetBlockStructure.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MethodGenerator/BuildHelpers/GetStructures/GetParameterListSyntax.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MethodGenerator/BuildHelpers/GetStructures/GetStructureBase.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MethodGenerator/BuildHelpers/GetStructures/GetTypeParameterListSyntax.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MethodGenerator/BuildHelpers/GetStructures/IGetStructure.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MapperExtensionTests/Tests/PupilProfileTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MapperExtensions/ToOverloads.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MethodGenerator/GenerateManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MapperExtensionTests/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MapperExtensionTests/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MapperExtensionTests/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MapperExtensionTests/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MapperExtensionTests/Models/PupilModels/Pupil.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MapperExtensionTests/Models/PupilModels/Pupil.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MapperExtensionTests/Tests/FunctionTests/AutoMapperTests.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MapperExtensionTests/MapperExtensionTests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/MapperExtensionTests/MapperExtensionTests.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MapperExtensionTests/Models/PupilModels/AddressCard.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MapperExtensionTests/Models/PupilModels/AddressCard.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MapperExtensionTests/Models/PupilModels/PupilDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MapperExtensionTests/Models/PupilModels/PupilDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MapperExtensionTests/Profiles/PupilProfile.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MapperExtensionTests/TestDbContext/TestDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MapperExtensionTests/TestDbContext/TestDbContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MapperExtensionTests/Tests/BaseProfileTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MapperExtensionTests/Tests/BaseProfileTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MapperExtensionTests/Tests/PropertyFinderTests.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/MapperExtensionTests/Tests/RoslynTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MapperExtensionTests/Tests/RoslynTest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MapperExtensionTests/Tests/SimpleFromPupilProfileTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MapperExtensionTests/Tests/SimpleFromPupilProfileTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MapperExtensions/IEnumerableExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MapperExtensions/Extensions/IEnumerableExtensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MapperExtensions/IHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MapperExtensions/Handlers/IHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MapperExtensions/IQueryHandler.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MapperExtensions/MapPropertyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MapperExtensions/Models/MapPropertyInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MapperExtensions/MapperExpressionWrapper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MapperExtensions/Models/MapperExpressionWrapper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MapperExtensions/MapperExtensions.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/MapperExtensions/MapperExtensions.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MapperExtensions/RefactMapper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MapperExtensions/HelpersMethod.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MethodGenerator/FileReader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MethodGenerator/FileHandlers/FileReader.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MethodGenerator/FileWriter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MethodGenerator/FileHandlers/FileWriter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MethodGenerator/GenerateInfoToMethods.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MethodGenerator/GenerateInfoToMethods.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MethodGenerator/IBuilder.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MethodGenerator/InitialExpressionBuilderInfo.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MethodGenerator/MethodExample.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MapperExtensionTests/Tests/SimpleFromPupilProfileTests.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MapperExtensions/HelpersMethod.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MapperExtensions/HelpersMethod.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MethodGenerator/ParameterBuildInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MethodGenerator/ParameterBuildInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MethodGenerator/ToMethodGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MethodGenerator/ToMethodGenerator.cs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -44,150 +28,179 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MapperExtensions/MapperExtensions.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="11" selection-end-column="1" />
-              <folding>
-                <marker date="1553322209158" expanded="true" signature="6:207" ph="..." />
-                <marker date="1553322209158" expanded="true" signature="235:6945" ph="{...}" />
-                <marker date="1553322209158" expanded="true" signature="286:6943" ph="{...}" />
-                <marker date="1553322209158" expanded="true" signature="1101:2372" ph="{...}" />
-                <marker date="1553322209158" expanded="true" signature="1219:1769" ph="{...}" />
-                <marker date="1553322209158" expanded="true" signature="1842:2298" ph="{...}" />
-                <marker date="1553322209158" expanded="true" signature="2641:2839" ph="{...}" />
-                <marker date="1553322209158" expanded="true" signature="3085:3962" ph="{...}" />
-                <marker date="1553322209158" expanded="true" signature="4132:5056" ph="{...}" />
-                <marker date="1553322209158" expanded="true" signature="4250:5044" ph="{...}" />
-                <marker date="1553322209158" expanded="true" signature="4281:4478" ph="/* mapperExpressionWrapper.FromExpression = x=&gt;x.Identity.Passport ... */" />
-                <marker date="1553322209158" expanded="true" signature="5242:5495" ph="{...}" />
-                <marker date="1553322209158" expanded="true" signature="5922:6928" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/MapperExtensions/MethodExample13.cs">
+        <entry file="file://$PROJECT_DIR$/MapperExtensionTests/Tests/PupilProfileTests.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="13" column="55" selection-start-line="13" selection-start-column="55" selection-end-line="13" selection-end-column="55" />
+            <state relative-caret-position="-733">
+              <caret line="31" column="11" selection-start-line="31" selection-start-column="11" selection-end-line="31" selection-end-column="11" />
               <folding>
-                <marker date="1553322209171" expanded="false" signature="6:136" ph="..." />
-                <marker date="1553322209171" expanded="true" signature="164:12869" ph="{...}" />
-                <marker date="1553322209171" expanded="true" signature="215:12867" ph="{...}" />
-                <marker date="1553322209171" expanded="true" signature="577:832" ph="{...}" />
-                <marker date="1553322209171" expanded="true" signature="1276:1588" ph="{...}" />
-                <marker date="1553322209171" expanded="true" signature="2119:2488" ph="{...}" />
-                <marker date="1553322209171" expanded="true" signature="3106:3532" ph="{...}" />
-                <marker date="1553322209171" expanded="true" signature="4237:4720" ph="{...}" />
-                <marker date="1553322209171" expanded="true" signature="5512:6052" ph="{...}" />
-                <marker date="1553322209171" expanded="true" signature="6931:7528" ph="{...}" />
-                <marker date="1553322209171" expanded="true" signature="8506:9160" ph="{...}" />
-                <marker date="1553322209171" expanded="true" signature="10225:10936" ph="{...}" />
-                <marker date="1553322209171" expanded="true" signature="12092:12861" ph="{...}" />
+                <marker date="1553327213429" expanded="false" signature="6:231" ph="..." />
+                <marker date="1553327213429" expanded="true" signature="248:4101" ph="{...}" />
+                <marker date="1553327213429" expanded="true" signature="319:4099" ph="{...}" />
+                <marker date="1553327213429" expanded="true" signature="369:920" ph="{...}" />
+                <marker date="1553327213429" expanded="true" signature="413:910" ph="{...}" />
+                <marker date="1553327213429" expanded="true" signature="965:2609" ph="{...}" />
+                <marker date="1553327213429" expanded="true" signature="1033:2573" ph="{...}" />
+                <marker date="1553327213429" expanded="true" signature="1228:1463" ph="{...}" />
+                <marker date="1553327213429" expanded="true" signature="1531:2559" ph="{...}" />
+                <marker date="1553327213429" expanded="true" signature="1596:2363" ph="{...}" />
+                <marker date="1553327213429" expanded="true" signature="1655:1842" ph="{...}" />
+                <marker date="1553327213429" expanded="true" signature="1901:2091" ph="{...}" />
+                <marker date="1553327213429" expanded="true" signature="2150:2340" ph="{...}" />
+                <marker date="1553327213429" expanded="true" signature="2433:2541" ph="{...}" />
+                <marker date="1553327213429" expanded="true" signature="2697:3457" ph="{...}" />
+                <marker date="1553327213429" expanded="true" signature="3519:3741" ph="{...}" />
+                <marker date="1553327213429" expanded="true" signature="3800:4093" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MethodGenerator/BuildHelpers/Builders/IBuilder.cs">
+        <entry file="file://$PROJECT_DIR$/../ReWriteInterpolation/ReWriteInterpolation/Program.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" selection-start-line="6" selection-end-line="6" />
+            <state relative-caret-position="68">
+              <caret line="4" column="10" selection-start-line="4" selection-start-column="10" selection-end-line="4" selection-end-column="10" />
               <folding>
-                <marker date="1553321769432" expanded="true" signature="25:118" ph="{...}" />
-                <marker date="1553321769432" expanded="true" signature="71:116" ph="{...}" />
+                <marker date="1551502950087" expanded="true" signature="45:186" ph="{...}" />
+                <marker date="1551502950087" expanded="true" signature="65:184" ph="{...}" />
+                <marker date="1551502950087" expanded="true" signature="111:178" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MethodGenerator/BuildHelpers/Builders/StatementBuilder.cs">
+        <entry file="file://$PROJECT_DIR$/../ReWriteInterpolation/ReWriteInterpolation/TestDbContext.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
+            <state relative-caret-position="68">
+              <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
               <folding>
-                <marker date="1553321766693" expanded="false" signature="6:110" ph="..." />
-                <marker date="1553321766693" expanded="true" signature="137:1163" ph="{...}" />
-                <marker date="1553321766693" expanded="true" signature="216:1161" ph="{...}" />
-                <marker date="1553321766693" expanded="true" signature="279:1155" ph="{...}" />
-                <marker date="1553321766693" expanded="true" signature="718:1140" ph="{...}" />
+                <marker date="1551503908887" expanded="false" signature="6:253" ph="..." />
+                <marker date="1551503908887" expanded="true" signature="285:1081" ph="{...}" />
+                <marker date="1551503908887" expanded="true" signature="329:1079" ph="{...}" />
+                <marker date="1551503908887" expanded="true" signature="365:398" ph="{...}" />
+                <marker date="1551503908887" expanded="true" signature="533:912" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MethodGenerator/BuildHelpers/GetNodeStructure.cs">
+        <entry file="file://$USER_HOME$/AppData/Local/Symbols/src/nunit/nunit/4530d6dba175fae6ff8f8ade6c07fd05e6c1c7c5/src/NUnitFramework/framework/Internal/Reflect.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
+            <state relative-caret-position="202">
+              <caret line="278" column="16" selection-start-line="278" selection-start-column="16" selection-end-line="278" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MapperExtensionTests/Models/PupilModels/AddressCard.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="4" column="35" selection-start-line="4" selection-start-column="35" selection-end-line="4" selection-end-column="35" />
               <folding>
-                <marker date="1553321764291" expanded="true" signature="6:82" ph="..." />
-                <marker date="1553321764291" expanded="true" signature="109:652" ph="{...}" />
-                <marker date="1553321764291" expanded="true" signature="215:650" ph="{...}" />
-                <marker date="1553321764291" expanded="true" signature="438:532" ph="{...}" />
+                <marker date="1553327023493" expanded="true" signature="33:281" ph="{...}" />
+                <marker date="1553327023493" expanded="true" signature="64:279" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MethodGenerator/BuildHelpers/Builders/GenericTypesBuilder.cs">
+        <entry file="file://$PROJECT_DIR$/MapperExtensionTests/Tests/RoslynTest.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
+            <state relative-caret-position="272">
+              <caret line="24" column="14" selection-start-line="24" selection-start-column="14" selection-end-line="24" selection-end-column="14" />
               <folding>
-                <marker date="1553321753805" expanded="false" signature="6:80" ph="..." />
-                <marker date="1553321753805" expanded="true" signature="107:378" ph="{...}" />
-                <marker date="1553321753805" expanded="true" signature="192:376" ph="{...}" />
-                <marker date="1553321753805" expanded="true" signature="258:370" ph="{...}" />
+                <marker date="1553326922776" expanded="false" signature="6:266" ph="..." />
+                <marker date="1553326922776" expanded="true" signature="283:1158" ph="{...}" />
+                <marker date="1553326922776" expanded="true" signature="313:1156" ph="{...}" />
+                <marker date="1553326922776" expanded="true" signature="480:598" ph="{...}" />
+                <marker date="1553326922776" expanded="true" signature="641:1150" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MethodGenerator/BuildHelpers/ConcatSyntaxNodeOrToken.cs">
+        <entry file="file://$PROJECT_DIR$/MapperExtensions/ToOverloads.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
+            <state relative-caret-position="-17">
               <folding>
-                <marker date="1553321751427" expanded="true" signature="6:131" ph="..." />
-                <marker date="1553321751427" expanded="true" signature="158:562" ph="{...}" />
-                <marker date="1553321751427" expanded="true" signature="281:560" ph="{...}" />
-                <marker date="1553321751427" expanded="true" signature="358:554" ph="{...}" />
+                <marker date="1553327287462" expanded="false" signature="6:207" ph="..." />
+                <marker date="1553327287462" expanded="true" signature="235:13072" ph="{...}" />
+                <marker date="1553327287462" expanded="true" signature="286:13070" ph="{...}" />
+                <marker date="1553327287462" expanded="true" signature="648:903" ph="{...}" />
+                <marker date="1553327287462" expanded="true" signature="1347:1659" ph="{...}" />
+                <marker date="1553327287462" expanded="true" signature="2190:2559" ph="{...}" />
+                <marker date="1553327287462" expanded="true" signature="3177:3603" ph="{...}" />
+                <marker date="1553327287462" expanded="true" signature="4308:4791" ph="{...}" />
+                <marker date="1553327287462" expanded="true" signature="5583:6123" ph="{...}" />
+                <marker date="1553327287462" expanded="true" signature="7002:7599" ph="{...}" />
+                <marker date="1553327287462" expanded="true" signature="8617:9271" ph="{...}" />
+                <marker date="1553327287462" expanded="true" signature="10380:11091" ph="{...}" />
+                <marker date="1553327287462" expanded="true" signature="12295:13064" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MethodGenerator/GenerateInfoToMethods.cs">
+        <entry file="file://$PROJECT_DIR$/MapperExtensionTests/TestDbContext/TestDbContext.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="23" column="52" selection-start-line="23" selection-start-column="52" selection-end-line="23" selection-end-column="52" />
+            <state relative-caret-position="306">
+              <caret line="23" column="46" selection-start-line="23" selection-start-column="46" selection-end-line="23" selection-end-column="46" />
               <folding>
-                <marker date="1553321076151" expanded="true" signature="45:1006" ph="{...}" />
-                <marker date="1553321076151" expanded="true" signature="79:246" ph="{...}" />
-                <marker date="1553321076151" expanded="true" signature="134:197" ph="{...}" />
-                <marker date="1553321076151" expanded="true" signature="331:1004" ph="{...}" />
-                <marker date="1553321076151" expanded="true" signature="400:998" ph="{...}" />
-                <marker date="1553321076151" expanded="true" signature="469:962" ph="{...}" />
-                <marker date="1553321076151" expanded="true" signature="578:947" ph="{...}" />
-                <marker date="1553321076151" expanded="true" signature="678:924" ph="{...}" />
+                <marker date="1553327256086" expanded="false" signature="6:234" ph="..." />
+                <marker date="1553327256086" expanded="true" signature="251:1488" ph="{...}" />
+                <marker date="1553327256086" expanded="true" signature="296:1486" ph="{...}" />
+                <marker date="1553327256086" expanded="true" signature="383:403" ph="{...}" />
+                <marker date="1553327256086" expanded="true" signature="490:965" ph="{...}" />
+                <marker date="1553327256086" expanded="true" signature="528:677" ph="/* .UseLoggerFactory(MyLoggerFactory) ... */" />
+                <marker date="1553327256086" expanded="true" signature="1041:1326" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MethodGenerator/BuildHelpers/GetStructures/IGetStructure.cs">
+        <entry file="file://$PROJECT_DIR$/MapperExtensionTests/Tests/BaseProfileTests.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
+            <state relative-caret-position="221">
+              <caret line="16" column="9" lean-forward="true" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
               <folding>
-                <marker date="1553321747891" expanded="true" signature="60:177" ph="{...}" />
-                <marker date="1553321747891" expanded="true" signature="110:175" ph="{...}" />
+                <marker date="1553327105937" expanded="false" signature="6:85" ph="..." />
+                <marker date="1553327105937" expanded="true" signature="102:720" ph="{...}" />
+                <marker date="1553327105937" expanded="true" signature="246:718" ph="{...}" />
+                <marker date="1553327105937" expanded="true" signature="350:437" ph="{...}" />
+                <marker date="1553327105937" expanded="true" signature="484:639" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MapperExtensions/HelpersMethod.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-435">
+              <caret line="34" column="9" lean-forward="true" selection-start-line="34" selection-start-column="9" selection-end-line="34" selection-end-column="9" />
+              <folding>
+                <marker date="1553327256069" expanded="false" signature="6:237" ph="..." />
+                <marker date="1553327256069" expanded="true" signature="265:3836" ph="{...}" />
+                <marker date="1553327256069" expanded="true" signature="305:3834" ph="{...}" />
+                <marker date="1553327256069" expanded="true" signature="397:553" ph="{...}" />
+                <marker date="1553327256069" expanded="true" signature="733:1100" ph="{...}" />
+                <marker date="1553327256069" expanded="true" signature="1205:1507" ph="{...}" />
+                <marker date="1553327256069" expanded="true" signature="1613:2751" ph="{...}" />
+                <marker date="1553327256069" expanded="true" signature="1826:2606" ph="{...}" />
+                <marker date="1553327256069" expanded="true" signature="1857:1918" ph="/* 1 шаг ... */" />
+                <marker date="1553327256069" expanded="true" signature="1997:2100" ph="/* 1 шаг ... */" />
+                <marker date="1553327256069" expanded="true" signature="2822:2928" ph="{...}" />
+                <marker date="1553327256069" expanded="true" signature="3072:3250" ph="{...}" />
+                <marker date="1553327256069" expanded="true" signature="3389:3828" ph="{...}" />
+                <marker date="1553327256069" expanded="true" signature="3412:3505" ph="/* fromlambda = x=&gt;x.Identity.Passport,props = [&quot;Name&quot;] ... */" />
               </folding>
             </state>
           </provider>
@@ -216,24 +229,23 @@
       <find>ParameterReWriter</find>
       <find>If</find>
       <find>Fix</find>
+      <find>Used</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="manyToMethods" />
       </map>
     </option>
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/MapperExtensions/HelpersMethod.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/MethodGenerator/GenerateInfoToMethods.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/MethodGenerator/FileHandlers/FileWriter.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9DBEBB3B-9950-49A3-97BE-F6B234A08059/a9/677b9dd1/MapsFromAttribute.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/MethodGenerator/BuildHelpers/ConcatSyntaxNodeOrToken.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9DBEBB3B-9950-49A3-97BE-F6B234A08059/fc/8970585e/Mapptribute.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9DBEBB3B-9950-49A3-97BE-F6B234A08059/2f/c2fe23bf/MapsToPropertyAttribute.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/MethodGenerator/BuildHelpers/GetStructures/IGetStructure.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/76DEF016-194A-4B34-8E32-044F29ABD18E/76/c85e10d2/IReadOnlyCollection`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9DBEBB3B-9950-49A3-97BE-F6B234A08059/44/cec731df/MapsPropertyAttribute.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/MethodGenerator/Dtos/GenerateMethodsInfo.cs" root0="FORCE_HIGHLIGHTING" />
@@ -245,34 +257,28 @@
     <setting file="file://$PROJECT_DIR$/MethodGenerator/ReWriters/ClassReWriter.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/6EE93542-35FE-479E-9674-6274C6E30E90/111/SyntaxFactory.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/FB4DE096-DE02-4C04-9A16-499A06329162/145/SyntaxToken.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../ReWriteInterpolation/ReWriteInterpolation/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/FB4DE096-DE02-4C04-9A16-499A06329162/142/SyntaxNodeOrToken.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/MethodGenerator/ReWriters/ParameterReWriter.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/MapperExtensions/Handlers/IHandler.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/MapperExtensions/Models/MapperExpressionWrapper.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/MapperExtensions/HelpersMethod.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/MapperExtensions/Cache/CachedMethodInfo.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/MapperExtensions/Cache/ICachedMethodInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9DE46E3C-963E-4872-8A29-95FD027553CC/05/42e81b7d/Enum.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/MapperExtensions/Models/MapPropertyInfo.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/MapperExtensions/Extensions/IEnumerableExtensions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../ReWriteInterpolation/ReWriteInterpolation/TestDbContext.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/MapperExtensionTests/Tests/BaseProfileTests.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/MapperExtensions/MapperExtensions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/MapperExtensions/ToOverloads.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/MapperExtensions/Models/MapPropertyInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../ReWriteInterpolation/ReWriteInterpolation/ExpressionReWriter/PatternMachingStructure.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/MapperExtensionTests/Tests/SimpleFromPupilProfileTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/MapperExtensionTests/Tests/PupilProfileTests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/MapperExtensionTests/Tests/RoslynTest.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/MapperExtensionTests/Models/PupilModels/IdentityCard.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/MapperExtensionTests/Models/PupilModels/PupilDto.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/MapperExtensionTests/Models/PupilModels/AddressCard.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/MapperExtensionTests/Models/PupilModels/Pupil.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/MethodGenerator/ParameterExpressionBuilder.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/MethodGenerator/BuildHelpers/Builders/IBuilder.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/MethodGenerator/ParameterBuildInfo.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/MapperExtensionTests/Profiles/PupilProfile.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../ReWriteInterpolation/ReWriteInterpolation/ExpressionReWriter/InterpolationStringReplacer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/MapperExtensionTests/TestDbContext/TestDbContext.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/MethodGenerator/GenerateManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/nunit/nunit/4530d6dba175fae6ff8f8ade6c07fd05e6c1c7c5/src/NUnitFramework/framework/Internal/Commands/BeforeAndAfterTestCommand.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/nunit/nunit/4530d6dba175fae6ff8f8ade6c07fd05e6c1c7c5/src/NUnitFramework/framework/Internal/Reflect.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/MapperExtensionTests/Tests/PropertyFinderTests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9DE46E3C-963E-4872-8A29-95FD027553CC/bb/175652bf/Object.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/FB4DE096-DE02-4C04-9A16-499A06329162/143/SyntaxNodeOrTokenList.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/MethodGenerator/Dtos/IGetSyntaxOrNodeToken.cs" root0="FORCE_HIGHLIGHTING" />
@@ -280,13 +286,13 @@
     <setting file="file://$PROJECT_DIR$/../ReWriteInterpolation/ReWriteInterpolation/ExpressionReWriter/InterpolationReplace.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/AA66E282-37B2-48FC-B09A-E37525780107/c6/4093eec3/Utilities.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/AA66E282-37B2-48FC-B09A-E37525780107/03/e92227c3/Enumerable.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/MapperExtensions/MethodExample13.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/A4C40EB2-420A-4C66-A15E-4E3DB1AE0928/ba/6c93cba7/IMapperConfigurationExpression.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/39756495-46A8-4A32-ABF4-09DD4386C3DF/de/a31bbab3/InvocationExpression.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/6EE93542-35FE-479E-9674-6274C6E30E90/104/Syntax.xml.Main.Generated.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/MapperExtensionTests/Models/PupilModels/Exam.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9DE46E3C-963E-4872-8A29-95FD027553CC/9b/a5ca8666/Array.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/MapperExtensionTests/Models/PupilModels/Mark.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/MapperExtensions/Models/MapperExpressionWrapper.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9DE46E3C-963E-4872-8A29-95FD027553CC/a8/3a1e05eb/IReadOnlyList`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9DE46E3C-963E-4872-8A29-95FD027553CC/ad/558ec901/Type.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/MapperExtensionTests/Models/PupilModels/EducationCard.cs" root0="FORCE_HIGHLIGHTING" />
@@ -296,15 +302,25 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9DE46E3C-963E-4872-8A29-95FD027553CC/45/9aaae061/PropertyInfo.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/6EE93542-35FE-479E-9674-6274C6E30E90/18B/CSharpSyntaxNode.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/AA66E282-37B2-48FC-B09A-E37525780107/30/648556da/Set`1.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/MapperExtensions/Handlers/IHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9DE46E3C-963E-4872-8A29-95FD027553CC/97/3779158d/IEnumerable`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/A4C40EB2-420A-4C66-A15E-4E3DB1AE0928/F/Mapper.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/nunit/nunit/4530d6dba175fae6ff8f8ade6c07fd05e6c1c7c5/src/NUnitFramework/framework/Constraints/ThrowsConstraint.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/MapperExtensions/Cache/CachedMethodInfo.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/MapperExtensions/Cache/ICachedMethodInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/39756495-46A8-4A32-ABF4-09DD4386C3DF/25/5635cc50/MemberExpression.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/MethodGenerator/FileHandlers/FileWriter.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9DE46E3C-963E-4872-8A29-95FD027553CC/12/30af509f/List`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/MapperExtensions/Extensions/IEnumerableExtensions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9DE46E3C-963E-4872-8A29-95FD027553CC/56/40b58a1f/IEquatable`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/MethodGenerator/BuildHelpers/Builders/StatementBuilder.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/MethodGenerator/FileHandlers/FileReader.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/39756495-46A8-4A32-ABF4-09DD4386C3DF/41/a03f9507/Expression.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/MethodGenerator/BuildHelpers/Builders/IBuilder.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/39756495-46A8-4A32-ABF4-09DD4386C3DF/01/e662cc20/Expression`1.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/MethodGenerator/BuildHelpers/Builders/GenericTypesBuilder.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/A4C40EB2-420A-4C66-A15E-4E3DB1AE0928/15/Profile.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/MethodGenerator/BuildHelpers/GetNodeStructure.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9DE46E3C-963E-4872-8A29-95FD027553CC/ea/ab45a8ff/RuntimeType.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9DE46E3C-963E-4872-8A29-95FD027553CC/d8/387a4e86/IReadOnlyCollection`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/6EE93542-35FE-479E-9674-6274C6E30E90/191/SyntaxExtensions.cs" root0="SKIP_HIGHLIGHTING" />
@@ -313,35 +329,28 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/A4C40EB2-420A-4C66-A15E-4E3DB1AE0928/78/ab5e34a2/IMemberConfigurationExpression`3.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9DE46E3C-963E-4872-8A29-95FD027553CC/17/24b1ca99/Attribute.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/A4C40EB2-420A-4C66-A15E-4E3DB1AE0928/75/SourceToDestinationNameMapperAttributesMember.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/MethodGenerator/FileHandlers/FileReader.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/MethodGenerator/BuildHelpers/GetStructures/IGetStructure.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/A4C40EB2-420A-4C66-A15E-4E3DB1AE0928/da/457de17e/SourceToDestinationMapperAttribute.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/FB4DE096-DE02-4C04-9A16-499A06329162/16A/SyntaxNodeOrTokenListBuilder.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../ReWriteInterpolation/ReWriteInterpolation/ExpressionReWriter/ExpressionComparer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/A4C40EB2-420A-4C66-A15E-4E3DB1AE0928/d1/ee1e954f/ISourceToDestinationNameMapper.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/MethodGenerator/BuildHelpers/GetStructures/GetBlockStructure.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/39756495-46A8-4A32-ABF4-09DD4386C3DF/f2/1873749d/LambdaExpression.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/MethodGenerator/BuildHelpers/GetStructures/GetTypeParameterListSyntax.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/A4C40EB2-420A-4C66-A15E-4E3DB1AE0928/72/ParentSourceToDestinationNameMapper.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../ReWriteInterpolation/ReWriteInterpolation/ExpressionReWriter/EnumerableExcentions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/39756495-46A8-4A32-ABF4-09DD4386C3DF/44/5b6af760/ExpressionVisitor.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/MethodGenerator/BuildHelpers/Builders/StatementBuilder.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/MethodGenerator/BuildHelpers/GetStructures/GetBlockStructure.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/FB4DE096-DE02-4C04-9A16-499A06329162/13D/SyntaxNode.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/MethodGenerator/BuildHelpers/GetStructures/GetParameterListSyntax.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/CodeGenerator/Program.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/MethodGenerator/BuildHelpers/GetNodeStructure.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/MethodGenerator/BuildHelpers/GetStructures/GetTypeParameterListSyntax.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/MethodGenerator/ToMethodGenerator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/FB4DE096-DE02-4C04-9A16-499A06329162/13D/SyntaxNode.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/MethodGenerator/BuildHelpers/GetStructures/GetStructureBase.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/MethodGenerator/BuildHelpers/Builders/GenericTypesBuilder.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/CodeGenerator/Program.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/MapperExtensions/MapperExtensions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/MethodGenerator/ToMethodGenerator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/MethodGenerator/BuildHelpers/ConcatSyntaxNodeOrToken.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/MethodGenerator/Dtos/FileInfoDto.cs" />
-        <option value="$PROJECT_DIR$/MethodGenerator/Dtos/WriteFileInfoDto.cs" />
-        <option value="$PROJECT_DIR$/MethodGenerator/GenerateToMethods.cs" />
-        <option value="$PROJECT_DIR$/MethodGenerator/Extentions/EnumExtentiosn.cs" />
-        <option value="$PROJECT_DIR$/MapperExtensions/ExpressionTupleComparer.cs" />
-        <option value="$PROJECT_DIR$/MapperExtensionTests/Models/FamilyModels/FamilyModels.cs" />
         <option value="$PROJECT_DIR$/MethodGenerator/MethodExample1.cs" />
         <option value="$PROJECT_DIR$/MethodGenerator/Attributes/TypeEnum.cs" />
         <option value="$PROJECT_DIR$/MethodGenerator/Dtos/GenerateMethodInfo.cs" />
@@ -351,14 +360,12 @@
         <option value="$PROJECT_DIR$/MapperExtensionTests/Tests/PropertyFinder.cs" />
         <option value="$PROJECT_DIR$/MapperExtensionTests/Tests/PropertyFindertests.cs" />
         <option value="$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/A4C40EB2-420A-4C66-A15E-4E3DB1AE0928/78/ab5e34a2/IMemberConfigurationExpression`3.cs" />
-        <option value="$PROJECT_DIR$/MapperExtensionTests/Tests/BaseProfileTests.cs" />
         <option value="$PROJECT_DIR$/MethodGenerator/Dtos/GenerateMethodsInfo.cs" />
         <option value="$PROJECT_DIR$/MapperExtensions/MapPropertyInfo.cs" />
         <option value="$PROJECT_DIR$/MapperExtensions/RefactorExtensions.cs" />
         <option value="$PROJECT_DIR$/MapperExtensionTests/Models/PupilModels/EducationCard.cs" />
         <option value="$PROJECT_DIR$/MethodGenerator/ExpressionStatementBuilder.cs" />
         <option value="$PROJECT_DIR$/MethodGenerator/Dtos/Parameter.cs" />
-        <option value="$PROJECT_DIR$/MethodGenerator/ParameterBuildInfo.cs" />
         <option value="$PROJECT_DIR$/MethodGenerator/ParameterExpressionBuilder.cs" />
         <option value="$PROJECT_DIR$/MethodGenerator/GenerateInfoToMethods.cs" />
         <option value="$PROJECT_DIR$/MethodGenerator/IBuilder.cs" />
@@ -367,26 +374,34 @@
         <option value="$PROJECT_DIR$/MapperExtensionTests/Tests/PropertyFinderTests.cs" />
         <option value="$PROJECT_DIR$/MethodGenerator/MethodExample12.cs" />
         <option value="$PROJECT_DIR$/MapperExtensionTests/Models/PupilModels/IdentityCard.cs" />
-        <option value="$PROJECT_DIR$/MapperExtensionTests/Tests/RoslynTest.cs" />
-        <option value="$PROJECT_DIR$/MapperExtensionTests/Models/PupilModels/PupilDto.cs" />
-        <option value="$PROJECT_DIR$/MethodGenerator/ToMethodGenerator.cs" />
-        <option value="$PROJECT_DIR$/MethodGenerator/MethodExample13.cs" />
         <option value="$PROJECT_DIR$/MethodGenerator/ReWriters/ClassReWriter.cs" />
-        <option value="$PROJECT_DIR$/../ReWriteInterpolation/ReWriteInterpolation/ExpressionReWriter/InterpolationStringReplacer.cs" />
         <option value="$PROJECT_DIR$/../ReWriteInterpolation/ReWriteInterpolation/ExpressionReWriter/InterpolationReplace.cs" />
         <option value="$PROJECT_DIR$/MethodGenerator/MethodExample.cs" />
-        <option value="$PROJECT_DIR$/MapperExtensionTests/Profiles/PupilProfile.cs" />
         <option value="$PROJECT_DIR$/MapperExtensions/IEnumerableExtensions.cs" />
-        <option value="$PROJECT_DIR$/MapperExtensionTests/Tests/SimpleFromPupilProfileTests.cs" />
         <option value="$PROJECT_DIR$/MapperExtensions/IQueryHandler.cs" />
         <option value="$PROJECT_DIR$/MapperExtensions/IHandler.cs" />
         <option value="$PROJECT_DIR$/MapperExtensions/Cache/CachedMethodInfo.cs" />
         <option value="$PROJECT_DIR$/MapperExtensions/RefactMapper.cs" />
         <option value="$PROJECT_DIR$/MapperExtensionTests/Models/PupilModels/Pupil.cs" />
-        <option value="$PROJECT_DIR$/MapperExtensionTests/TestDbContext/TestDbContext.cs" />
         <option value="$PROJECT_DIR$/MethodGenerator/BuildHelpers/IBuilder.cs" />
         <option value="$PROJECT_DIR$/MapperExtensions/MapperExtensions.cs" />
         <option value="$PROJECT_DIR$/MapperExtensions/MethodExample13.cs" />
+        <option value="$PROJECT_DIR$/MethodGenerator/MethodExample13.cs" />
+        <option value="$PROJECT_DIR$/MethodGenerator/ToOverloads.cs" />
+        <option value="$PROJECT_DIR$/MethodGenerator/ParameterBuildInfo.cs" />
+        <option value="$PROJECT_DIR$/MethodGenerator/ToMethodGenerator.cs" />
+        <option value="$USER_HOME$/AppData/Local/Symbols/src/nunit/nunit/4530d6dba175fae6ff8f8ade6c07fd05e6c1c7c5/src/NUnitFramework/framework/Internal/Reflect.cs" />
+        <option value="$PROJECT_DIR$/MethodGenerator/GenerateManager.cs" />
+        <option value="$PROJECT_DIR$/MapperExtensionTests/Profiles/PupilProfile.cs" />
+        <option value="$PROJECT_DIR$/../ReWriteInterpolation/ReWriteInterpolation/ExpressionReWriter/InterpolationStringReplacer.cs" />
+        <option value="$PROJECT_DIR$/MapperExtensionTests/Models/PupilModels/PupilDto.cs" />
+        <option value="$PROJECT_DIR$/MapperExtensionTests/Tests/RoslynTest.cs" />
+        <option value="$PROJECT_DIR$/MapperExtensionTests/Models/PupilModels/AddressCard.cs" />
+        <option value="$PROJECT_DIR$/MapperExtensionTests/Tests/BaseProfileTests.cs" />
+        <option value="$PROJECT_DIR$/MapperExtensionTests/Tests/SimpleFromPupilProfileTests.cs" />
+        <option value="$PROJECT_DIR$/MapperExtensions/HelpersMethod.cs" />
+        <option value="$PROJECT_DIR$/MapperExtensionTests/TestDbContext/TestDbContext.cs" />
+        <option value="$PROJECT_DIR$/MapperExtensions/ToOverloads.cs" />
       </list>
     </option>
   </component>
@@ -428,37 +443,7 @@
               <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
               <item name="MapperExtensionTests" type="24d0babc:SolutionExplorerModelNode" />
               <item name="MapperExtensionTests" type="24d0babc:SolutionExplorerModelNode" />
-              <item name="Models" type="24d0babc:SolutionExplorerModelNode" />
-            </path>
-            <path>
-              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
-              <item name="MapperExtensionTests" type="24d0babc:SolutionExplorerModelNode" />
-              <item name="MapperExtensionTests" type="24d0babc:SolutionExplorerModelNode" />
-              <item name="Models" type="24d0babc:SolutionExplorerModelNode" />
-              <item name="PupilModels" type="24d0babc:SolutionExplorerModelNode" />
-            </path>
-            <path>
-              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
-              <item name="MapperExtensionTests" type="24d0babc:SolutionExplorerModelNode" />
-              <item name="MapperExtensionTests" type="24d0babc:SolutionExplorerModelNode" />
-              <item name="Profiles" type="24d0babc:SolutionExplorerModelNode" />
-            </path>
-            <path>
-              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
-              <item name="MapperExtensionTests" type="24d0babc:SolutionExplorerModelNode" />
-              <item name="MapperExtensionTests" type="24d0babc:SolutionExplorerModelNode" />
               <item name="Tests" type="24d0babc:SolutionExplorerModelNode" />
-            </path>
-            <path>
-              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
-              <item name="MapperExtensionTests" type="24d0babc:SolutionExplorerModelNode" />
-              <item name="MethodGenerator" type="24d0babc:SolutionExplorerModelNode" />
-            </path>
-            <path>
-              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
-              <item name="MapperExtensionTests" type="24d0babc:SolutionExplorerModelNode" />
-              <item name="MethodGenerator" type="24d0babc:SolutionExplorerModelNode" />
-              <item name="BuildHelpers" type="24d0babc:SolutionExplorerModelNode" />
             </path>
           </expand>
           <select />
@@ -613,7 +598,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="171441000" />
+    <option name="totallyTimeSpent" value="176746000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -626,9 +611,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.27132195" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27132195" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Capture Tool" order="3" />
@@ -638,20 +622,20 @@
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.32936507" />
       <window_info anchor="bottom" id="Run" order="3" />
-      <window_info anchor="bottom" id="Debug" order="4" weight="0.31310943" />
+      <window_info anchor="bottom" id="Debug" order="4" weight="0.032502707" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="7" weight="0.32936078" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.39653304" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.112676054" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Performance Profiler" order="10" weight="0.32827735" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="bottom" id="NuGet" order="12" weight="0.32719395" />
       <window_info anchor="bottom" id="Database Changes" order="13" />
-      <window_info anchor="bottom" id="Unit Tests" order="14" weight="0.2936078" />
+      <window_info anchor="bottom" id="Unit Tests" order="14" visible="true" weight="0.11484291" />
       <window_info anchor="bottom" id="Version Control" order="15" weight="0.032502707" />
       <window_info anchor="bottom" id="Azure Activity Log" order="16" weight="0.32936078" />
-      <window_info anchor="bottom" id="Build" order="17" weight="0.32738096" />
+      <window_info anchor="bottom" id="Build" order="17" weight="0.32719395" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -711,6 +695,38 @@
   </component>
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="." />
     <option name="LAST_COMMIT_MESSAGE" value="." />
@@ -725,213 +741,26 @@
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/MapperExtensionTests/Tests/FunctionTests/AutoMapperTests.cs</url>
           <line>77</line>
-          <properties documentPath="$PROJECT_DIR$/MapperExtensionTests/Tests/FunctionTests/AutoMapperTests.cs" initialLine="77">
-            <startOffsets>
-              <option value="1985" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2008" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="$PROJECT_DIR$/MapperExtensionTests/Tests/FunctionTests/AutoMapperTests.cs" initialLine="77" />
           <option name="timeStamp" value="122" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/MapperExtensionTests/Tests/PropertyFinderTests.cs</url>
-          <line>38</line>
-          <properties documentPath="$PROJECT_DIR$/MapperExtensionTests/Tests/PropertyFinderTests.cs" initialLine="32">
+          <url>file://$PROJECT_DIR$/MapperExtensionTests/Tests/PupilProfileTests.cs</url>
+          <line>98</line>
+          <properties documentPath="$PROJECT_DIR$/MapperExtensionTests/Tests/SimpleFromPupilProfileTests.cs" initialLine="97">
             <startOffsets>
-              <option value="957" />
+              <option value="3542" />
             </startOffsets>
             <endOffsets>
-              <option value="1001" />
+              <option value="3566" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="482" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/MapperExtensionTests/Tests/SimpleFromPupilProfileTests.cs</url>
-          <line>65</line>
-          <properties documentPath="$PROJECT_DIR$/MapperExtensionTests/Tests/SimpleFromPupilProfileTests.cs" initialLine="68">
-            <startOffsets>
-              <option value="2236" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2262" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="556" />
+          <option name="timeStamp" value="563" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/A4C40EB2-420A-4C66-A15E-4E3DB1AE0928/75/SourceToDestinationNameMapperAttributesMember.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="14" column="12" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/A4C40EB2-420A-4C66-A15E-4E3DB1AE0928/72/ParentSourceToDestinationNameMapper.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="19" column="16" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MethodGenerator/Dtos/Parameter.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="31" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
-          <folding>
-            <marker date="1552832172232" expanded="true" signature="60:331" ph="{...}" />
-            <marker date="1552832172232" expanded="true" signature="116:225" ph="{...}" />
-            <marker date="1552832172232" expanded="true" signature="261:329" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MethodGenerator/ExpressionStatementBuilder.cs" />
-    <entry file="file://$PROJECT_DIR$/MethodGenerator/ParameterBuildInfo.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="3" selection-start-line="2" selection-start-column="3" selection-end-line="2" selection-end-column="3" />
-          <folding>
-            <marker date="1552832342427" expanded="true" signature="25:321" ph="{...}" />
-            <marker date="1552832342427" expanded="true" signature="66:119" ph="{...}" />
-            <marker date="1552832342427" expanded="true" signature="155:209" ph="{...}" />
-            <marker date="1552832342427" expanded="true" signature="259:319" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MethodGenerator/ParameterExpressionBuilder.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="11" column="62" selection-start-line="11" selection-start-column="62" selection-end-line="11" selection-end-column="62" />
-          <folding>
-            <marker date="1552832342375" expanded="false" signature="6:110" ph="..." />
-            <marker date="1552832342375" expanded="true" signature="137:3718" ph="{...}" />
-            <marker date="1552832342375" expanded="true" signature="222:3716" ph="{...}" />
-            <marker date="1552832342375" expanded="true" signature="281:3710" ph="{...}" />
-            <marker date="1552832342375" expanded="true" signature="626:3696" ph="{...}" />
-            <marker date="1552832342375" expanded="true" signature="1681:2098" ph="{...}" />
-            <marker date="1552832342375" expanded="true" signature="3236:3659" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MethodGenerator/ReWriters/ParameterReWriter.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="11" column="65" selection-start-line="11" selection-start-column="65" selection-end-line="11" selection-end-column="65" />
-          <folding>
-            <marker date="1553187488353" expanded="false" signature="6:129" ph="..." />
-            <marker date="1553187488353" expanded="true" signature="156:1882" ph="{...}" />
-            <marker date="1553187488353" expanded="true" signature="216:1880" ph="{...}" />
-            <marker date="1553187488353" expanded="true" signature="362:457" ph="{...}" />
-            <marker date="1553187488353" expanded="true" signature="546:1874" ph="{...}" />
-            <marker date="1553187488353" expanded="true" signature="858:990" ph="/* beforeReturnStatements: ... */" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MethodGenerator/Dtos/ReWriteMethodInfo.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="14" column="31" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
-          <folding>
-            <marker date="1552833702404" expanded="false" signature="6:107" ph="..." />
-            <marker date="1552833702404" expanded="true" signature="134:639" ph="{...}" />
-            <marker date="1552833702404" expanded="true" signature="171:637" ph="{...}" />
-            <marker date="1552833702404" expanded="true" signature="337:469" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MethodGenerator/ReWriters/ClassReWriter.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="19" column="33" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="33" />
-          <folding>
-            <marker date="1553188239167" expanded="false" signature="6:144" ph="..." />
-            <marker date="1553188239167" expanded="true" signature="171:1103" ph="{...}" />
-            <marker date="1553188239167" expanded="true" signature="227:1101" ph="{...}" />
-            <marker date="1553188239167" expanded="true" signature="398:493" ph="{...}" />
-            <marker date="1553188239167" expanded="true" signature="580:1095" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/6EE93542-35FE-479E-9674-6274C6E30E90/198/Syntax.xml.Syntax.Generated.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238680">
-          <caret line="14046" column="231" selection-start-line="14046" selection-start-column="231" selection-end-line="14046" selection-end-column="231" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MethodGenerator/ToMethodGenerator.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-17">
-          <caret line="26" column="64" selection-start-line="26" selection-start-column="64" selection-end-line="26" selection-end-column="64" />
-          <folding>
-            <marker date="1552833702413" expanded="false" signature="6:252" ph="..." />
-            <marker date="1552833702413" expanded="true" signature="279:3369" ph="{...}" />
-            <marker date="1552833702413" expanded="true" signature="348:3367" ph="{...}" />
-            <marker date="1552833702413" expanded="true" signature="1072:2079" ph="{...}" />
-            <marker date="1552833702413" expanded="true" signature="2134:3361" ph="{...}" />
-            <marker date="1552833702413" expanded="true" signature="2685:2935" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MapperExtensionTests/Models/PupilModels/IdentityCard.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="16" column="5" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
-          <folding>
-            <marker date="1552840143200" expanded="false" signature="6:111" ph="..." />
-            <marker date="1552840143200" expanded="true" signature="146:868" ph="{...}" />
-            <marker date="1552840143200" expanded="true" signature="178:321" ph="{...}" />
-            <marker date="1552840143200" expanded="true" signature="343:452" ph="{...}" />
-            <marker date="1552840143200" expanded="true" signature="479:866" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../ReWriteInterpolation/ReWriteInterpolation/ExpressionReWriter/PatternMachingStructure.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-          <folding>
-            <marker date="1551516690491" expanded="false" signature="6:103" ph="..." />
-            <marker date="1551516690491" expanded="true" signature="120:452" ph="{...}" />
-            <marker date="1551516690491" expanded="true" signature="163:450" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/39756495-46A8-4A32-ABF4-09DD4386C3DF/44/5b6af760/ExpressionVisitor.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="16" column="30" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../ReWriteInterpolation/ReWriteInterpolation/ExpressionReWriter/ExpressionComparer.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-          <folding>
-            <marker date="1551503419250" expanded="false" signature="6:64" ph="..." />
-            <marker date="1551503419250" expanded="true" signature="81:411" ph="{...}" />
-            <marker date="1551503419250" expanded="true" signature="151:409" ph="{...}" />
-            <marker date="1551503419250" expanded="true" signature="212:286" ph="{...}" />
-            <marker date="1551503419250" expanded="true" signature="334:403" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../ReWriteInterpolation/ReWriteInterpolation/ExpressionReWriter/InterpolationReplace.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -940,37 +769,6 @@
             <marker date="1553229298209" expanded="true" signature="35:358" ph="{...}" />
             <marker date="1553229298209" expanded="true" signature="82:356" ph="{...}" />
             <marker date="1553229298209" expanded="true" signature="158:350" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../ReWriteInterpolation/ReWriteInterpolation/ExpressionReWriter/InterpolationStringReplacer.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="54" column="51" selection-start-line="54" selection-start-column="51" selection-end-line="54" selection-end-column="51" />
-          <folding>
-            <marker date="1553229298168" expanded="false" signature="6:160" ph="..." />
-            <marker date="1553229298168" expanded="true" signature="177:3073" ph="{...}" />
-            <marker date="1553229298168" expanded="true" signature="244:3071" ph="{...}" />
-            <marker date="1553229298168" expanded="true" signature="372:1409" ph="{...}" />
-            <marker date="1553229298168" expanded="true" signature="463:1398" ph="{...}" />
-            <marker date="1553229298168" expanded="true" signature="525:756" ph="{...}" />
-            <marker date="1553229298168" expanded="true" signature="818:1089" ph="{...}" />
-            <marker date="1553229298168" expanded="true" signature="1153:1384" ph="{...}" />
-            <marker date="1553229298168" expanded="true" signature="2303:2711" ph="{...}" />
-            <marker date="1553229298168" expanded="true" signature="2793:3065" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MapperExtensionTests/Models/PupilModels/PupilDto.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="13" column="24" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="24" />
-          <folding>
-            <marker date="1553187488343" expanded="false" signature="6:86" ph="..." />
-            <marker date="1553187488343" expanded="true" signature="121:603" ph="{...}" />
-            <marker date="1553187488343" expanded="true" signature="149:601" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -992,47 +790,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MapperExtensionTests/Tests/SimpleFromPupilProfileTests.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="64" column="11" selection-start-line="64" selection-start-column="11" selection-end-line="64" selection-end-column="11" />
-          <folding>
-            <marker date="1553321022453" expanded="false" signature="6:207" ph="..." />
-            <marker date="1553321022453" expanded="true" signature="224:2339" ph="{...}" />
-            <marker date="1553321022453" expanded="true" signature="289:2337" ph="{...}" />
-            <marker date="1553321022453" expanded="true" signature="339:1966" ph="{...}" />
-            <marker date="1553321022453" expanded="true" signature="395:1930" ph="{...}" />
-            <marker date="1553321022453" expanded="true" signature="578:813" ph="{...}" />
-            <marker date="1553321022453" expanded="true" signature="881:1916" ph="{...}" />
-            <marker date="1553321022453" expanded="true" signature="946:1720" ph="{...}" />
-            <marker date="1553321022453" expanded="true" signature="1005:1198" ph="{...}" />
-            <marker date="1553321022453" expanded="true" signature="1257:1448" ph="{...}" />
-            <marker date="1553321022453" expanded="true" signature="1507:1697" ph="{...}" />
-            <marker date="1553321022453" expanded="true" signature="1790:1898" ph="{...}" />
-            <marker date="1553321022453" expanded="true" signature="2054:2331" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MapperExtensions/IQueryHandler.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="2" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MapperExtensions/Handlers/IHandler.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="27" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
-          <folding>
-            <marker date="1553321076176" expanded="true" signature="25:192" ph="{...}" />
-            <marker date="1553321076176" expanded="true" signature="63:105" ph="{...}" />
-            <marker date="1553321076176" expanded="true" signature="151:190" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/MapperExtensions/IQueryHandler.cs" />
     <entry file="file://$PROJECT_DIR$/MapperExtensions/Cache/ICachedMethodInfo.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -1088,48 +846,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" column="15" selection-start-line="6" selection-start-column="15" selection-end-line="6" selection-end-column="15" />
-          <folding>
-            <marker date="1552817682485" expanded="true" signature="68:483" ph="{...}" />
-            <marker date="1552817682485" expanded="true" signature="103:481" ph="{...}" />
-            <marker date="1552817682485" expanded="true" signature="214:354" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MapperExtensions/HelpersMethod.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-804">
-          <caret line="22" column="9" lean-forward="true" selection-start-line="22" selection-start-column="9" selection-end-line="22" selection-end-column="9" />
-          <folding>
-            <marker date="1553321588929" expanded="false" signature="6:237" ph="..." />
-            <marker date="1553321588929" expanded="true" signature="265:3835" ph="{...}" />
-            <marker date="1553321588929" expanded="true" signature="305:3833" ph="{...}" />
-            <marker date="1553321588929" expanded="true" signature="397:553" ph="{...}" />
-            <marker date="1553321588929" expanded="true" signature="733:1100" ph="{...}" />
-            <marker date="1553321588929" expanded="true" signature="1205:1507" ph="{...}" />
-            <marker date="1553321588929" expanded="true" signature="1612:2750" ph="{...}" />
-            <marker date="1553321588929" expanded="true" signature="1825:2605" ph="{...}" />
-            <marker date="1553321588929" expanded="true" signature="1856:1917" ph="/* 1 шаг ... */" />
-            <marker date="1553321588929" expanded="true" signature="1996:2099" ph="/* 1 шаг ... */" />
-            <marker date="1553321588929" expanded="true" signature="2821:2927" ph="{...}" />
-            <marker date="1553321588929" expanded="true" signature="3071:3249" ph="{...}" />
-            <marker date="1553321588929" expanded="true" signature="3388:3827" ph="{...}" />
-            <marker date="1553321588929" expanded="true" signature="3411:3504" ph="/* fromlambda = x=&gt;x.Identity.Passport,props = [&quot;Name&quot;] ... */" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MapperExtensionTests/Profiles/PupilProfile.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="11" column="34" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
-          <folding>
-            <marker date="1553234136357" expanded="false" signature="6:85" ph="..." />
-            <marker date="1553234136357" expanded="true" signature="120:1543" ph="{...}" />
-            <marker date="1553234136357" expanded="true" signature="162:1541" ph="{...}" />
-            <marker date="1553234136357" expanded="true" signature="198:1535" ph="{...}" />
-            <marker date="1553234136357" expanded="true" signature="540:1525" ph="/* CreateMap&lt;Pupil, PupilDto&gt;() ... */" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1140,104 +856,6 @@
           <folding>
             <marker date="1553321753932" expanded="true" signature="78:354" ph="{...}" />
             <marker date="1553321753932" expanded="true" signature="103:347" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MapperExtensionTests/TestDbContext/TestDbContext.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="12" selection-start-line="12" selection-end-line="12" />
-          <folding>
-            <marker date="1553321679171" expanded="false" signature="6:234" ph="..." />
-            <marker date="1553321679171" expanded="true" signature="251:1508" ph="{...}" />
-            <marker date="1553321679171" expanded="true" signature="296:1506" ph="{...}" />
-            <marker date="1553321679171" expanded="true" signature="383:403" ph="{...}" />
-            <marker date="1553321679171" expanded="true" signature="490:985" ph="{...}" />
-            <marker date="1553321679171" expanded="true" signature="528:677" ph="/* .UseLoggerFactory(MyLoggerFactory) ... */" />
-            <marker date="1553321679171" expanded="true" signature="1061:1346" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MapperExtensionTests/Tests/BaseProfileTests.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="15" column="42" selection-start-line="15" selection-start-column="42" selection-end-line="15" selection-end-column="42" />
-          <folding>
-            <marker date="1553187488346" expanded="false" signature="6:85" ph="..." />
-            <marker date="1553187488346" expanded="true" signature="102:841" ph="{...}" />
-            <marker date="1553187488346" expanded="true" signature="246:839" ph="{...}" />
-            <marker date="1553187488346" expanded="true" signature="362:656" ph="{...}" />
-            <marker date="1553187488346" expanded="true" signature="767:833" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MapperExtensionTests/Tests/PropertyFinderTests.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="36" column="51" selection-start-line="36" selection-start-column="51" selection-end-line="36" selection-end-column="51" />
-          <folding>
-            <marker date="1552834040250" expanded="false" signature="6:134" ph="..." />
-            <marker date="1552834040250" expanded="true" signature="151:1019" ph="{...}" />
-            <marker date="1552834040250" expanded="true" signature="178:199" ph="{...}" />
-            <marker date="1552834040250" expanded="true" signature="221:318" ph="{...}" />
-            <marker date="1552834040250" expanded="true" signature="341:405" ph="{...}" />
-            <marker date="1552834040250" expanded="true" signature="435:495" ph="{...}" />
-            <marker date="1552834040250" expanded="true" signature="533:1017" ph="{...}" />
-            <marker date="1552834040250" expanded="true" signature="587:1011" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MapperExtensionTests/Tests/RoslynTest.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="15" column="83" selection-start-line="15" selection-start-column="83" selection-end-line="15" selection-end-column="83" />
-          <folding>
-            <marker date="1553321076186" expanded="false" signature="6:76" ph="..." />
-            <marker date="1553321076186" expanded="true" signature="93:791" ph="{...}" />
-            <marker date="1553321076186" expanded="true" signature="123:789" ph="{...}" />
-            <marker date="1553321076186" expanded="true" signature="304:783" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MethodGenerator/FileHandlers/FileReader.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
-          <folding>
-            <marker date="1553321076127" expanded="true" signature="43:245" ph="{...}" />
-            <marker date="1553321076127" expanded="true" signature="103:243" ph="{...}" />
-            <marker date="1553321076127" expanded="true" signature="157:237" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MethodGenerator/FileHandlers/FileWriter.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
-          <folding>
-            <marker date="1552388957300" expanded="true" signature="43:253" ph="{...}" />
-            <marker date="1552388957300" expanded="true" signature="102:251" ph="{...}" />
-            <marker date="1552388957300" expanded="true" signature="159:245" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MethodGenerator/BuildHelpers/GetStructures/GetParameterListSyntax.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="10" column="26" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
-          <folding>
-            <marker date="1553321759067" expanded="false" signature="6:144" ph="..." />
-            <marker date="1553321759067" expanded="true" signature="171:677" ph="{...}" />
-            <marker date="1553321759067" expanded="true" signature="270:675" ph="{...}" />
-            <marker date="1553321759067" expanded="true" signature="409:429" ph="{...}" />
-            <marker date="1553321759067" expanded="true" signature="528:669" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1270,23 +888,18 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MethodGenerator/BuildHelpers/GetStructures/GetBlockStructure.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <marker date="1553321769420" expanded="false" signature="6:114" ph="..." />
-            <marker date="1553321769420" expanded="true" signature="141:381" ph="{...}" />
-            <marker date="1553321769420" expanded="true" signature="224:379" ph="{...}" />
-            <marker date="1553321769420" expanded="true" signature="306:373" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/MethodGenerator/BuildHelpers/GetStructures/IGetStructure.cs">
+    <entry file="file://$PROJECT_DIR$/MethodGenerator/InitialExpressionBuilderInfo.cs" />
+    <entry file="file://$PROJECT_DIR$/MethodGenerator/MethodExample.cs" />
+    <entry file="file://$PROJECT_DIR$/MapperExtensions/MethodExample13.cs" />
+    <entry file="file://$PROJECT_DIR$/MethodGenerator/BuildHelpers/Builders/IBuilder.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
+        <state relative-caret-position="68">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
           <folding>
-            <marker date="1553321747891" expanded="true" signature="60:177" ph="{...}" />
-            <marker date="1553321747891" expanded="true" signature="110:175" ph="{...}" />
+            <marker date="1553322441977" expanded="true" signature="25:118" ph="{...}" />
+            <marker date="1553322441977" expanded="true" signature="71:116" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1295,11 +908,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <folding>
-            <marker date="1553321766693" expanded="false" signature="6:110" ph="..." />
-            <marker date="1553321766693" expanded="true" signature="137:1163" ph="{...}" />
-            <marker date="1553321766693" expanded="true" signature="216:1161" ph="{...}" />
-            <marker date="1553321766693" expanded="true" signature="279:1155" ph="{...}" />
-            <marker date="1553321766693" expanded="true" signature="718:1140" ph="{...}" />
+            <marker date="1553322441979" expanded="false" signature="6:110" ph="..." />
+            <marker date="1553322441979" expanded="true" signature="137:1163" ph="{...}" />
+            <marker date="1553322441979" expanded="true" signature="216:1161" ph="{...}" />
+            <marker date="1553322441979" expanded="true" signature="279:1155" ph="{...}" />
+            <marker date="1553322441979" expanded="true" signature="718:1140" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1308,33 +921,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <folding>
-            <marker date="1553321753805" expanded="false" signature="6:80" ph="..." />
-            <marker date="1553321753805" expanded="true" signature="107:378" ph="{...}" />
-            <marker date="1553321753805" expanded="true" signature="192:376" ph="{...}" />
-            <marker date="1553321753805" expanded="true" signature="258:370" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MethodGenerator/BuildHelpers/Builders/IBuilder.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
-          <folding>
-            <marker date="1553321769432" expanded="true" signature="25:118" ph="{...}" />
-            <marker date="1553321769432" expanded="true" signature="71:116" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MethodGenerator/BuildHelpers/GetNodeStructure.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <marker date="1553321764291" expanded="true" signature="6:82" ph="..." />
-            <marker date="1553321764291" expanded="true" signature="109:652" ph="{...}" />
-            <marker date="1553321764291" expanded="true" signature="215:650" ph="{...}" />
-            <marker date="1553321764291" expanded="true" signature="438:532" ph="{...}" />
+            <marker date="1553322441976" expanded="false" signature="6:80" ph="..." />
+            <marker date="1553322441976" expanded="true" signature="107:378" ph="{...}" />
+            <marker date="1553322441976" expanded="true" signature="192:376" ph="{...}" />
+            <marker date="1553322441976" expanded="true" signature="258:370" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1343,85 +933,445 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <folding>
-            <marker date="1553321751427" expanded="true" signature="6:131" ph="..." />
-            <marker date="1553321751427" expanded="true" signature="158:562" ph="{...}" />
-            <marker date="1553321751427" expanded="true" signature="281:560" ph="{...}" />
-            <marker date="1553321751427" expanded="true" signature="358:554" ph="{...}" />
+            <marker date="1553322441980" expanded="false" signature="6:131" ph="..." />
+            <marker date="1553322441980" expanded="true" signature="158:562" ph="{...}" />
+            <marker date="1553322441980" expanded="true" signature="281:560" ph="{...}" />
+            <marker date="1553322441980" expanded="true" signature="358:554" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MethodGenerator/InitialExpressionBuilderInfo.cs">
+    <entry file="file://$PROJECT_DIR$/MethodGenerator/BuildHelpers/GetStructures/IGetStructure.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+        <state>
+          <folding>
+            <marker date="1553322441985" expanded="true" signature="60:177" ph="{...}" />
+            <marker date="1553322441985" expanded="true" signature="110:175" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MethodGenerator/MethodExample13.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="9" column="42" lean-forward="true" selection-start-line="9" selection-start-column="42" selection-end-line="9" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MapperExtensions/Handlers/IHandler.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="10" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="10" />
+          <folding>
+            <marker date="1553322441972" expanded="true" signature="25:192" ph="{...}" />
+            <marker date="1553322441972" expanded="true" signature="63:105" ph="{...}" />
+            <marker date="1553322441972" expanded="true" signature="151:190" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MethodGenerator/ToOverloads.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="149" column="17" selection-start-line="149" selection-start-column="17" selection-end-line="149" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MethodGenerator/GenerateInfoToMethods.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="23" column="52" selection-start-line="23" selection-start-column="52" selection-end-line="23" selection-end-column="52" />
+        <state relative-caret-position="238">
+          <caret line="14" column="17" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
           <folding>
-            <marker date="1553321076151" expanded="true" signature="45:1006" ph="{...}" />
-            <marker date="1553321076151" expanded="true" signature="79:246" ph="{...}" />
-            <marker date="1553321076151" expanded="true" signature="134:197" ph="{...}" />
-            <marker date="1553321076151" expanded="true" signature="331:1004" ph="{...}" />
-            <marker date="1553321076151" expanded="true" signature="400:998" ph="{...}" />
-            <marker date="1553321076151" expanded="true" signature="469:962" ph="{...}" />
-            <marker date="1553321076151" expanded="true" signature="578:947" ph="{...}" />
-            <marker date="1553321076151" expanded="true" signature="678:924" ph="{...}" />
+            <marker date="1553322441987" expanded="true" signature="45:1006" ph="{...}" />
+            <marker date="1553322441987" expanded="true" signature="79:246" ph="{...}" />
+            <marker date="1553322441987" expanded="true" signature="134:197" ph="{...}" />
+            <marker date="1553322441987" expanded="true" signature="331:1004" ph="{...}" />
+            <marker date="1553322441987" expanded="true" signature="400:998" ph="{...}" />
+            <marker date="1553322441987" expanded="true" signature="469:962" ph="{...}" />
+            <marker date="1553322441987" expanded="true" signature="578:947" ph="{...}" />
+            <marker date="1553322441987" expanded="true" signature="678:924" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MethodGenerator/MethodExample.cs">
+    <entry file="file://$PROJECT_DIR$/MethodGenerator/BuildHelpers/GetStructures/GetParameterListSyntax.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="13" selection-start-line="13" selection-end-line="14" />
+        <state relative-caret-position="102">
+          <caret line="9" column="15" selection-start-line="9" selection-start-column="15" selection-end-line="9" selection-end-column="15" />
+          <folding>
+            <marker date="1553322441982" expanded="false" signature="6:144" ph="..." />
+            <marker date="1553322441982" expanded="true" signature="171:677" ph="{...}" />
+            <marker date="1553322441982" expanded="true" signature="270:675" ph="{...}" />
+            <marker date="1553322441982" expanded="true" signature="409:429" ph="{...}" />
+            <marker date="1553322441982" expanded="true" signature="528:669" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MethodGenerator/ReWriters/ParameterReWriter.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="7" column="57" selection-start-line="7" selection-start-column="37" selection-end-line="7" selection-end-column="57" />
+          <folding>
+            <marker date="1553187488353" expanded="false" signature="6:129" ph="..." />
+            <marker date="1553187488353" expanded="true" signature="156:1882" ph="{...}" />
+            <marker date="1553187488353" expanded="true" signature="216:1880" ph="{...}" />
+            <marker date="1553187488353" expanded="true" signature="362:457" ph="{...}" />
+            <marker date="1553187488353" expanded="true" signature="546:1874" ph="{...}" />
+            <marker date="1553187488353" expanded="true" signature="858:990" ph="/* beforeReturnStatements: ... */" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MethodGenerator/ReWriters/ClassReWriter.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="7" column="53" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="53" />
+          <folding>
+            <marker date="1553188239167" expanded="false" signature="6:144" ph="..." />
+            <marker date="1553188239167" expanded="true" signature="171:1103" ph="{...}" />
+            <marker date="1553188239167" expanded="true" signature="227:1101" ph="{...}" />
+            <marker date="1553188239167" expanded="true" signature="398:493" ph="{...}" />
+            <marker date="1553188239167" expanded="true" signature="580:1095" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MethodGenerator/FileHandlers/FileWriter.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="56" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="56" />
+          <folding>
+            <marker date="1553322441987" expanded="true" signature="43:253" ph="{...}" />
+            <marker date="1553322441987" expanded="true" signature="102:251" ph="{...}" />
+            <marker date="1553322441987" expanded="true" signature="159:245" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MethodGenerator/BuildHelpers/GetNodeStructure.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="6" column="80" selection-start-line="6" selection-start-column="50" selection-end-line="6" selection-end-column="80" />
+          <folding>
+            <marker date="1553322441981" expanded="false" signature="6:82" ph="..." />
+            <marker date="1553322441981" expanded="true" signature="109:652" ph="{...}" />
+            <marker date="1553322441981" expanded="true" signature="215:650" ph="{...}" />
+            <marker date="1553322441981" expanded="true" signature="438:532" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MethodGenerator/Dtos/GenerateMethodsInfo.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="63" selection-start-line="8" selection-start-column="42" selection-end-line="8" selection-end-column="63" />
+          <folding>
+            <marker date="1552817559428" expanded="true" signature="25:556" ph="{...}" />
+            <marker date="1552817559428" expanded="true" signature="64:554" ph="{...}" />
+            <marker date="1552817559428" expanded="true" signature="371:548" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MethodGenerator/FileHandlers/FileReader.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="1" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
+          <folding>
+            <marker date="1553322441986" expanded="true" signature="43:245" ph="{...}" />
+            <marker date="1553322441986" expanded="true" signature="103:243" ph="{...}" />
+            <marker date="1553322441986" expanded="true" signature="157:237" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MapperExtensionTests/Profiles/PupilProfile.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="18" column="17" selection-start-line="8" selection-start-column="2" selection-end-line="18" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/39756495-46A8-4A32-ABF4-09DD4386C3DF/44/5b6af760/ExpressionVisitor.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="16" column="30" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="30" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MapperExtensions/MapperExtensions.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="11" selection-end-column="1" />
+        <state relative-caret-position="68">
+          <caret line="15" column="88" selection-start-line="15" selection-start-column="88" selection-end-line="15" selection-end-column="88" />
           <folding>
-            <marker date="1553322209158" expanded="true" signature="6:207" ph="..." />
-            <marker date="1553322209158" expanded="true" signature="235:6945" ph="{...}" />
-            <marker date="1553322209158" expanded="true" signature="286:6943" ph="{...}" />
-            <marker date="1553322209158" expanded="true" signature="1101:2372" ph="{...}" />
-            <marker date="1553322209158" expanded="true" signature="1219:1769" ph="{...}" />
-            <marker date="1553322209158" expanded="true" signature="1842:2298" ph="{...}" />
-            <marker date="1553322209158" expanded="true" signature="2641:2839" ph="{...}" />
-            <marker date="1553322209158" expanded="true" signature="3085:3962" ph="{...}" />
-            <marker date="1553322209158" expanded="true" signature="4132:5056" ph="{...}" />
-            <marker date="1553322209158" expanded="true" signature="4250:5044" ph="{...}" />
-            <marker date="1553322209158" expanded="true" signature="4281:4478" ph="/* mapperExpressionWrapper.FromExpression = x=&gt;x.Identity.Passport ... */" />
-            <marker date="1553322209158" expanded="true" signature="5242:5495" ph="{...}" />
-            <marker date="1553322209158" expanded="true" signature="5922:6928" ph="{...}" />
+            <marker date="1553322441973" expanded="false" signature="6:207" ph="..." />
+            <marker date="1553322441973" expanded="true" signature="235:6945" ph="{...}" />
+            <marker date="1553322441973" expanded="true" signature="286:6943" ph="{...}" />
+            <marker date="1553322441973" expanded="true" signature="1101:2372" ph="{...}" />
+            <marker date="1553322441973" expanded="true" signature="1219:1769" ph="{...}" />
+            <marker date="1553322441973" expanded="true" signature="1842:2298" ph="{...}" />
+            <marker date="1553322441973" expanded="true" signature="2641:2839" ph="{...}" />
+            <marker date="1553322441973" expanded="true" signature="3085:3962" ph="{...}" />
+            <marker date="1553322441973" expanded="true" signature="4132:5056" ph="{...}" />
+            <marker date="1553322441973" expanded="true" signature="4250:5044" ph="{...}" />
+            <marker date="1553322441973" expanded="true" signature="4281:4478" ph="/* mapperExpressionWrapper.FromExpression = x=&gt;x.Identity.Passport ... */" />
+            <marker date="1553322441973" expanded="true" signature="5242:5495" ph="{...}" />
+            <marker date="1553322441973" expanded="true" signature="5922:6928" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MapperExtensions/MethodExample13.cs">
+    <entry file="file://$PROJECT_DIR$/../ReWriteInterpolation/ReWriteInterpolation/ExpressionReWriter/InterpolationStringReplacer.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="13" column="55" selection-start-line="13" selection-start-column="55" selection-end-line="13" selection-end-column="55" />
+        <state relative-caret-position="266">
+          <caret line="54" column="27" selection-start-line="54" selection-start-column="27" selection-end-line="54" selection-end-column="27" />
           <folding>
-            <marker date="1553322209171" expanded="false" signature="6:136" ph="..." />
-            <marker date="1553322209171" expanded="true" signature="164:12869" ph="{...}" />
-            <marker date="1553322209171" expanded="true" signature="215:12867" ph="{...}" />
-            <marker date="1553322209171" expanded="true" signature="577:832" ph="{...}" />
-            <marker date="1553322209171" expanded="true" signature="1276:1588" ph="{...}" />
-            <marker date="1553322209171" expanded="true" signature="2119:2488" ph="{...}" />
-            <marker date="1553322209171" expanded="true" signature="3106:3532" ph="{...}" />
-            <marker date="1553322209171" expanded="true" signature="4237:4720" ph="{...}" />
-            <marker date="1553322209171" expanded="true" signature="5512:6052" ph="{...}" />
-            <marker date="1553322209171" expanded="true" signature="6931:7528" ph="{...}" />
-            <marker date="1553322209171" expanded="true" signature="8506:9160" ph="{...}" />
-            <marker date="1553322209171" expanded="true" signature="10225:10936" ph="{...}" />
-            <marker date="1553322209171" expanded="true" signature="12092:12861" ph="{...}" />
+            <marker date="1553326236399" expanded="false" signature="6:160" ph="..." />
+            <marker date="1553326236399" expanded="true" signature="177:3091" ph="{...}" />
+            <marker date="1553326236399" expanded="true" signature="244:3089" ph="{...}" />
+            <marker date="1553326236399" expanded="true" signature="372:1409" ph="{...}" />
+            <marker date="1553326236399" expanded="true" signature="463:1398" ph="{...}" />
+            <marker date="1553326236399" expanded="true" signature="525:756" ph="{...}" />
+            <marker date="1553326236399" expanded="true" signature="818:1089" ph="{...}" />
+            <marker date="1553326236399" expanded="true" signature="1153:1384" ph="{...}" />
+            <marker date="1553326236399" expanded="true" signature="2303:2729" ph="{...}" />
+            <marker date="1553326236399" expanded="true" signature="2811:3083" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MapperExtensionTests/Models/PupilModels/PupilDto.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="29" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
+          <folding>
+            <marker date="1553326623293" expanded="false" signature="6:86" ph="..." />
+            <marker date="1553326623293" expanded="true" signature="121:594" ph="{...}" />
+            <marker date="1553326623293" expanded="true" signature="149:592" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MethodGenerator/ToMethodGenerator.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="417">
+          <caret line="53" column="21" selection-start-line="53" selection-start-column="21" selection-end-line="53" selection-end-column="21" />
+          <folding>
+            <marker date="1553323812878" expanded="false" signature="6:252" ph="..." />
+            <marker date="1553323812878" expanded="true" signature="279:3108" ph="{...}" />
+            <marker date="1553323812878" expanded="true" signature="348:3106" ph="{...}" />
+            <marker date="1553323812878" expanded="true" signature="1402:1774" ph="{...}" />
+            <marker date="1553323812878" expanded="true" signature="1829:3100" ph="{...}" />
+            <marker date="1553323812878" expanded="true" signature="2381:2649" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MethodGenerator/ParameterExpressionBuilder.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-127">
+          <caret line="11" column="62" selection-start-line="11" selection-start-column="62" selection-end-line="11" selection-end-column="62" />
+          <folding>
+            <marker date="1552832342375" expanded="false" signature="6:110" ph="..." />
+            <marker date="1552832342375" expanded="true" signature="137:3718" ph="{...}" />
+            <marker date="1552832342375" expanded="true" signature="222:3716" ph="{...}" />
+            <marker date="1552832342375" expanded="true" signature="281:3710" ph="{...}" />
+            <marker date="1552832342375" expanded="true" signature="626:3696" ph="{...}" />
+            <marker date="1552832342375" expanded="true" signature="1681:2098" ph="{...}" />
+            <marker date="1552832342375" expanded="true" signature="3236:3659" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MethodGenerator/ParameterBuildInfo.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+          <folding>
+            <marker date="1553323462248" expanded="true" signature="25:206" ph="{...}" />
+            <marker date="1553323462248" expanded="true" signature="61:114" ph="{...}" />
+            <marker date="1553323462248" expanded="true" signature="150:204" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MethodGenerator/GenerateManager.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-408">
+          <caret line="7" column="28" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
+          <folding>
+            <marker date="1553324721944" expanded="false" signature="6:77" ph="..." />
+            <marker date="1553324721944" expanded="true" signature="104:2716" ph="{...}" />
+            <marker date="1553324721944" expanded="true" signature="144:203" ph="{...}" />
+            <marker date="1553324721944" expanded="true" signature="281:2714" ph="{...}" />
+            <marker date="1553324721944" expanded="true" signature="1257:2402" ph="{...}" />
+            <marker date="1553324721944" expanded="true" signature="2452:2708" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MapperExtensionTests/Models/PupilModels/AddressCard.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="35" selection-start-line="4" selection-start-column="35" selection-end-line="4" selection-end-column="35" />
+          <folding>
+            <marker date="1553327023493" expanded="true" signature="33:281" ph="{...}" />
+            <marker date="1553327023493" expanded="true" signature="64:279" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Symbols/src/nunit/nunit/4530d6dba175fae6ff8f8ade6c07fd05e6c1c7c5/src/NUnitFramework/framework/Internal/Reflect.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="278" column="16" selection-start-line="278" selection-start-column="16" selection-end-line="278" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MapperExtensionTests/Tests/PropertyFinderTests.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="500">
+          <caret line="36" column="46" selection-start-line="36" selection-start-column="46" selection-end-line="36" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MapperExtensions/HelpersMethod.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-435">
+          <caret line="34" column="9" lean-forward="true" selection-start-line="34" selection-start-column="9" selection-end-line="34" selection-end-column="9" />
+          <folding>
+            <marker date="1553327256069" expanded="false" signature="6:237" ph="..." />
+            <marker date="1553327256069" expanded="true" signature="265:3836" ph="{...}" />
+            <marker date="1553327256069" expanded="true" signature="305:3834" ph="{...}" />
+            <marker date="1553327256069" expanded="true" signature="397:553" ph="{...}" />
+            <marker date="1553327256069" expanded="true" signature="733:1100" ph="{...}" />
+            <marker date="1553327256069" expanded="true" signature="1205:1507" ph="{...}" />
+            <marker date="1553327256069" expanded="true" signature="1613:2751" ph="{...}" />
+            <marker date="1553327256069" expanded="true" signature="1826:2606" ph="{...}" />
+            <marker date="1553327256069" expanded="true" signature="1857:1918" ph="/* 1 шаг ... */" />
+            <marker date="1553327256069" expanded="true" signature="1997:2100" ph="/* 1 шаг ... */" />
+            <marker date="1553327256069" expanded="true" signature="2822:2928" ph="{...}" />
+            <marker date="1553327256069" expanded="true" signature="3072:3250" ph="{...}" />
+            <marker date="1553327256069" expanded="true" signature="3389:3828" ph="{...}" />
+            <marker date="1553327256069" expanded="true" signature="3412:3505" ph="/* fromlambda = x=&gt;x.Identity.Passport,props = [&quot;Name&quot;] ... */" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MapperExtensionTests/TestDbContext/TestDbContext.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="23" column="46" selection-start-line="23" selection-start-column="46" selection-end-line="23" selection-end-column="46" />
+          <folding>
+            <marker date="1553327256086" expanded="false" signature="6:234" ph="..." />
+            <marker date="1553327256086" expanded="true" signature="251:1488" ph="{...}" />
+            <marker date="1553327256086" expanded="true" signature="296:1486" ph="{...}" />
+            <marker date="1553327256086" expanded="true" signature="383:403" ph="{...}" />
+            <marker date="1553327256086" expanded="true" signature="490:965" ph="{...}" />
+            <marker date="1553327256086" expanded="true" signature="528:677" ph="/* .UseLoggerFactory(MyLoggerFactory) ... */" />
+            <marker date="1553327256086" expanded="true" signature="1041:1326" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MapperExtensionTests/Tests/BaseProfileTests.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="16" column="9" lean-forward="true" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
+          <folding>
+            <marker date="1553327105937" expanded="false" signature="6:85" ph="..." />
+            <marker date="1553327105937" expanded="true" signature="102:720" ph="{...}" />
+            <marker date="1553327105937" expanded="true" signature="246:718" ph="{...}" />
+            <marker date="1553327105937" expanded="true" signature="350:437" ph="{...}" />
+            <marker date="1553327105937" expanded="true" signature="484:639" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../ReWriteInterpolation/ReWriteInterpolation/Program.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="10" selection-start-line="4" selection-start-column="10" selection-end-line="4" selection-end-column="10" />
+          <folding>
+            <marker date="1551502950087" expanded="true" signature="45:186" ph="{...}" />
+            <marker date="1551502950087" expanded="true" signature="65:184" ph="{...}" />
+            <marker date="1551502950087" expanded="true" signature="111:178" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../ReWriteInterpolation/ReWriteInterpolation/TestDbContext.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+          <folding>
+            <marker date="1551503908887" expanded="false" signature="6:253" ph="..." />
+            <marker date="1551503908887" expanded="true" signature="285:1081" ph="{...}" />
+            <marker date="1551503908887" expanded="true" signature="329:1079" ph="{...}" />
+            <marker date="1551503908887" expanded="true" signature="365:398" ph="{...}" />
+            <marker date="1551503908887" expanded="true" signature="533:912" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MapperExtensions/ToOverloads.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-17">
+          <folding>
+            <marker date="1553327287462" expanded="false" signature="6:207" ph="..." />
+            <marker date="1553327287462" expanded="true" signature="235:13072" ph="{...}" />
+            <marker date="1553327287462" expanded="true" signature="286:13070" ph="{...}" />
+            <marker date="1553327287462" expanded="true" signature="648:903" ph="{...}" />
+            <marker date="1553327287462" expanded="true" signature="1347:1659" ph="{...}" />
+            <marker date="1553327287462" expanded="true" signature="2190:2559" ph="{...}" />
+            <marker date="1553327287462" expanded="true" signature="3177:3603" ph="{...}" />
+            <marker date="1553327287462" expanded="true" signature="4308:4791" ph="{...}" />
+            <marker date="1553327287462" expanded="true" signature="5583:6123" ph="{...}" />
+            <marker date="1553327287462" expanded="true" signature="7002:7599" ph="{...}" />
+            <marker date="1553327287462" expanded="true" signature="8617:9271" ph="{...}" />
+            <marker date="1553327287462" expanded="true" signature="10380:11091" ph="{...}" />
+            <marker date="1553327287462" expanded="true" signature="12295:13064" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MapperExtensionTests/Tests/RoslynTest.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="24" column="14" selection-start-line="24" selection-start-column="14" selection-end-line="24" selection-end-column="14" />
+          <folding>
+            <marker date="1553326922776" expanded="false" signature="6:266" ph="..." />
+            <marker date="1553326922776" expanded="true" signature="283:1158" ph="{...}" />
+            <marker date="1553326922776" expanded="true" signature="313:1156" ph="{...}" />
+            <marker date="1553326922776" expanded="true" signature="480:598" ph="{...}" />
+            <marker date="1553326922776" expanded="true" signature="641:1150" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MapperExtensionTests/Tests/PupilProfileTests.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-733">
+          <caret line="31" column="11" selection-start-line="31" selection-start-column="11" selection-end-line="31" selection-end-column="11" />
+          <folding>
+            <marker date="1553327213429" expanded="false" signature="6:231" ph="..." />
+            <marker date="1553327213429" expanded="true" signature="248:4101" ph="{...}" />
+            <marker date="1553327213429" expanded="true" signature="319:4099" ph="{...}" />
+            <marker date="1553327213429" expanded="true" signature="369:920" ph="{...}" />
+            <marker date="1553327213429" expanded="true" signature="413:910" ph="{...}" />
+            <marker date="1553327213429" expanded="true" signature="965:2609" ph="{...}" />
+            <marker date="1553327213429" expanded="true" signature="1033:2573" ph="{...}" />
+            <marker date="1553327213429" expanded="true" signature="1228:1463" ph="{...}" />
+            <marker date="1553327213429" expanded="true" signature="1531:2559" ph="{...}" />
+            <marker date="1553327213429" expanded="true" signature="1596:2363" ph="{...}" />
+            <marker date="1553327213429" expanded="true" signature="1655:1842" ph="{...}" />
+            <marker date="1553327213429" expanded="true" signature="1901:2091" ph="{...}" />
+            <marker date="1553327213429" expanded="true" signature="2150:2340" ph="{...}" />
+            <marker date="1553327213429" expanded="true" signature="2433:2541" ph="{...}" />
+            <marker date="1553327213429" expanded="true" signature="2697:3457" ph="{...}" />
+            <marker date="1553327213429" expanded="true" signature="3519:3741" ph="{...}" />
+            <marker date="1553327213429" expanded="true" signature="3800:4093" ph="{...}" />
           </folding>
         </state>
       </provider>
