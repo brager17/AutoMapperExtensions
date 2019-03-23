@@ -38,38 +38,6 @@
         </e>
         <e p="ToOverloads.cs" t="Include" />
       </e>
-      <e p="MapperExtensionTests" t="IncludeRecursive">
-        <e p="bin" t="ExcludeRecursive" />
-        <e p="MapperExtensionTests.csproj" t="IncludeRecursive" />
-        <e p="Models" t="Include">
-          <e p="PupilModels" t="Include">
-            <e p="AddressCard.cs" t="Include" />
-            <e p="EducationCard.cs" t="Include" />
-            <e p="Exam.cs" t="Include" />
-            <e p="IdentityCard.cs" t="Include" />
-            <e p="Mark.cs" t="Include" />
-            <e p="Pupil.cs" t="Include" />
-            <e p="PupilDto.cs" t="Include" />
-            <e p="StadyGroup.cs" t="Include" />
-          </e>
-        </e>
-        <e p="obj" t="ExcludeRecursive">
-          <e p="Debug" t="Include">
-            <e p="netcoreapp2.2" t="Include">
-              <e p="MapperExtensionTests.AssemblyInfo.cs" t="Include" />
-            </e>
-          </e>
-        </e>
-        <e p="Profiles" t="Include" />
-        <e p="TestDbContext" t="Include">
-          <e p="TestDbContext.cs" t="Include" />
-        </e>
-        <e p="Tests" t="Include">
-          <e p="BaseProfileTests.cs" t="Include" />
-          <e p="PupilProfileTests.cs" t="Include" />
-          <e p="RoslynTest.cs" t="Include" />
-        </e>
-      </e>
       <e p="MapperExtensionTests.sln" t="IncludeFlat" />
       <e p="MethodGenerator" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
@@ -121,6 +89,37 @@
         <e p="ToMethodGenerator.cs" t="Include" />
       </e>
       <e p="packages" t="ExcludeRecursive" />
+      <e p="UnitTests" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Models" t="Include">
+          <e p="PupilModels" t="Include">
+            <e p="AddressCard.cs" t="Include" />
+            <e p="EducationCard.cs" t="Include" />
+            <e p="Exam.cs" t="Include" />
+            <e p="IdentityCard.cs" t="Include" />
+            <e p="Mark.cs" t="Include" />
+            <e p="Pupil.cs" t="Include" />
+            <e p="PupilDto.cs" t="Include" />
+            <e p="StadyGroup.cs" t="Include" />
+          </e>
+        </e>
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.2" t="Include">
+              <e p="UnitTests.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="TestDbContext" t="Include">
+          <e p="TestDbContext.cs" t="Include" />
+        </e>
+        <e p="Tests" t="Include">
+          <e p="BaseProfileTests.cs" t="Include" />
+          <e p="PupilProfileTests.cs" t="Include" />
+          <e p="RoslynTest.cs" t="Include" />
+        </e>
+        <e p="UnitTests.csproj" t="IncludeRecursive" />
+      </e>
     </e>
     <e p="C:\Users\evgeniy\RiderProjects\ReWriteInterpolation\ReWriteInterpolation" t="IncludeRecursive">
       <e p="bin" t="ExcludeRecursive" />

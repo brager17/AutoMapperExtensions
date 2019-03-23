@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapperExtensionTests", "MapperExtensionTests\MapperExtensionTests.csproj", "{C0BF8B7E-C4CA-4D87-A99B-D6D153C2FE63}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{C0BF8B7E-C4CA-4D87-A99B-D6D153C2FE63}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapperExtensions", "MapperExtensions\MapperExtensions.csproj", "{BBDA8EF7-F463-467C-95A3-D0C0AEE94280}"
 EndProject
