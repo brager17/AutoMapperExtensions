@@ -47,19 +47,19 @@ namespace Tests
                         {
                             Name = "Math",
                             Date = DateTime.Now,
-                            Mark = MapperExtensions.Models.Mark.Bad
+                            Mark = Mark.Bad
                         },
                         new Exam
                         {
                             Name = "Physics",
                             Date = DateTime.Now,
-                            Mark = MapperExtensions.Models.Mark.Bad
+                            Mark = Mark.Bad
                         },
                         new Exam
                         {
                             Name = "English",
                             Date = DateTime.Now,
-                            Mark = MapperExtensions.Models.Mark.Bad
+                            Mark = Mark.Bad
                         },
                     },
                     StudyGroup = new StudyGroup
@@ -96,6 +96,7 @@ namespace Tests
         [Test]
         public void To__AgeGreater18__Adult()
         {
+            var s = context.Pupils.ProjectTo<PupilDto>();
             context.Add(MockData());
             context.SaveChanges();
             var pupilDto = context.Pupils.ProjectTo<PupilDto>().First();
