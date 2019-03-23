@@ -12,12 +12,24 @@
     <e p="C:\Users\evgeniy\RiderProjects\MapperExtensionTests" t="IncludeFlat">
       <e p="MapperExtensions" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
-        <e p="IEnumerableExtensions.cs" t="Include" />
-        <e p="IHandler.cs" t="Include" />
-        <e p="IQueryHandler.cs" t="Include" />
-        <e p="MapperExpressionWrapper.cs" t="Include" />
+        <e p="Cache" t="Include">
+          <e p="CachedMethodInfo.cs" t="Include" />
+          <e p="ICachedMethodInfo.cs" t="Include" />
+        </e>
+        <e p="Extensions" t="Include">
+          <e p="IEnumerableExtensions.cs" t="Include" />
+        </e>
+        <e p="Handlers" t="Include">
+          <e p="IHandler.cs" t="Include" />
+        </e>
+        <e p="HelpersMethod.cs" t="Include" />
+        <e p="MapperExtensions.cs" t="Include" />
         <e p="MapperExtensions.csproj" t="IncludeRecursive" />
-        <e p="MapPropertyInfo.cs" t="Include" />
+        <e p="MethodExample13.cs" t="Include" />
+        <e p="Models" t="Include">
+          <e p="MapperExpressionWrapper.cs" t="Include" />
+          <e p="MapPropertyInfo.cs" t="Include" />
+        </e>
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp2.2" t="Include">
@@ -25,7 +37,6 @@
             </e>
           </e>
         </e>
-        <e p="RefactMapper.cs" t="Include" />
       </e>
       <e p="MapperExtensionTests" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
@@ -57,9 +68,6 @@
         </e>
         <e p="Tests" t="Include">
           <e p="BaseProfileTests.cs" t="Include" />
-          <e p="FunctionTests" t="Include">
-            <e p="AutoMapperTests.cs" t="Include" />
-          </e>
           <e p="PropertyFindertests.cs" t="Include" />
           <e p="RoslynTest.cs" t="Include" />
           <e p="SimpleFromPupilProfileTests.cs" t="Include" />
@@ -68,6 +76,22 @@
       <e p="MapperExtensionTests.sln" t="IncludeFlat" />
       <e p="MethodGenerator" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
+        <e p="BuildHelpers" t="Include">
+          <e p="Builders" t="Include">
+            <e p="GenericTypesBuilder.cs" t="Include" />
+            <e p="IBuilder.cs" t="Include" />
+            <e p="StatementBuilder.cs" t="Include" />
+          </e>
+          <e p="ConcatSyntaxNodeOrToken.cs" t="Include" />
+          <e p="GetNodeStructure.cs" t="Include" />
+          <e p="GetStructures" t="Include">
+            <e p="GetBlockStructure.cs" t="Include" />
+            <e p="GetParameterListSyntax.cs" t="Include" />
+            <e p="GetStructureBase.cs" t="Include" />
+            <e p="GetTypeParameterListSyntax.cs" t="Include" />
+            <e p="IGetStructure.cs" t="Include" />
+          </e>
+        </e>
         <e p="Dtos" t="Include">
           <e p="FileInfoDto.cs" t="Include" />
           <e p="GenerateMethodInfo.cs" t="Include" />
@@ -77,13 +101,11 @@
           <e p="ReWriteMethodInfo.cs" t="Include" />
           <e p="WriteFileInfoDto.cs" t="Include" />
         </e>
-        <e p="FileReader.cs" t="Include" />
-        <e p="FileWriter.cs" t="Include" />
+        <e p="FileHandlers" t="Include">
+          <e p="FileReader.cs" t="Include" />
+          <e p="FileWriter.cs" t="Include" />
+        </e>
         <e p="GenerateInfoToMethods.cs" t="Include" />
-        <e p="IBuilder.cs" t="Include" />
-        <e p="InitialExpressionBuilderInfo.cs" t="Include" />
-        <e p="MethodExample.cs" t="Include" />
-        <e p="MethodExample13.cs" t="Include" />
         <e p="MethodGenerator.csproj" t="IncludeRecursive" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">

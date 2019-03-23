@@ -2,7 +2,7 @@ using System.IO;
 
 namespace MethodGenerator
 {
-    public class FileReader : IQueryHandler<FileInfoDto, string>
+    public class FileReader : IQuery<FileInfoDto, string>
     {
         public string Handle(FileInfoDto input)
         {

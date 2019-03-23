@@ -58,14 +58,11 @@ namespace Tests
         [Test]
         public void PupilProfile__SimpleMapRules__GetPupilCorrectDto()
         {
-            var pupil = context.Pupils.First();
             var projectTo = context.Pupils
                     .ProjectTo<PupilDto>()
+                    .GroupBy(x => x.House)
                 ;
-            var ex = context.Pupils.Select(x =>
-                x.Identity.Passport.Age != 0
-                    ? x.Identity.Passport.Name
-                    : x.Identity.Passport.Name + " " + x.Identity.Passport.Surname);
+           
             var s = projectTo.First();
             Assert.DoesNotThrow(() => projectTo.ToList());
         }

@@ -1,80 +1,14 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Dynamic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Text.RegularExpressions;
-using AutoMapper;
 using MapperExtensions.Models;
 using Microsoft.EntityFrameworkCore.Internal;
 
 namespace MapperExtensions
 {
-    public interface ICachedMethodInfo
-    {
-        MethodInfo GetMethod(string name);
-    }
-
-    public class CachedMethodInfo : ICachedMethodInfo
-    {
-        Dictionary<string, MethodInfo> _dic = new Dictionary<string, MethodInfo>
-        {
-            {
-                nameof(HelpersMethod.GetRuleByConvention).Split('.').Last(),
-                typeof(HelpersMethod).GetMethod(nameof(HelpersMethod.GetRuleByConvention).Split('.').Last())
-            },
-        };
-
-        public MethodInfo GetMethod(string name)
-        {
-            return _dic.First(x => x.Key == name).Value;
-        }
-    }
-
-    public static class RefactMapper
-    {
-        private static ICachedMethodInfo _cachedMethodInfo = new CachedMethodInfo();
-
-
-        public static MapperExpressionWrapper<TSource, TDest, TProjection> From<TSource, TDest, TProjection>(
-            this IMappingExpression<TSource, TDest> mapping, Expression<Func<TSource, TProjection>> expression)
-            => new MapperExpressionWrapper<TSource, TDest, TProjection>(mapping, expression);
-
-        public static IMappingExpression<TSource, TDest> FixRules<TSource, TDest, TProjection, T>(
-            this MapperExpressionWrapper<TSource, TDest, TProjection> mapperExpressionWrapper,
-            IEnumerable<(Expression<Func<TDest, T>>, Expression<Func<TProjection, T>>)> rules)
-        {
-            var properties = typeof(TDest).GetProperties().ToList();
-            properties.ForEach(prop =>
-            {
-                var ruleByConvention = _cachedMethodInfo
-                    .GetMethod(nameof(HelpersMethod.GetRuleByConvention))
-                    .MakeGenericMethod(typeof(TSource), typeof(TProjection), prop.PropertyType)
-                    .Invoke(null, new object[] {prop, mapperExpressionWrapper.FromExpression});
-                
-                if (ruleByConvention == null) return;
-                mapperExpressionWrapper.MappingExpression.ForMember(prop.Name,
-                    s => s.MapFrom((dynamic) ruleByConvention));
-            });
-
-            var list = rules.ToList();
-
-            list.ForEach(x =>
-            {
-                var (from, @for) = x;
-                var result = Expression.Lambda<Func<TSource, T>>(
-                    Expression.Invoke(@for, mapperExpressionWrapper.FromExpression.Body),
-                    mapperExpressionWrapper.FromExpression.Parameters.First());
-                mapperExpressionWrapper.MappingExpression
-                    .ForMember(string.Join('.', from.PropertiesStr()), s => s.MapFrom(result));
-            });
-            return mapperExpressionWrapper.MappingExpression;
-        }
-    }
-
-
     public static class HelpersMethod
     {
         public static IEnumerable<string> PropertiesStr(this LambdaExpression lambda)
@@ -97,12 +31,12 @@ namespace MapperExtensions
         }
 
 
-        private static MapPropertyInfo GetAdvancesConventionInfo<TProjection>(PropertyInfo destProperty)
+        private static MapPropertyInfo GetAdvancesConventionInfo<TProjection>(MemberInfo destProperty)
         {
-            var result1 = AdvanceMapProperty(CamelCaseMatch(destProperty.Name),
-                typeof(TProjection));
-            return result1.All(xx => xx != null)
-                ? new MapPropertyInfo(destProperty.Name, result1)
+            var propertyPath = AdvanceMapProperty(CamelCaseMatch(destProperty.Name), typeof(TProjection))
+                .ToList();
+            return propertyPath.All(xx => xx != null)
+                ? new MapPropertyInfo(destProperty.Name, propertyPath)
                 : null;
         }
 
@@ -118,12 +52,12 @@ namespace MapperExtensions
                 if (!pathStr.StartsWith(prop.Name)) continue;
                 // 1 шаг
                 // удаляем строку с имененем найденного свойства:newPath = ["Passport","Name"]
-                var newPath = CamelCaseMatch(pathStr.Remove(0, prop.Name.Length));
+                var newPath = CamelCaseMatch(pathStr.Remove(0, prop.Name.Length)).ToList();
                 // прошли весь путь
                 if (!newPath.Any())
                     return new[] {prop.Name};
                 // рекурсивно идем дальше, конкатенация с уже найденными свойствами
-                var analyze = AdvanceMapProperty(newPath, prop.PropertyType);
+                var analyze = AdvanceMapProperty(newPath, prop.PropertyType).ToList();
                 if (analyze.All(x => x != null))
                     return new[] {prop.Name}.Concat(analyze);
             }
@@ -149,11 +83,11 @@ namespace MapperExtensions
         {
             //fromlambda = x=>x.Identity.Passport,props = ["Name"]
             //propertyExpression = "x"
-            var propertyExpression = fromLambda.Parameters.First();
+            var parameter = fromLambda.Parameters.First();
             //props = ["Identity","Passport","Name"]
             props = fromLambda.PropertiesStr().Concat(props);
             // returned  Expression<Func<Pupil,string>> x=>x.Identity.Passport.Name
-            return GetLambda<S, P1>(props, propertyExpression);
+            return GetLambda<S, P1>(props, parameter);
         }
     }
 }

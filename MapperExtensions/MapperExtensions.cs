@@ -1,18 +1,54 @@
 using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Dynamic;
 using System.Linq;
 using System.Linq.Expressions;
 using AutoMapper;
-using MapperExtensions;
 using MapperExtensions.Models;
 using Tests;
 
-namespace MethodGenerator
+namespace MapperExtensions
 {
-    public static partial class RefactMapper
+    public static partial class MapperExtensions
     {
         private static ICachedMethodInfo _cachedMethodInfo = new CachedMethodInfo();
         private static InterpolationStringReplacer _interpolationStringReplacer = new InterpolationStringReplacer();
 
+        public static MapperExpressionWrapper<TSource, TDest, TProjection> From<TSource, TDest, TProjection>(
+            this IMappingExpression<TSource, TDest> mapping, Expression<Func<TSource, TProjection>> expression)
+            => new MapperExpressionWrapper<TSource, TDest, TProjection>(mapping, expression);
+
+        public static IMappingExpression<TSource, TDest> FixRules<TSource, TDest, TProjection, T>(
+            this MapperExpressionWrapper<TSource, TDest, TProjection> mapperExpressionWrapper,
+            IEnumerable<(Expression<Func<TDest, T>>, Expression<Func<TProjection, T>>)> rules)
+        {
+            var properties = typeof(TDest).GetProperties().ToList();
+            properties.ForEach(prop =>
+            {
+                var ruleByConvention = _cachedMethodInfo
+                    .GetMethod(nameof(HelpersMethod.GetRuleByConvention))
+                    .MakeGenericMethod(typeof(TSource), typeof(TProjection), prop.PropertyType)
+                    .Invoke(null, new object[] {prop, mapperExpressionWrapper.FromExpression});
+
+                if (ruleByConvention == null) return;
+                mapperExpressionWrapper.MappingExpression.ForMember(prop.Name,
+                    s => s.MapFrom((dynamic) ruleByConvention));
+            });
+
+            var list = rules.ToList();
+
+            list.ForEach(x =>
+            {
+                var (from, @for) = x;
+                var result = Expression.Lambda<Func<TSource, T>>(
+                    Expression.Invoke(@for, mapperExpressionWrapper.FromExpression.Body),
+                    mapperExpressionWrapper.FromExpression.Parameters.First());
+                mapperExpressionWrapper.MappingExpression
+                    .ForMember(string.Join('.', from.PropertiesStr()), s => s.MapFrom(result));
+            });
+            return mapperExpressionWrapper.MappingExpression;
+        }
         public static IMappingExpression<TSource, TDest> To<TSource, TDest, TProjection, T>(
             this MapperExpressionWrapper<TSource, TDest, TProjection> mapperExpressionWrapper,
             (Expression<Func<TDest, T>>, Expression<Func<TProjection, T>>) arg0)
@@ -92,5 +128,6 @@ namespace MethodGenerator
                 s => s.MapFrom((dynamic) condition));
             return mapperExpressionWrapper;
         }
+        
     }
 }

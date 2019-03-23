@@ -10,4 +10,8 @@
       <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.0.0-preview3" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\ReWriteInterpolation\ReWriteInterpolation\ReWriteInterpolation.csproj" />
+    </ItemGroup>
+
 </Project>

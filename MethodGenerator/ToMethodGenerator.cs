@@ -10,16 +10,16 @@ namespace MethodGenerator
 {
     public class ToMethodGenerator : IHandler<GenerateMethodsInfo>
     {
-        private IQueryHandler<FileInfoDto, string> FileReader { get; }
+        private IQuery<FileInfoDto, string> FileReader { get; }
         private IBuilder<Parameter, ParameterSyntax> ParameterBuilder { get; }
         private IHandler<WriteFileInfoDto> FileWriter { get; }
 
         private ClassReWriter ClassReWriter { get; }
         private ParameterReWriter MethodParametersReWriter { get; }
 
-        private GetNodeStructureHandler<Parameter, ParameterSyntax, ParameterListSyntax> GetParameters { get; }
-        private GetNodeStructureHandler<IGenericInfo, TypeParameterSyntax, TypeParameterListSyntax> GetGenerics { get; }
-        private GetNodeStructureHandler<IArgumentInfo, StatementSyntax, BlockSyntax> GetBlockStatement { get; }
+        private GetNodeStructure<Parameter, ParameterSyntax, ParameterListSyntax> GetParameters { get; }
+        private GetNodeStructure<IGenericInfo, TypeParameterSyntax, TypeParameterListSyntax> GetGenerics { get; }
+        private GetNodeStructure<IArgumentInfo, StatementSyntax, BlockSyntax> GetBlockStatement { get; }
 
 
         public ToMethodGenerator()
@@ -30,14 +30,14 @@ namespace MethodGenerator
             FileReader = new FileReader();
             FileWriter = new FileWriter();
             GetParameters =
-                new GetNodeStructureHandler<Parameter, ParameterSyntax, ParameterListSyntax>(
+                new GetNodeStructure<Parameter, ParameterSyntax, ParameterListSyntax>(
                     new GetParameterListSyntax(new ConcatSyntaxNodeOrToken<ParameterSyntax>()),
                     new ParameterExpressionBuilder());
-            GetGenerics = new GetNodeStructureHandler<IGenericInfo, TypeParameterSyntax, TypeParameterListSyntax>(
+            GetGenerics = new GetNodeStructure<IGenericInfo, TypeParameterSyntax, TypeParameterListSyntax>(
                 new GetTypeParameterListSyntax(new ConcatSyntaxNodeOrToken<TypeParameterSyntax>()),
                 new GenericTypesBuilder());
             GetBlockStatement =
-                new GetNodeStructureHandler<IArgumentInfo, StatementSyntax, BlockSyntax>(new GetBlockStructure(),
+                new GetNodeStructure<IArgumentInfo, StatementSyntax, BlockSyntax>(new GetBlockStructure(),
                     new StatementBuilder());
         }
 

@@ -6,7 +6,7 @@ namespace Tests
 {
     public class RoslynTest
     {
-        private static IQueryHandler<CountArguments, GenerateMethodInfo> GenerateInfoToMethods =>
+        private static IQuery<CountArguments, GenerateMethodInfo> GenerateInfoToMethods =>
             new GenerateInfoToMethods();
 
         [Test]

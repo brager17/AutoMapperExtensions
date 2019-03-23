@@ -12,7 +12,7 @@ namespace MethodGenerator
         public int ArgumentCount { get; }
     }
 
-    public class GenerateInfoToMethods : IQueryHandler<CountArguments, GenerateMethodInfo>
+    public class GenerateInfoToMethods : IQuery<CountArguments, GenerateMethodInfo>
     {
         public GenerateMethodInfo Handle(CountArguments input)
         {

@@ -6,13 +6,6 @@ namespace MapperExtensions.Models
 {
     public static class IEnumerableExtensions
     {
-        public static IEnumerable<T> LeftJoin<T>(this IEnumerable<T> enumerable1, IEnumerable<T> enumerable2,
-            IEqualityComparer<T> equalityComparer)
-        {
-            var result = enumerable1.Union(enumerable2, equalityComparer).ToList();
-            return result;
-        }
-
         public static R JOIN<T, S, R>(this IEnumerable<T> enumerable, Func<R, T, R> accFunc, Func<R, S, R> sepFunc,
             S Separator)
             where R : new()

@@ -10,4 +10,6 @@ namespace MapperExtensions.Models
         public EducationCard EducationCard { get; set; }
         public string STR{ get; set; }
     }
+
+   
 }
